@@ -1,4 +1,4 @@
-package solutionsOne
+package chapters
 
 import (
 	"fmt"
