@@ -1,7 +1,7 @@
 package main
 
-import solutionsOne "1400-CirclesOfHell/chapters"
+import chapters "1400-CirclesOfHell/chapters"
 
 func main() {
-	solutionsOne.Run()
+	chapters.Run03()
 }
