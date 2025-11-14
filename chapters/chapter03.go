@@ -7,6 +7,7 @@ import (
 func Run03() {
 	tasks := []func(){
 		ch3ex01, ch3ex02, ch3ex03, ch3ex04, ch3ex05, ch3ex06, ch3ex07, ch3ex08,
+		ch3ex09, ch3ex10, ch3ex11, ch3ex12, ch3ex13, ch3ex14,
 	}
 
 	for {
@@ -105,4 +106,63 @@ func ch3ex08() {
 	} else {
 		fmt.Printf("Ex08. Ответ: Билет не существует\n")
 	}
+}
+
+func ch3ex09() {
+	var seconds int
+	fmt.Printf("Ex09. Вычисление времени\n")
+	fmt.Printf("Ex09. Введите количество секунд: ")
+	fmt.Scan(&seconds)
+	fmt.Printf("Ex09. Ответ:\nа) %d\nб) %d\nв) %d\n", seconds/3600, (seconds%3600)/60, seconds%60)
+}
+
+func ch3ex10() {
+	var k, d int
+	fmt.Printf("Ex10. Определение дня недели\n")
+	fmt.Printf("Ex10. Введите номер дня года (1-365) и день недели 1 января (1-7): ")
+	fmt.Scan(&k, &d)
+
+	n := (k+d-2)%7 + 1
+	if n == 7 {
+		n = 0
+	}
+
+	fmt.Printf("Ex10. Ответ: %d\n", n)
+}
+
+func ch3ex11() {
+	var n int
+	fmt.Printf("Ex11. Определение месяца\n")
+	fmt.Printf("Ex11. Введите количество прошедших месяцев: ")
+	fmt.Scan(&n)
+	fmt.Printf("Ex11. Ответ: %d\n", n%12+1)
+}
+
+func ch3ex12() {
+	var flat int
+	fmt.Printf("Ex12. Определение этажа и позиции квартиры\n")
+	fmt.Printf("Ex12. Введите номер квартиры (1-20): ")
+	fmt.Scan(&flat)
+	fmt.Printf("Ex12. Ответ: Этаж %d, Квартира по счету %d\n", (flat-1)/4+1, (flat-1)%4+1)
+}
+
+func ch3ex13() {
+	var n int
+	fmt.Printf("Ex13. Определение позиции в таблице\n")
+	fmt.Printf("Ex13. Введите порядковый номер (1-50): ")
+	fmt.Scan(&n)
+	fmt.Printf("Ex13. Ответ: Строка %d, Столбец %d\n", (n-1)/5+1, (n-1)%5+1)
+}
+
+func ch3ex14() {
+	var flat int
+	fmt.Printf("Ex14. Определение подъезда, этажа и позиции\n")
+	fmt.Printf("Ex14. Введите номер квартиры (1-216): ")
+	fmt.Scan(&flat)
+	flatsPerEntrance := 9 * 6
+	flatsPerFloor := 6
+	entrance := (flat-1)/flatsPerEntrance + 1
+	floorInEntrance := ((flat-1)%flatsPerEntrance)/flatsPerFloor + 1
+	positionOnFloor := (flat-1)%flatsPerFloor + 1
+	fmt.Printf("Ex14. Ответ: Подъезд %d, Этаж %d, Позиция %d\n", entrance, floorInEntrance, positionOnFloor)
 }
