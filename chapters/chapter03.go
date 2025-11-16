@@ -2,6 +2,7 @@ package chapters
 
 import (
 	"fmt"
+	"math"
 )
 
 func Run03() {
@@ -10,7 +11,9 @@ func Run03() {
 		ch3ex09, ch3ex10, ch3ex11, ch3ex12, ch3ex13, ch3ex14, ch3ex15, ch3ex16,
 		ch3ex17, ch3ex18, ch3ex19, ch3ex20, ch3ex21, ch3ex22, ch3ex23, ch3ex24,
 		ch3ex25, ch3ex26, ch3ex27, ch3ex28, ch3ex29, ch3ex30, ch3ex31, ch3ex32,
-		ch3ex33,
+		ch3ex33, ch3ex34, ch3ex35, ch3ex36, ch3ex37, ch3ex38, ch3ex39, ch3ex40,
+		ch3ex41, ch3ex42, ch3ex43, ch3ex44, ch3ex45, ch3ex46, ch3ex47, ch3ex48,
+		ch3ex49, ch3ex50, ch3ex51,
 	}
 
 	for {
@@ -341,4 +344,228 @@ func ch3ex33() {
 	firstTwo := result % 100
 	original := firstTwo*10 + lastDigit
 	fmt.Printf("Ex33. Ответ: %d\n", original)
+}
+
+func ch3ex34() {
+	fmt.Printf("Ex34. Восстановление трехзначного числа\n")
+	result := 564
+	a := result % 10
+	bc := result / 10
+	x := a*100 + bc
+	fmt.Printf("Ex34. Ответ: %d\n", x)
+}
+
+func ch3ex35() {
+	var n int
+	fmt.Printf("Ex35. Восстановление по n\n")
+	fmt.Printf("Ex35. Введите n (1 < n < 999): ")
+	fmt.Scan(&n)
+	a := n % 10
+	bc := n / 10
+	x := a*100 + bc
+	fmt.Printf("Ex35. Ответ: %d\n", x)
+}
+
+func ch3ex36() {
+	fmt.Printf("Ex36. Восстановление с перестановкой\n")
+	result := 546
+	b := result / 100
+	ac := result % 100
+	x := ac/10*100 + b*10 + ac%10
+	fmt.Printf("Ex36. Ответ: %d\n", x)
+}
+
+func ch3ex37() {
+	var n int
+	fmt.Printf("Ex37. Восстановление по n\n")
+	fmt.Printf("Ex37. Введите n (10 < n < 999): ")
+	fmt.Scan(&n)
+	b := n / 100
+	ac := n % 100
+	x := ac/10*100 + b*10 + ac%10
+	fmt.Printf("Ex37. Ответ: %d\n", x)
+}
+
+func ch3ex38() {
+	fmt.Printf("Ex38. Восстановление с приписыванием справа\n")
+	result := 456
+	ac := result / 10
+	b := result % 10
+	x := ac/10*100 + b*10 + ac%10
+	fmt.Printf("Ex38. Ответ: %d\n", x)
+}
+
+func ch3ex39() {
+	var n int
+	fmt.Printf("Ex39. Восстановление по n\n")
+	fmt.Printf("Ex39. Введите n (100 < n < 999): ")
+	fmt.Scan(&n)
+	ac := n / 10
+	b := n % 10
+	x := ac/10*100 + b*10 + ac%10
+	fmt.Printf("Ex39. Ответ: %d\n", x)
+}
+
+func ch3ex40() {
+	fmt.Printf("Ex40. Восстановление с перестановкой цифр\n")
+	result := 654
+	c := result / 100
+	ba := result % 100
+	x := ba%10*100 + ba/10*10 + c
+	fmt.Printf("Ex40. Ответ: %d\n", x)
+}
+
+func ch3ex41() {
+	var n int
+	fmt.Printf("Ex41. Восстановление по n\n")
+	fmt.Printf("Ex41. Введите n (1 < n < 999): ")
+	fmt.Scan(&n)
+	c := n / 100
+	ba := n % 100
+	x := ba%10*100 + ba/10*10 + c
+	fmt.Printf("Ex41. Ответ: %d\n", x)
+}
+
+func ch3ex42() {
+	var a1, a2, b int
+	fmt.Printf("Ex42. Сложение чисел по цифрам\n")
+	fmt.Printf("Ex42. Введите цифры двузначного (единицы, десятки) и однозначного числа: ")
+	fmt.Scan(&a1, &a2, &b)
+
+	units := (a1 + b) % 10
+	tens := a2 + (a1+b)/10
+
+	fmt.Printf("Ex42. Ответ: Десятки: %d, Единицы: %d\n", tens, units)
+}
+
+func ch3ex43() {
+	var a1, a2, b1, b2 int
+	fmt.Printf("Ex43. Сложение двух двузначных чисел по цифрам\n")
+	fmt.Printf("Ex43. Введите цифры двух чисел (единицы1, десятки1, единицы2, десятки2): ")
+	fmt.Scan(&a1, &a2, &b1, &b2)
+
+	units := (a1 + b1) % 10
+	tens := a2 + b2 + (a1+b1)/10
+
+	fmt.Printf("Ex43. Ответ: Десятки: %d, Единицы: %d\n", tens, units)
+}
+
+func ch3ex44() {
+	var a1, a2, a3, b1, b2 int
+	fmt.Printf("Ex44. Сложение трехзначного и двузначного чисел по цифрам\n")
+	fmt.Printf("Ex44. Введите цифры (единицы3х, десятки3х, сотни3х, единицы2х, десятки2х): ")
+	fmt.Scan(&a1, &a2, a3, &b1, &b2)
+
+	units := (a1 + b1) % 10
+	carry1 := (a1 + b1) / 10
+	tens := (a2 + b2 + carry1) % 10
+	carry2 := (a2 + b2 + carry1) / 10
+	hundreds := a3 + carry2
+
+	fmt.Printf("Ex44. Ответ: Сотни: %d, Десятки: %d, Единицы: %d\n", hundreds, tens, units)
+}
+
+func ch3ex45() {
+	var k int
+	fmt.Printf("Ex45. Последовательность двузначных чисел\n")
+	fmt.Printf("Ex45. Введите k (1-180): ")
+	fmt.Scan(&k)
+
+	pairNumber := (k + 1) / 2
+	twoDigitNumber := 9 + pairNumber
+
+	var kthDigit int
+	if k%2 == 1 {
+		kthDigit = twoDigitNumber / 10
+	} else {
+		kthDigit = twoDigitNumber % 10
+	}
+
+	fmt.Printf("Ex45. Ответ: Пара: %d, Число: %d, %d-я цифра: %d\n", pairNumber, twoDigitNumber, k, kthDigit)
+}
+
+func ch3ex46() {
+	var k int
+	fmt.Printf("Ex46. Последовательность трехзначных чисел\n")
+	fmt.Printf("Ex46. Введите k (1-150): ")
+	fmt.Scan(&k)
+
+	numberIndex := (k + 2) / 3
+	digitInNumber := (k-1)%3 + 1
+	threeDigitNumber := 100 + numberIndex
+
+	var kthDigit int
+	switch digitInNumber {
+	case 1:
+		kthDigit = threeDigitNumber / 100
+	case 2:
+		kthDigit = threeDigitNumber / 10 % 10
+	case 3:
+		kthDigit = threeDigitNumber % 10
+	}
+
+	fmt.Printf("Ex46. Ответ: %d-я цифра: %d\n", k, kthDigit)
+}
+
+func ch3ex47() {
+	var h, m, s int
+	fmt.Printf("Ex47. Угол часовой стрелки\n")
+	fmt.Printf("Ex47. Введите часы, минуты, секунды: ")
+	fmt.Scan(&h, &m, &s)
+
+	totalSeconds := h*3600 + m*60 + s
+	angle := float64(totalSeconds) * 360 / (12 * 3600)
+
+	fmt.Printf("Ex47. Ответ: Угол: %.2f градусов\n", angle)
+}
+
+func ch3ex48() {
+	var y float64
+	fmt.Printf("Ex48. Время по углу часовой стрелки\n")
+	fmt.Printf("Ex48. Введите угол в градусах: ")
+	fmt.Scan(&y)
+
+	totalSeconds := y * 12 * 3600 / 360
+	hours := int(totalSeconds) / 3600
+	minutes := (int(totalSeconds) % 3600) / 60
+
+	fmt.Printf("Ex48. Ответ: Часов: %d, Минут: %d\n", hours, minutes)
+}
+
+func ch3ex49() {
+	var y float64
+	fmt.Printf("Ex49. Углы стрелок\n")
+	fmt.Printf("Ex49. Введите угол часовой стрелки (0-2π): ")
+	fmt.Scan(&y)
+
+	minuteAngle := math.Mod(y*12, 2*math.Pi)
+	hours := int(y * 12 / (2 * math.Pi))
+	minutes := int(minuteAngle * 60 / (2 * math.Pi))
+
+	fmt.Printf("Ex49. Ответ: Угол минутной: %.2f, Часов: %d, Минут: %d\n", minuteAngle, hours, minutes)
+}
+
+func ch3ex50() {
+	var h, m int
+	fmt.Printf("Ex50. Время до совпадения стрелок\n")
+	fmt.Printf("Ex50. Введите часы и минуты: ")
+	fmt.Scan(&h, &m)
+
+	currentMinutes := h*60 + m
+	minutesToMatch := (360 - (currentMinutes%720)*11/2) * 2 / 11
+	minutesToPerpendicular1 := (90 - (currentMinutes%720)*11/2) * 2 / 11
+	minutesToPerpendicular2 := (270 - (currentMinutes%720)*11/2) * 2 / 11
+
+	fmt.Printf("Ex50. Ответ: До совпадения: %d мин, До перпендикулярного: %d или %d мин\n",
+		minutesToMatch, minutesToPerpendicular1, minutesToPerpendicular2)
+}
+
+func ch3ex51() {
+	var a, b int
+	fmt.Printf("Ex51. Проверка делимости\n")
+	fmt.Printf("Ex51. Введите два числа: ")
+	fmt.Scan(&a, &b)
+
+	result := 1 - (a%b)*(b%a)
+	fmt.Printf("Ex51. Ответ: %d\n", result)
 }
