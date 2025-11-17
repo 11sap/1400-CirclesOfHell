@@ -415,3 +415,387 @@ func ch4ex23() {
 		fmt.Printf("Ex23. Ответ: %d не является делителем %d\n", a, n)
 	}
 }
+
+func ch4ex24() {
+	var n int
+	fmt.Printf("Ex24. Анализ числа\n")
+	fmt.Printf("Ex24. Введите натуральное число: ")
+	fmt.Scan(&n)
+
+	if n%2 == 0 {
+		fmt.Printf("Ex24a. Ответ: Число четное\n")
+	} else {
+		fmt.Printf("Ex24a. Ответ: Число нечетное\n")
+	}
+
+	if n%10 == 7 {
+		fmt.Printf("Ex24b. Ответ: Число оканчивается на 7\n")
+	} else {
+		fmt.Printf("Ex24b. Ответ: Число не оканчивается на 7\n")
+	}
+}
+
+func ch4ex25() {
+	var n int
+	fmt.Printf("Ex25. Следующее четное число\n")
+	fmt.Printf("Ex25. Введите целое число: ")
+	fmt.Scan(&n)
+
+	nextEven := n + 2 - n%2
+	fmt.Printf("Ex25. Ответ: %d\n", nextEven)
+}
+
+func ch4ex26() {
+	var n int
+	fmt.Printf("Ex26. Анализ двузначного числа\n")
+	fmt.Printf("Ex26. Введите двузначное число: ")
+	fmt.Scan(&n)
+
+	a, b := n/10, n%10
+
+	if a > b {
+		fmt.Printf("Ex26a. Ответ: Первая цифра больше\n")
+	} else if a < b {
+		fmt.Printf("Ex26a. Ответ: Вторая цифра больше\n")
+	} else {
+		fmt.Printf("Ex26a. Ответ: Цифры равны\n")
+	}
+
+	if a == b {
+		fmt.Printf("Ex26b. Ответ: Цифры одинаковы\n")
+	} else {
+		fmt.Printf("Ex26b. Ответ: Цифры различны\n")
+	}
+}
+
+func ch4ex27() {
+	var n int
+	fmt.Printf("Ex27. Проверка равенства квадрата и суммы кубов\n")
+	fmt.Printf("Ex27. Введите двузначное число: ")
+	fmt.Scan(&n)
+
+	a, b := n/10, n%10
+	square := n * n
+	sumCubes := a*a*a + b*b*b
+
+	if square == 4*sumCubes {
+		fmt.Printf("Ex27. Ответ: Равенство выполняется\n")
+	} else {
+		fmt.Printf("Ex27. Ответ: Равенство не выполняется\n")
+	}
+}
+
+func ch4ex28() {
+	var n, a int
+	fmt.Printf("Ex28. Анализ суммы цифр\n")
+	fmt.Printf("Ex28. Введите двузначное число и число a: ")
+	fmt.Scan(&n, &a)
+
+	sum := n/10 + n%10
+
+	if sum >= 10 {
+		fmt.Printf("Ex28a. Ответ: Сумма цифр двузначная\n")
+	} else {
+		fmt.Printf("Ex28a. Ответ: Сумма цифр не двузначная\n")
+	}
+
+	if sum > a {
+		fmt.Printf("Ex28b. Ответ: Сумма цифр больше a\n")
+	} else {
+		fmt.Printf("Ex28b. Ответ: Сумма цифр не больше a\n")
+	}
+}
+
+func ch4ex29() {
+	var n int
+	fmt.Printf("Ex29. Кратность суммы цифр\n")
+	fmt.Printf("Ex29. Введите двузначное число: ")
+	fmt.Scan(&n)
+
+	sum := n/10 + n%10
+
+	if sum%3 == 0 {
+		fmt.Printf("Ex29a. Ответ: Сумма цифр кратна трем\n")
+	} else {
+		fmt.Printf("Ex29a. Ответ: Сумма цифр не кратна трем\n")
+	}
+
+	if sum%6 == 0 {
+		fmt.Printf("Ex29b. Ответ: Сумма цифр кратна шести\n")
+	} else {
+		fmt.Printf("Ex29b. Ответ: Сумма цифр не кратна шести\n")
+	}
+}
+
+func ch4ex30() {
+	var n int
+	fmt.Printf("Ex30. Палиндром\n")
+	fmt.Printf("Ex30. Введите трехзначное число: ")
+	fmt.Scan(&n)
+
+	a, c := n/100, n%10
+
+	if a == c {
+		fmt.Printf("Ex30. Ответ: Число палиндром\n")
+	} else {
+		fmt.Printf("Ex30. Ответ: Число не палиндром\n")
+	}
+}
+
+func ch4ex31() {
+	var n int
+	fmt.Printf("Ex31. Сравнение цифр трехзначного числа\n")
+	fmt.Printf("Ex31. Введите трехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c := n/100, n/10%10, n%10
+
+	if a > c {
+		fmt.Printf("Ex31a. Ответ: Первая цифра больше\n")
+	} else if a < c {
+		fmt.Printf("Ex31a. Ответ: Последняя цифра больше\n")
+	} else {
+		fmt.Printf("Ex31a. Ответ: Первая и последняя цифры равны\n")
+	}
+
+	if a > b {
+		fmt.Printf("Ex31b. Ответ: Первая цифра больше\n")
+	} else if a < b {
+		fmt.Printf("Ex31b. Ответ: Вторая цифра больше\n")
+	} else {
+		fmt.Printf("Ex31b. Ответ: Первая и вторая цифры равны\n")
+	}
+
+	if b > c {
+		fmt.Printf("Ex31c. Ответ: Вторая цифра больше\n")
+	} else if b < c {
+		fmt.Printf("Ex31c. Ответ: Последняя цифра больше\n")
+	} else {
+		fmt.Printf("Ex31c. Ответ: Вторая и последняя цифры равны\n")
+	}
+}
+
+func ch4ex32() {
+	var n int
+	fmt.Printf("Ex32. Квадрат и сумма кубов цифр\n")
+	fmt.Printf("Ex32. Введите трехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c := n/100, n/10%10, n%10
+	square := n * n
+	sumCubes := a*a*a + b*b*b + c*c*c
+
+	if square == sumCubes {
+		fmt.Printf("Ex32. Ответ: Равенство выполняется\n")
+	} else {
+		fmt.Printf("Ex32. Ответ: Равенство не выполняется\n")
+	}
+}
+
+func ch4ex33() {
+	var n, a int
+	fmt.Printf("Ex33. Анализ трехзначного числа\n")
+	fmt.Printf("Ex33. Введите трехзначное число и число a: ")
+	fmt.Scan(&n, &a)
+
+	x, y, z := n/100, n/10%10, n%10
+	sum := x + y + z
+	product := x * y * z
+
+	if sum >= 10 {
+		fmt.Printf("Ex33a. Ответ: Сумма цифр двузначная\n")
+	} else {
+		fmt.Printf("Ex33a. Ответ: Сумма цифр не двузначная\n")
+	}
+
+	if product >= 100 {
+		fmt.Printf("Ex33b. Ответ: Произведение цифр трехзначное\n")
+	} else {
+		fmt.Printf("Ex33b. Ответ: Произведение цифр не трехзначное\n")
+	}
+
+	if product > a {
+		fmt.Printf("Ex33c. Ответ: Произведение цифр больше a\n")
+	} else {
+		fmt.Printf("Ex33c. Ответ: Произведение цифр не больше a\n")
+	}
+
+	if sum%5 == 0 {
+		fmt.Printf("Ex33d. Ответ: Сумма цифр кратна пяти\n")
+	} else {
+		fmt.Printf("Ex33d. Ответ: Сумма цифр не кратна пяти\n")
+	}
+
+	if sum%a == 0 {
+		fmt.Printf("Ex33e. Ответ: Сумма цифр кратна a\n")
+	} else {
+		fmt.Printf("Ex33e. Ответ: Сумма цифр не кратна a\n")
+	}
+}
+
+func ch4ex34() {
+	var n int
+	fmt.Printf("Ex34. Анализ одинаковых цифр\n")
+	fmt.Printf("Ex34. Введите трехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c := n/100, n/10%10, n%10
+
+	if a == b && b == c {
+		fmt.Printf("Ex34a. Ответ: Все цифры одинаковые\n")
+	} else {
+		fmt.Printf("Ex34a. Ответ: Не все цифры одинаковые\n")
+	}
+
+	if a == b || b == c || a == c {
+		fmt.Printf("Ex34b. Ответ: Есть одинаковые цифры\n")
+	} else {
+		fmt.Printf("Ex34b. Ответ: Нет одинаковых цифр\n")
+	}
+}
+
+func ch4ex35() {
+	var n, a int
+	fmt.Printf("Ex35. Анализ четырехзначного числа\n")
+	fmt.Printf("Ex35. Введите четырехзначное число и число a: ")
+	fmt.Scan(&n, &a)
+
+	w, x, y, z := n/1000, n/100%10, n/10%10, n%10
+
+	if w+x == y+z {
+		fmt.Printf("Ex35a. Ответ: Суммы пар цифр равны\n")
+	} else {
+		fmt.Printf("Ex35a. Ответ: Суммы пар цифр не равны\n")
+	}
+
+	sum := w + x + y + z
+	if sum%3 == 0 {
+		fmt.Printf("Ex35b. Ответ: Сумма цифр кратна трем\n")
+	} else {
+		fmt.Printf("Ex35b. Ответ: Сумма цифр не кратна трем\n")
+	}
+
+	product := w * x * y * z
+	if product%4 == 0 {
+		fmt.Printf("Ex35c. Ответ: Произведение цифр кратно четырем\n")
+	} else {
+		fmt.Printf("Ex35c. Ответ: Произведение цифр не кратно четырем\n")
+	}
+
+	if product%a == 0 {
+		fmt.Printf("Ex35d. Ответ: Произведение цифр кратно a\n")
+	} else {
+		fmt.Printf("Ex35d. Ответ: Произведение цифр не кратно a\n")
+	}
+}
+
+func ch4ex37() {
+	var a, b int
+	fmt.Printf("Ex37. Взаимная делимость\n")
+	fmt.Printf("Ex37. Введите два числа: ")
+	fmt.Scan(&a, &b)
+
+	if b%a == 0 {
+		fmt.Printf("Ex37. Ответ: a является делителем b\n")
+	} else {
+		fmt.Printf("Ex37. Ответ: a не является делителем b\n")
+	}
+
+	if a%b == 0 {
+		fmt.Printf("Ex37. Ответ: b является делителем a\n")
+	} else {
+		fmt.Printf("Ex37. Ответ: b не является делителем a\n")
+	}
+}
+
+func ch4ex38() {
+	var a, b, c, d int
+	fmt.Printf("Ex38. Размещение прямоугольников на столе\n")
+	fmt.Printf("Ex38. Введите размеры стола (a b): ")
+	fmt.Scan(&a, &b)
+	fmt.Printf("Ex38. Введите размеры картонных прямоугольников (c d): ")
+	fmt.Scan(&c, &d)
+
+	count1 := (a / c) * (b / d)
+	count2 := (a / d) * (b / c)
+
+	if count1 > count2 {
+		fmt.Printf("Ex38. Ответ: Выгоднее размещать длинной стороной вдоль длинной (шт: %d)\n", count1)
+	} else if count2 > count1 {
+		fmt.Printf("Ex38. Ответ: Выгоднее размещать длинной стороной вдоль короткой (шт: %d)\n", count2)
+	} else {
+		fmt.Printf("Ex38. Ответ: Оба способа дают одинаковый результат (шт: %d)\n", count1)
+	}
+}
+
+func ch4ex39() {
+	var t float64
+	fmt.Printf("Ex39. Светофор для пешеходов\n")
+	fmt.Printf("Ex39. Введите время в минутах с начала часа: ")
+	fmt.Scan(&t)
+
+	timeInCycle := math.Mod(t, 5)
+
+	if timeInCycle < 3 {
+		fmt.Printf("Ex39. Ответ: Горит зеленый сигнал\n")
+	} else {
+		fmt.Printf("Ex39. Ответ: Горит красный сигнал\n")
+	}
+}
+
+func ch4ex40() {
+	var x float64
+	fmt.Printf("Ex40. Принадлежность интервалу\n")
+	fmt.Printf("Ex40. Введите число: ")
+	fmt.Scan(&x)
+
+	if x > -5 && x < 3 {
+		fmt.Printf("Ex40. Ответ: Число принадлежит интервалу (-5, 3)\n")
+	} else {
+		fmt.Printf("Ex40. Ответ: Число не принадлежит интервалу (-5, 3)\n")
+	}
+}
+
+func ch4ex41() {
+	var n int
+	fmt.Printf("Ex41. Проверка на двузначность\n")
+	fmt.Printf("Ex41. Введите натуральное число: ")
+	fmt.Scan(&n)
+
+	if n >= 10 && n <= 99 {
+		fmt.Printf("Ex41. Ответ: Число двузначное\n")
+	} else {
+		fmt.Printf("Ex41. Ответ: Число не двузначное\n")
+	}
+}
+
+func ch4ex42() {
+	var x, y float64
+	fmt.Printf("Ex42. Принадлежность области\n")
+	fmt.Printf("Ex42. Введите координаты x и y: ")
+	fmt.Scan(&x, &y)
+
+	if (x-1)*(x-1)+(y-1)*(y-1) < 1 {
+		fmt.Printf("Ex42a. Ответ: Точка принадлежит области\n")
+	} else {
+		fmt.Printf("Ex42a. Ответ: Точка не принадлежит области\n")
+	}
+
+	if x > -2 && x < 2 && y > -2 && y < 2 && (x*x+y*y > 1) {
+		fmt.Printf("Ex42b. Ответ: Точка принадлежит области\n")
+	} else {
+		fmt.Printf("Ex42b. Ответ: Точка не принадлежит области\n")
+	}
+
+	if x > 0 && x*x+y*y < 4 {
+		fmt.Printf("Ex42c. Ответ: Точка принадлежит области\n")
+	} else {
+		fmt.Printf("Ex42c. Ответ: Точка не принадлежит области\n")
+	}
+
+	if x*x+y*y > 4 && x*x+y*y < 16 {
+		fmt.Printf("Ex42d. Ответ: Точка принадлежит области\n")
+	} else {
+		fmt.Printf("Ex42d. Ответ: Точка не принадлежит области\n")
+	}
+}
