@@ -9,7 +9,12 @@ func Run04() {
 	tasks := []func(){
 		ch4ex01, ch4ex02, ch4ex03, ch4ex04, ch4ex05, ch4ex06, ch4ex07, ch4ex08,
 		ch4ex09, ch4ex10, ch4ex11, ch4ex12, ch4ex13, ch4ex14, ch4ex15, ch4ex16,
-		ch4ex17, ch4ex18, ch4ex19, ch4ex20, ch4ex21, ch4ex22, ch4ex23,
+		ch4ex17, ch4ex18, ch4ex19, ch4ex20, ch4ex21, ch4ex22, ch4ex23, ch4ex24,
+		ch4ex25, ch4ex26, ch4ex27, ch4ex28, ch4ex29, ch4ex30, ch4ex31, ch4ex32,
+		ch4ex33, ch4ex34, ch4ex35, ch4ex36, ch4ex37, ch4ex38, ch4ex39, ch4ex40,
+		ch4ex41, ch4ex42, ch4ex43, ch4ex44, ch4ex45, ch4ex46, ch4ex47, ch4ex48,
+		ch4ex49, ch4ex50, ch4ex51, ch4ex52, ch4ex53, ch4ex54, ch4ex55, ch4ex56,
+		ch4ex57, ch4ex58, ch4ex59, ch4ex60, ch4ex61,
 	}
 
 	for {
@@ -689,6 +694,24 @@ func ch4ex35() {
 	}
 }
 
+func ch4ex36() {
+	var n int
+	fmt.Printf("Ex36. Анализ последней цифры\n")
+	fmt.Printf("Ex36. Введите натуральное число: ")
+	fmt.Scan(&n)
+
+	lastDigit := n % 10
+
+	switch lastDigit % 2 {
+	case 0:
+		fmt.Printf("Ex36a. Ответ: Число оканчивается четной цифрой\n")
+		fmt.Printf("Ex36b. Ответ: Число не оканчивается нечетной цифрой\n")
+	case 1:
+		fmt.Printf("Ex36a. Ответ: Число не оканчивается четной цифрой\n")
+		fmt.Printf("Ex36b. Ответ: Число оканчивается нечетной цифрой\n")
+	}
+}
+
 func ch4ex37() {
 	var a, b int
 	fmt.Printf("Ex37. Взаимная делимость\n")
@@ -797,5 +820,335 @@ func ch4ex42() {
 		fmt.Printf("Ex42d. Ответ: Точка принадлежит области\n")
 	} else {
 		fmt.Printf("Ex42d. Ответ: Точка не принадлежит области\n")
+	}
+}
+
+func ch4ex43() {
+	var x, y float64
+	fmt.Printf("Ex43. Принадлежность области I\n")
+	fmt.Printf("Ex43. Введите координаты x и y: ")
+	fmt.Scan(&x, &y)
+
+	if x > 0 && x < 2 && y > 0 && y < 2 {
+		fmt.Printf("Ex43. Ответ: Точка принадлежит области I\n")
+	} else {
+		fmt.Printf("Ex43. Ответ: Точка не принадлежит области I\n")
+	}
+}
+
+func ch4ex44() {
+	var x, y float64
+	fmt.Printf("Ex44. Принадлежность области I или III\n")
+	fmt.Printf("Ex44. Введите координаты x и y: ")
+	fmt.Scan(&x, &y)
+
+	inRegionI := (x > -1 && x < 0 && y > 0)
+	inRegionIII := (x > 5 && x < 7 && y < 0)
+
+	if inRegionI {
+		fmt.Printf("Ex44. Ответ: Точка принадлежит области I\n")
+	} else if inRegionIII {
+		fmt.Printf("Ex44. Ответ: Точка принадлежит области III\n")
+	} else {
+		fmt.Printf("Ex44. Ответ: Точка не принадлежит ни области I, ни области III\n")
+	}
+}
+
+func ch4ex45() {
+	var x float64
+	fmt.Printf("Ex45. Вычисление функции\n")
+	fmt.Printf("Ex45. Введите x: ")
+	fmt.Scan(&x)
+
+	var f float64
+	if x >= -2.4 && x <= 5.7 {
+		f = x * x
+	} else {
+		f = 4
+	}
+	fmt.Printf("Ex45. Ответ: f(%.2f) = %.4f\n", x, f)
+}
+
+func ch4ex46() {
+	var x float64
+	fmt.Printf("Ex46. Вычисление функции\n")
+	fmt.Printf("Ex46. Введите x: ")
+	fmt.Scan(&x)
+
+	var f float64
+	if x >= 0.2 && x <= 0.9 {
+		f = math.Sin(x)
+	} else {
+		f = 1
+	}
+	fmt.Printf("Ex46. Ответ: f(%.2f) = %.4f\n", x, f)
+}
+
+func ch4ex47() {
+	var a, b, c float64
+	fmt.Printf("Ex47. Проверка неравенств\n")
+	fmt.Printf("Ex47. Введите три числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	if a < b && b < c {
+		fmt.Printf("Ex47a. Ответ: Неравенство a < b < c выполняется\n")
+	} else {
+		fmt.Printf("Ex47a. Ответ: Неравенство a < b < c не выполняется\n")
+	}
+
+	if b > a && a > c {
+		fmt.Printf("Ex47b. Ответ: Неравенство b > a > c выполняется\n")
+	} else {
+		fmt.Printf("Ex47b. Ответ: Неравенство b > a > c не выполняется\n")
+	}
+}
+
+func ch4ex48() {
+	var a, b int
+	fmt.Printf("Ex48. Взаимная делимость\n")
+	fmt.Printf("Ex48. Введите два целых числа: ")
+	fmt.Scan(&a, &b)
+
+	if a%b == 0 || b%a == 0 {
+		fmt.Printf("Ex48. Ответ: Хотя бы одно число является делителем другого\n")
+	} else {
+		fmt.Printf("Ex48. Ответ: Ни одно число не является делителем другого\n")
+	}
+}
+
+func ch4ex49() {
+	var n int
+	fmt.Printf("Ex49. Поиск цифр в двузначном числе\n")
+	fmt.Printf("Ex49. Введите двузначное число: ")
+	fmt.Scan(&n)
+
+	a, b := n/10, n%10
+
+	if a == 3 || b == 3 {
+		fmt.Printf("Ex49a. Ответ: Цифра 3 входит в число\n")
+	} else {
+		fmt.Printf("Ex49a. Ответ: Цифра 3 не входит в число\n")
+	}
+
+	if a == 4 || b == 4 {
+		fmt.Printf("Ex49b. Ответ: Цифра 4 входит в число\n")
+	} else {
+		fmt.Printf("Ex49b. Ответ: Цифра 4 не входит в число\n")
+	}
+}
+
+func ch4ex50() {
+	var n int
+	fmt.Printf("Ex50. Поиск цифр в двузначном числе\n")
+	fmt.Printf("Ex50. Введите двузначное число: ")
+	fmt.Scan(&n)
+
+	a, b := n/10, n%10
+
+	if a == 4 || b == 4 || a == 7 || b == 7 {
+		fmt.Printf("Ex50a. Ответ: Цифры 4 или 7 входят в число\n")
+	} else {
+		fmt.Printf("Ex50a. Ответ: Цифры 4 или 7 не входят в число\n")
+	}
+
+	if a == 3 || b == 3 || a == 6 || b == 6 || a == 9 || b == 9 {
+		fmt.Printf("Ex50b. Ответ: Цифры 3, 6 или 9 входят в число\n")
+	} else {
+		fmt.Printf("Ex50b. Ответ: Цифры 3, 6 или 9 не входят в число\n")
+	}
+}
+
+func ch4ex51() {
+	var n int
+	fmt.Printf("Ex51. Поиск цифр в трехзначном числе\n")
+	fmt.Printf("Ex51. Введите трехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c := n/100, n/10%10, n%10
+
+	if a == 6 || b == 6 || c == 6 {
+		fmt.Printf("Ex51a. Ответ: Цифра 6 входит в число\n")
+	} else {
+		fmt.Printf("Ex51a. Ответ: Цифра 6 не входит в число\n")
+	}
+
+	if a == 5 || b == 5 || c == 5 {
+		fmt.Printf("Ex51b. Ответ: Цифра 5 входит в число\n")
+	} else {
+		fmt.Printf("Ex51b. Ответ: Цифра 5 не входит в число\n")
+	}
+}
+
+func ch4ex52() {
+	var n int
+	fmt.Printf("Ex52. Поиск цифры 6 в трехзначном числе\n")
+	fmt.Printf("Ex52. Введите трехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c := n/100, n/10%10, n%10
+
+	if a == 6 || b == 6 || c == 6 {
+		fmt.Printf("Ex52. Ответ: Цифра 6 входит в число\n")
+	} else {
+		fmt.Printf("Ex52. Ответ: Цифра 6 не входит в число\n")
+	}
+}
+
+func ch4ex53() {
+	var n int
+	fmt.Printf("Ex53. Поиск цифр в трехзначном числе\n")
+	fmt.Printf("Ex53. Введите трехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c := n/100, n/10%10, n%10
+
+	if a == 4 || b == 4 || c == 4 || a == 7 || b == 7 || c == 7 {
+		fmt.Printf("Ex53a. Ответ: Цифры 4 или 7 входят в число\n")
+	} else {
+		fmt.Printf("Ex53a. Ответ: Цифры 4 или 7 не входят в число\n")
+	}
+
+	if a == 3 || b == 3 || c == 3 || a == 6 || b == 6 || c == 6 || a == 9 || b == 9 || c == 9 {
+		fmt.Printf("Ex53b. Ответ: Цифры 3, 6 или 9 входят в число\n")
+	} else {
+		fmt.Printf("Ex53b. Ответ: Цифры 3, 6 или 9 не входят в число\n")
+	}
+}
+
+func ch4ex54() {
+	var n int
+	fmt.Printf("Ex54. Поиск цифр в четырехзначном числе\n")
+	fmt.Printf("Ex54. Введите четырехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c, d := n/1000, n/100%10, n/10%10, n%10
+
+	if a == 4 || b == 4 || c == 4 || d == 4 {
+		fmt.Printf("Ex54a. Ответ: Цифра 4 входит в число\n")
+	} else {
+		fmt.Printf("Ex54a. Ответ: Цифра 4 не входит в число\n")
+	}
+
+	if a == 5 || b == 5 || c == 5 || d == 5 {
+		fmt.Printf("Ex54b. Ответ: Цифра 5 входит в число\n")
+	} else {
+		fmt.Printf("Ex54b. Ответ: Цифра 5 не входит в число\n")
+	}
+}
+
+func ch4ex55() {
+	var n int
+	fmt.Printf("Ex55. Поиск цифр в четырехзначном числе\n")
+	fmt.Printf("Ex55. Введите четырехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c, d := n/1000, n/100%10, n/10%10, n%10
+
+	// a) цифры 2 или 7
+	if a == 2 || b == 2 || c == 2 || d == 2 || a == 7 || b == 7 || c == 7 || d == 7 {
+		fmt.Printf("Ex55a. Ответ: Цифры 2 или 7 входят в число\n")
+	} else {
+		fmt.Printf("Ex55a. Ответ: Цифры 2 или 7 не входят в число\n")
+	}
+
+	// b) цифры 3, 6 или 9
+	if a == 3 || b == 3 || c == 3 || d == 3 || a == 6 || b == 6 || c == 6 || d == 6 || a == 9 || b == 9 || c == 9 || d == 9 {
+		fmt.Printf("Ex55b. Ответ: Цифры 3, 6 или 9 входят в число\n")
+	} else {
+		fmt.Printf("Ex55b. Ответ: Цифры 3, 6 или 9 не входят в число\n")
+	}
+}
+
+func ch4ex56() {
+	var n int
+	fmt.Printf("Ex56. Симметричность четырехзначного числа\n")
+	fmt.Printf("Ex56. Введите четырехзначное число: ")
+	fmt.Scan(&n)
+
+	a, b, c, d := n/1000, n/100%10, n/10%10, n%10
+
+	if a == d && b == c {
+		fmt.Printf("Ex56. Ответ: Число симметричное\n")
+	} else {
+		fmt.Printf("Ex56. Ответ: Число не симметричное\n")
+	}
+}
+
+func ch4ex57() {
+	var a, b, c, d int
+	fmt.Printf("Ex57. Проверка остатка от деления\n")
+	fmt.Printf("Ex57. Введите a, b, c, d: ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	remainder := a % b
+	if remainder == c || remainder == d {
+		fmt.Printf("Ex57. Ответ: Остаток равен c или d\n")
+	} else {
+		fmt.Printf("Ex57. Ответ: Остаток не равен ни c, ни d\n")
+	}
+}
+
+func ch4ex58() {
+	var a, b, c float64
+	fmt.Printf("Ex58. Поиск равных чисел\n")
+	fmt.Printf("Ex58. Введите три числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	if a == b || b == c || a == c {
+		fmt.Printf("Ex58. Ответ: Есть хотя бы одна пара равных чисел\n")
+	} else {
+		fmt.Printf("Ex58. Ответ: Нет равных чисел\n")
+	}
+}
+
+func ch4ex59() {
+	var a, b, c float64
+	fmt.Printf("Ex59. Тип треугольника\n")
+	fmt.Printf("Ex59. Введите три стороны треугольника: ")
+	fmt.Scan(&a, &b, &c)
+
+	if a == b && b == c {
+		fmt.Printf("Ex59a. Ответ: Треугольник равносторонний\n")
+	} else {
+		fmt.Printf("Ex59a. Ответ: Треугольник не равносторонний\n")
+	}
+
+	if a == b || b == c || a == c {
+		fmt.Printf("Ex59b. Ответ: Треугольник равнобедренный\n")
+	} else {
+		fmt.Printf("Ex59b. Ответ: Треугольник не равнобедренный\n")
+	}
+}
+
+func ch4ex60() {
+	var h1, h2, h3 float64
+	fmt.Printf("Ex60. Сравнение роста\n")
+	fmt.Printf("Ex60. Введите рост трех человек: ")
+	fmt.Scan(&h1, &h2, &h3)
+
+	if h1 == h2 && h2 == h3 {
+		fmt.Printf("Ex60. Ответ: Рост всех трех человек одинаковый\n")
+	} else {
+		fmt.Printf("Ex60. Ответ: Рост не одинаковый\n")
+	}
+}
+
+func ch4ex61() {
+	var a, b, c float64
+	fmt.Printf("Ex61. Решение квадратного уравнения\n")
+	fmt.Printf("Ex61. Введите коэффициенты a, b, c: ")
+	fmt.Scan(&a, &b, &c)
+
+	discriminant := b*b - 4*a*c
+
+	if discriminant > 0 {
+		x1 := (-b + math.Sqrt(discriminant)) / (2 * a)
+		x2 := (-b - math.Sqrt(discriminant)) / (2 * a)
+		fmt.Printf("Ex61. Ответ: Два корня: %.2f и %.2f\n", x1, x2)
+	} else if discriminant == 0 {
+		x := -b / (2 * a)
+		fmt.Printf("Ex61. Ответ: Один корень: %.2f\n", x)
+	} else {
+		fmt.Printf("Ex61. Ответ: Действительных корней нет\n")
 	}
 }
