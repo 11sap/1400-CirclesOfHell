@@ -1152,3 +1152,176 @@ func ch4ex61() {
 		fmt.Printf("Ex61. Ответ: Действительных корней нет\n")
 	}
 }
+
+func ch4ex62() {
+	var a, b, c, d float64
+	fmt.Printf("Ex62. Размещение прямоугольников\n")
+	fmt.Printf("Ex62. Введите стороны первого прямоугольника (a b): ")
+	fmt.Scan(&a, &b)
+	fmt.Printf("Ex62. Введите стороны второго прямоугольника (c d): ")
+	fmt.Scan(&c, &d)
+
+	fits1 := (a <= c && b <= d) || (a <= d && b <= c)
+	fits2 := (b <= c && a <= d) || (b <= d && a <= c)
+
+	if fits1 || fits2 {
+		fmt.Printf("Ex62. Ответ: Прямоугольник можно разместить\n")
+	} else {
+		fmt.Printf("Ex62. Ответ: Прямоугольник нельзя разместить\n")
+	}
+}
+
+func ch4ex63() {
+	var a, b, c, d float64
+	fmt.Printf("Ex63. Открытка в конверте\n")
+	fmt.Printf("Ex63. Введите размеры конверта (a b мм): ")
+	fmt.Scan(&a, &b)
+	fmt.Printf("Ex63. Введите размеры открытки (c d мм): ")
+	fmt.Scan(&c, &d)
+
+	availableWidth := a - 2
+	availableHeight := b - 2
+
+	fits := (c <= availableWidth && d <= availableHeight) ||
+		(d <= availableWidth && c <= availableHeight)
+
+	if fits {
+		fmt.Printf("Ex63. Ответ: Открытка помещается в конверт\n")
+	} else {
+		fmt.Printf("Ex63. Ответ: Открытка не помещается в конверт\n")
+	}
+}
+
+func ch4ex64() {
+	var a, b, d float64
+	fmt.Printf("Ex64. Голова в форточке\n")
+	fmt.Printf("Ex64. Введите размеры форточки (a b см): ")
+	fmt.Scan(&a, &b)
+	fmt.Printf("Ex64. Введите диаметр головы (d см): ")
+	fmt.Scan(&d)
+
+	availableWidth := a - 2
+	availableHeight := b - 2
+
+	passes := d <= availableWidth && d <= availableHeight
+
+	if passes {
+		fmt.Printf("Ex64. Ответ: Вася сможет высунуть голову\n")
+	} else {
+		fmt.Printf("Ex64. Ответ: Вася не сможет высунуть голову\n")
+	}
+}
+
+func ch4ex65() {
+	var a, b, c, x, y float64
+	fmt.Printf("Ex65. Кирпич в отверстии\n")
+	fmt.Printf("Ex65. Введите размеры кирпича (a b c): ")
+	fmt.Scan(&a, &b, &c)
+	fmt.Printf("Ex65. Введите размеры отверстия (x y): ")
+	fmt.Scan(&x, &y)
+
+	passes := (a <= x && b <= y) || (a <= y && b <= x) ||
+		(a <= x && c <= y) || (a <= y && c <= x) ||
+		(b <= x && c <= y) || (b <= y && c <= x)
+
+	if passes {
+		fmt.Printf("Ex65. Ответ: Кирпич проходит в отверстие\n")
+	} else {
+		fmt.Printf("Ex65. Ответ: Кирпич не проходит в отверстие\n")
+	}
+}
+
+func ch4ex66() {
+	var a1, a2, a3, b1, b2, b3 float64
+	fmt.Printf("Ex66. Коробка в чемодане\n")
+	fmt.Printf("Ex66. Введите размеры чемодана (a1 a2 a3 см): ")
+	fmt.Scan(&a1, &a2, &a3)
+	fmt.Printf("Ex66. Введите размеры коробки (b1 b2 b3 см): ")
+	fmt.Scan(&b1, b2, b3)
+
+	fits := (b1 <= a1 && b2 <= a2 && b3 <= a3) ||
+		(b1 <= a1 && b3 <= a2 && b2 <= a3) ||
+		(b2 <= a1 && b1 <= a2 && b3 <= a3) ||
+		(b2 <= a1 && b3 <= a2 && b1 <= a3) ||
+		(b3 <= a1 && b1 <= a2 && b2 <= a3) ||
+		(b3 <= a1 && b2 <= a2 && b1 <= a3)
+
+	if fits {
+		fmt.Printf("Ex66. Ответ: Можно сэкономить, поместив коробку в чемодан\n")
+	} else {
+		fmt.Printf("Ex66. Ответ: Нельзя сэкономить\n")
+	}
+}
+
+func ch4ex67() {
+	var n int
+	fmt.Printf("Ex67. Счастливый билет\n")
+	fmt.Printf("Ex67. Введите шестизначное число: ")
+	fmt.Scan(&n)
+
+	d1 := n / 100000
+	d2 := n / 10000 % 10
+	d3 := n / 1000 % 10
+	d4 := n / 100 % 10
+	d5 := n / 10 % 10
+	d6 := n % 10
+
+	sumFirst := d1 + d2 + d3
+	sumLast := d4 + d5 + d6
+
+	if sumFirst == sumLast {
+		fmt.Printf("Ex67. Ответ: Число счастливое\n")
+	} else {
+		fmt.Printf("Ex67. Ответ: Число не счастливое\n")
+	}
+}
+
+func ch4ex68() {
+	var year int
+	fmt.Printf("Ex68. Високосный год\n")
+	fmt.Printf("Ex68. Введите год: ")
+	fmt.Scan(&year)
+
+	isLeap := (year%4 == 0 && year%100 != 0) || (year%400 == 0)
+
+	if isLeap {
+		fmt.Printf("Ex68. Ответ: Год високосный\n")
+	} else {
+		fmt.Printf("Ex68. Ответ: Год не високосный\n")
+	}
+}
+
+func ch4ex69() {
+	var a, b, c, d, e int
+	fmt.Printf("Ex69. Кости домино на столе\n")
+	fmt.Printf("Ex69. Введите размеры стола (a b): ")
+	fmt.Scan(&a, &b)
+	fmt.Printf("Ex69. Введите размеры кости домино (c d e): ")
+	fmt.Scan(&c, &d, &e)
+
+	countFace1 := (a / c) * (b / d)
+	countFace2 := (a / d) * (b / c)
+	countFace3 := (a / c) * (b / e)
+	countFace4 := (a / e) * (b / c)
+	countFace5 := (a / d) * (b / e)
+	countFace6 := (a / e) * (b / d)
+
+	maxCount := countFace1
+	if countFace2 > maxCount {
+		maxCount = countFace2
+	}
+	if countFace3 > maxCount {
+		maxCount = countFace3
+	}
+	if countFace4 > maxCount {
+		maxCount = countFace4
+	}
+	if countFace5 > maxCount {
+		maxCount = countFace5
+	}
+	if countFace6 > maxCount {
+		maxCount = countFace6
+	}
+
+	fmt.Printf("Ex69. Ответ: Максимальное количество костей: %d\n", maxCount)
+}
