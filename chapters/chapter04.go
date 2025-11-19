@@ -14,7 +14,9 @@ func Run04() {
 		ch4ex33, ch4ex34, ch4ex35, ch4ex36, ch4ex37, ch4ex38, ch4ex39, ch4ex40,
 		ch4ex41, ch4ex42, ch4ex43, ch4ex44, ch4ex45, ch4ex46, ch4ex47, ch4ex48,
 		ch4ex49, ch4ex50, ch4ex51, ch4ex52, ch4ex53, ch4ex54, ch4ex55, ch4ex56,
-		ch4ex57, ch4ex58, ch4ex59, ch4ex60, ch4ex61,
+		ch4ex57, ch4ex58, ch4ex59, ch4ex60, ch4ex61, ch4ex62, ch4ex63, ch4ex64,
+		ch4ex65, ch4ex66, ch4ex67, ch4ex68, ch4ex69, ch4ex70, ch4ex71, ch4ex72,
+		ch4ex73, ch4ex74, ch4ex75, ch4ex76,
 	}
 
 	for {
@@ -1042,17 +1044,25 @@ func ch4ex55() {
 	fmt.Printf("Ex55. Введите четырехзначное число: ")
 	fmt.Scan(&n)
 
-	a, b, c, d := n/1000, n/100%10, n/10%10, n%10
+	include27, include369 := false, false
 
-	// a) цифры 2 или 7
-	if a == 2 || b == 2 || c == 2 || d == 2 || a == 7 || b == 7 || c == 7 || d == 7 {
+	for temp := n; temp > 0; temp /= 10 {
+		digit := temp % 10
+		if digit == 2 || digit == 7 {
+			include27 = true
+		}
+		if digit == 3 || digit == 6 || digit == 9 {
+			include369 = true
+		}
+	}
+
+	if include27 {
 		fmt.Printf("Ex55a. Ответ: Цифры 2 или 7 входят в число\n")
 	} else {
 		fmt.Printf("Ex55a. Ответ: Цифры 2 или 7 не входят в число\n")
 	}
 
-	// b) цифры 3, 6 или 9
-	if a == 3 || b == 3 || c == 3 || d == 3 || a == 6 || b == 6 || c == 6 || d == 6 || a == 9 || b == 9 || c == 9 || d == 9 {
+	if include369 {
 		fmt.Printf("Ex55b. Ответ: Цифры 3, 6 или 9 входят в число\n")
 	} else {
 		fmt.Printf("Ex55b. Ответ: Цифры 3, 6 или 9 не входят в число\n")
@@ -1324,4 +1334,141 @@ func ch4ex69() {
 	}
 
 	fmt.Printf("Ex69. Ответ: Максимальное количество костей: %d\n", maxCount)
+}
+
+func ch4ex70() {
+	var k int
+	fmt.Printf("Ex70. Определение выходного дня\n")
+	fmt.Printf("Ex70. Введите номер дня года (1-365): ")
+	fmt.Scan(&k)
+
+	dayOfWeek := (k + 0) % 7
+
+	if dayOfWeek == 0 || dayOfWeek == 6 {
+		fmt.Printf("Ex70. Ответ: Выходной день\n")
+	} else {
+		fmt.Printf("Ex70. Ответ: Рабочий день\n")
+	}
+}
+
+func ch4ex71() {
+	var alpha, v, R, h float64
+	fmt.Printf("Ex71. Попадание снаряда в цель\n")
+	fmt.Printf("Ex71. Введите угол α (град), начальную скорость v, расстояние R и высоту H: ")
+	fmt.Scan(&alpha, &v, &R, &h)
+
+	alphaRad := alpha * math.Pi / 180
+	t := R / (v * math.Cos(alphaRad))
+	y := v*t*math.Sin(alphaRad) - (9.8*t*t)/2
+
+	if math.Abs(y-h) < 0.1 {
+		fmt.Printf("Ex71. Ответ: Снаряд поразит цель\n")
+	} else {
+		fmt.Printf("Ex71. Ответ: Снаряд не поразит цель\n")
+	}
+}
+
+func ch4ex72() {
+	var x1, y1, w1, h1 float64
+	var x2, y2, w2, h2 float64
+
+	fmt.Printf("Ex72. Операции с прямоугольниками\n")
+	fmt.Printf("Ex72. Введите координаты и размеры первого прямоугольника: ")
+	fmt.Scan(&x1, &y1, &w1, &h1)
+	fmt.Printf("Ex72. Введите координаты и размеры второго прямоугольника: ")
+	fmt.Scan(&x2, &y2, &w2, &h2)
+
+	x1r, y1r := x1+w1, y1+h1
+	x2r, y2r := x2+w2, y2+h2
+
+	firstInSecond := x1 >= x2 && y1 >= y2 && x1r <= x2r && y1r <= y2r
+	secondInFirst := x2 >= x1 && y2 >= y1 && x2r <= x1r && y2r <= y1r
+	oneInOther := firstInSecond || secondInFirst
+	intersect := x1 < x2r && x1r > x2 && y1 < y2r && y1r > y2
+
+	fmt.Printf("Ex72a. Первый во втором: %v\n", firstInSecond)
+	fmt.Printf("Ex72b. Один в другом: %v\n", oneInOther)
+	fmt.Printf("Ex72c. Пересекаются: %v\n", intersect)
+}
+
+func ch4ex73() {
+	var a1, a2, b int
+	fmt.Printf("Ex73. Разность двузначного и однозначного чисел по цифрам\n")
+	fmt.Printf("Ex73. Введите цифры (единицы2х, десятки2х, однозначное): ")
+	fmt.Scan(&a1, &a2, &b)
+
+	units := a1 - b
+	if units < 0 {
+		units += 10
+		a2--
+	}
+
+	tens := a2
+
+	fmt.Printf("Ex73. Ответ: Десятки: %d, Единицы: %d\n", tens, units)
+}
+
+func ch4ex74() {
+	var a1, a2, b1, b2 int
+	fmt.Printf("Ex74. Разность двузначных чисел по цифрам\n")
+	fmt.Printf("Ex74. Введите цифры (единицы1, десятки1, единицы2, десятки2): ")
+	fmt.Scan(&a1, &a2, &b1, &b2)
+
+	units := a1 - b1
+	if units < 0 {
+		units += 10
+		a2--
+	}
+
+	tens := a2 - b2
+
+	fmt.Printf("Ex74. Ответ: Десятки: %d, Единицы: %d\n", tens, units)
+}
+
+func ch4ex75() {
+	var a1, a2, a3, b1, b2 int
+	fmt.Printf("Ex75. Сумма трехзначного и двузначного чисел по цифрам\n")
+	fmt.Printf("Ex75. Введите цифры (единицы3х, десятки3х, сотни3х, единицы2х, десятки2х): ")
+	fmt.Scan(&a1, &a2, &a3, &b1, &b2)
+
+	units := (a1 + b1) % 10
+	carry1 := (a1 + b1) / 10
+
+	tens := (a2 + b2 + carry1) % 10
+	carry2 := (a2 + b2 + carry1) / 10
+
+	hundreds := a3 + carry2
+
+	fmt.Printf("Ex75. Ответ: Сотни: %d, Десятки: %d, Единицы: %d\n", hundreds, tens, units)
+}
+
+func ch4ex76() {
+	var a, b, c, d int
+	fmt.Printf("Ex76. Шахматные фигуры\n")
+	fmt.Printf("Ex76. Введите координаты (a b c d): ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	rookThreat := a == c || b == d
+	fmt.Printf("Ex76a. Ладья: %v\n", rookThreat)
+
+	bishopThreat := math.Abs(float64(a-c)) == math.Abs(float64(b-d))
+	fmt.Printf("Ex76b. Слон: %v\n", bishopThreat)
+
+	kingMove := math.Abs(float64(a-c)) <= 1 && math.Abs(float64(b-d)) <= 1
+	fmt.Printf("Ex76c. Король: %v\n", kingMove)
+
+	queenThreat := rookThreat || bishopThreat
+	fmt.Printf("Ex76d. Ферзь: %v\n", queenThreat)
+
+	whitePawnNormal := a == c && d-b == 1
+	whitePawnCapture := math.Abs(float64(a-c)) == 1 && d-b == 1
+	fmt.Printf("Ex76e. Белая пешка (норм/взятие): %v / %v\n", whitePawnNormal, whitePawnCapture)
+
+	blackPawnNormal := a == c && b-d == 1
+	blackPawnCapture := math.Abs(float64(a-c)) == 1 && b-d == 1
+	fmt.Printf("Ex76f. Черная пешка (норм/взятие): %v / %v\n", blackPawnNormal, blackPawnCapture)
+
+	knightThreat := (math.Abs(float64(a-c)) == 2 && math.Abs(float64(b-d)) == 1) ||
+		(math.Abs(float64(a-c)) == 1 && math.Abs(float64(b-d)) == 2)
+	fmt.Printf("Ex76g. Конь: %v\n", knightThreat)
 }
