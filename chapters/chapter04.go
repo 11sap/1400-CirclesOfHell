@@ -16,7 +16,9 @@ func Run04() {
 		ch4ex49, ch4ex50, ch4ex51, ch4ex52, ch4ex53, ch4ex54, ch4ex55, ch4ex56,
 		ch4ex57, ch4ex58, ch4ex59, ch4ex60, ch4ex61, ch4ex62, ch4ex63, ch4ex64,
 		ch4ex65, ch4ex66, ch4ex67, ch4ex68, ch4ex69, ch4ex70, ch4ex71, ch4ex72,
-		ch4ex73, ch4ex74, ch4ex75, ch4ex76,
+		ch4ex73, ch4ex74, ch4ex75, ch4ex76, ch4ex77, ch4ex78, ch4ex79, ch4ex80,
+		ch4ex81, ch4ex82, ch4ex83, ch4ex84, ch4ex85, ch4ex86, ch4ex87, ch4ex88,
+		ch4ex89, ch4ex90, ch4ex91, ch4ex92, ch4ex93,
 	}
 
 	for {
@@ -1471,4 +1473,480 @@ func ch4ex76() {
 	knightThreat := (math.Abs(float64(a-c)) == 2 && math.Abs(float64(b-d)) == 1) ||
 		(math.Abs(float64(a-c)) == 1 && math.Abs(float64(b-d)) == 2)
 	fmt.Printf("Ex76g. Конь: %v\n", knightThreat)
+}
+
+func ch4ex77() {
+	var a, b, c, d, e, f int
+	fmt.Printf("Ex77. Ход белой фигуры под ударом черной\n")
+	fmt.Printf("Ex77. Введите координаты (белая a b, черная c d, цель e f): ")
+	fmt.Scan(&a, &b, &c, &d, &e, &f)
+
+	isRookMove := func(x1, y1, x2, y2 int) bool {
+		return x1 == x2 || y1 == y2
+	}
+
+	isBishopMove := func(x1, y1, x2, y2 int) bool {
+		return math.Abs(float64(x1-x2)) == math.Abs(float64(y1-y2))
+	}
+
+	isQueenMove := func(x1, y1, x2, y2 int) bool {
+		return isRookMove(x1, y1, x2, y2) || isBishopMove(x1, y1, x2, y2)
+	}
+
+	isKnightMove := func(x1, y1, x2, y2 int) bool {
+		dx := math.Abs(float64(x1 - x2))
+		dy := math.Abs(float64(y1 - y2))
+		return (dx == 2 && dy == 1) || (dx == 1 && dy == 2)
+	}
+
+	isKingMove := func(x1, y1, x2, y2 int) bool {
+		return math.Abs(float64(x1-x2)) <= 1 && math.Abs(float64(y1-y2)) <= 1
+	}
+
+	var variant string
+	fmt.Printf("Выберите вариант (a-ф): ")
+	fmt.Scan(&variant)
+
+	var whiteCanMove, blackCanAttack bool
+
+	switch variant {
+	case "a": // ладья и ладья
+		whiteCanMove = isRookMove(a, b, e, f)
+		blackCanAttack = isRookMove(c, d, e, f)
+	case "б": // ладья и ферзь
+		whiteCanMove = isRookMove(a, b, e, f)
+		blackCanAttack = isQueenMove(c, d, e, f)
+	case "в": // ладья и конь
+		whiteCanMove = isRookMove(a, b, e, f)
+		blackCanAttack = isKnightMove(c, d, e, f)
+	case "г": // ладья и слон
+		whiteCanMove = isRookMove(a, b, e, f)
+		blackCanAttack = isBishopMove(c, d, e, f)
+	case "д": // ферзь и ферзь
+		whiteCanMove = isQueenMove(a, b, e, f)
+		blackCanAttack = isQueenMove(c, d, e, f)
+	case "е": // ферзь и ладья
+		whiteCanMove = isQueenMove(a, b, e, f)
+		blackCanAttack = isRookMove(c, d, e, f)
+	case "ж": // ферзь и конь
+		whiteCanMove = isQueenMove(a, b, e, f)
+		blackCanAttack = isKnightMove(c, d, e, f)
+	case "з": // ферзь и слон
+		whiteCanMove = isQueenMove(a, b, e, f)
+		blackCanAttack = isBishopMove(c, d, e, f)
+	case "и": // конь и конь
+		whiteCanMove = isKnightMove(a, b, e, f)
+		blackCanAttack = isKnightMove(c, d, e, f)
+	case "к": // конь и ладья
+		whiteCanMove = isKnightMove(a, b, e, f)
+		blackCanAttack = isRookMove(c, d, e, f)
+	case "л": // конь и ферзь
+		whiteCanMove = isKnightMove(a, b, e, f)
+		blackCanAttack = isQueenMove(c, d, e, f)
+	case "м": // конь и слон
+		whiteCanMove = isKnightMove(a, b, e, f)
+		blackCanAttack = isBishopMove(c, d, e, f)
+	case "н": // слон и слон
+		whiteCanMove = isBishopMove(a, b, e, f)
+		blackCanAttack = isBishopMove(c, d, e, f)
+	case "о": // слон и ферзь
+		whiteCanMove = isBishopMove(a, b, e, f)
+		blackCanAttack = isQueenMove(c, d, e, f)
+	case "п": // слон и конь
+		whiteCanMove = isBishopMove(a, b, e, f)
+		blackCanAttack = isKnightMove(c, d, e, f)
+	case "р": // слон и ладья
+		whiteCanMove = isBishopMove(a, b, e, f)
+		blackCanAttack = isRookMove(c, d, e, f)
+	case "с": // король и слон
+		whiteCanMove = isKingMove(a, b, e, f)
+		blackCanAttack = isBishopMove(c, d, e, f)
+	case "т": // король и ферзь
+		whiteCanMove = isKingMove(a, b, e, f)
+		blackCanAttack = isQueenMove(c, d, e, f)
+	case "у": // король и конь
+		whiteCanMove = isKingMove(a, b, e, f)
+		blackCanAttack = isKnightMove(c, d, e, f)
+	case "ф": // король и ладья
+		whiteCanMove = isKingMove(a, b, e, f)
+		blackCanAttack = isRookMove(c, d, e, f)
+	}
+
+	fmt.Printf("Ex77. Ответ: Белая фигура %v пойти на поле (%d,%d) безопасно\n",
+		map[bool]string{true: "может", false: "не может"}[whiteCanMove && !blackCanAttack], e, f)
+}
+
+func ch4ex78() {
+	var a, b, c, d int
+	fmt.Printf("Ex78. Цвет полей шахматной доски\n")
+	fmt.Printf("Ex78. Введите координаты двух полей (a b c d): ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	color1 := (a + b) % 2
+	color2 := (c + d) % 2
+
+	fmt.Printf("Ex78. Ответ: Поля %v цвета\n",
+		map[bool]string{true: "одного", false: "разного"}[color1 == color2])
+}
+
+func ch4ex79() {
+	var a, b, c float64
+	fmt.Printf("Ex79. Существование треугольника\n")
+	fmt.Printf("Ex79. Введите три стороны: ")
+	fmt.Scan(&a, &b, &c)
+
+	exists := a+b > c && a+c > b && b+c > a
+	fmt.Printf("Ex79. Ответ: Треугольник %s\n",
+		map[bool]string{true: "существует", false: "не существует"}[exists])
+}
+
+func ch4ex80() {
+	var a, b, c float64
+	fmt.Printf("Ex80. Прямоугольный треугольник\n")
+	fmt.Printf("Ex80. Введите три стороны: ")
+	fmt.Scan(&a, &b, &c)
+
+	exists := a+b > c && a+c > b && b+c > a
+	isRight := exists && (a*a+b*b == c*c || a*a+c*c == b*b || b*b+c*c == a*a)
+	fmt.Printf("Ex80. Ответ: Треугольник %s\n",
+		map[bool]string{true: "прямоугольный", false: "не прямоугольный"}[isRight])
+}
+
+func ch4ex81() {
+	var a, b, c float64
+	fmt.Printf("Ex81. Вид треугольника\n")
+	fmt.Printf("Ex81. Введите три стороны: ")
+	fmt.Scan(&a, &b, &c)
+
+	exists := a+b > c && a+c > b && b+c > a
+	if !exists {
+		fmt.Printf("Ex81. Ответ: Треугольник не существует\n")
+		return
+	}
+
+	var angleType string
+	if a*a+b*b == c*c || a*a+c*c == b*b || b*b+c*c == a*a {
+		angleType = "прямоугольный"
+	} else if a*a+b*b > c*c && a*a+c*c > b*b && b*b+c*c > a*a {
+		angleType = "остроугольный"
+	} else {
+		angleType = "тупоугольный"
+	}
+
+	var sideType string
+	if a == b && b == c {
+		sideType = "равносторонний"
+	} else if a == b || a == c || b == c {
+		sideType = "равнобедренный"
+	} else {
+		sideType = "разносторонний"
+	}
+
+	fmt.Printf("Ex81a. Ответ: %s\n", angleType)
+	fmt.Printf("Ex81b. Ответ: %s, %s\n", angleType, sideType)
+}
+
+func ch4ex82() {
+	var n int
+	fmt.Printf("Ex82. Склонение лет\n")
+	fmt.Printf("Ex82. Введите возраст: ")
+	fmt.Scan(&n)
+
+	word := "лет"
+	if n%10 == 1 && n%100 != 11 {
+		word = "год"
+	} else if n%10 >= 2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20) {
+		word = "года"
+	}
+
+	fmt.Printf("Ex82. Ответ: мне %d %s\n", n, word)
+}
+
+func ch4ex83() {
+	var k int
+	fmt.Printf("Ex83. Склонение грибов\n")
+	fmt.Printf("Ex83. Введите количество грибов: ")
+	fmt.Scan(&k)
+
+	word := "грибов"
+	if k%10 == 1 && k%100 != 11 {
+		word = "гриб"
+	} else if k%10 >= 2 && k%10 <= 4 && (k%100 < 10 || k%100 >= 20) {
+		word = "гриба"
+	}
+
+	fmt.Printf("Ex83. Ответ: мы нашли %d %s в лесу\n", k, word)
+}
+
+func ch4ex84() {
+	var n int
+	fmt.Printf("Ex84. Стоимость в рублях и копейках\n")
+	fmt.Printf("Ex84. Введите стоимость в копейках: ")
+	fmt.Scan(&n)
+
+	rubles := n / 100
+	kopeyki := n % 100
+
+	rubleWord := map[int]string{1: "рубль", 2: "рубля", 5: "рублей"}[func() int {
+		if rubles%10 == 1 && rubles%100 != 11 {
+			return 1
+		}
+		if rubles%10 >= 2 && rubles%10 <= 4 && (rubles%100 < 10 || rubles%100 >= 20) {
+			return 2
+		}
+		return 5
+	}()]
+
+	kopeykiWord := map[int]string{1: "копейка", 2: "копейки", 5: "копеек"}[func() int {
+		if kopeyki%10 == 1 && kopeyki%100 != 11 {
+			return 1
+		}
+		if kopeyki%10 >= 2 && kopeyki%10 <= 4 && (kopeyki%100 < 10 || kopeyki%100 >= 20) {
+			return 2
+		}
+		return 5
+	}()]
+
+	if kopeyki == 0 {
+		fmt.Printf("Ex84. Ответ: %d %s ровно\n", rubles, rubleWord)
+	} else {
+		fmt.Printf("Ex84. Ответ: %d %s %d %s\n", rubles, rubleWord, kopeyki, kopeykiWord)
+	}
+}
+
+func ch4ex85() {
+	var n int
+	fmt.Printf("Ex85. Возраст в годах и месяцах\n")
+	fmt.Printf("Ex85. Введите возраст в месяцах: ")
+	fmt.Scan(&n)
+
+	years := n / 12
+	months := n % 12
+
+	yearWord := map[int]string{1: "год", 2: "года", 5: "лет"}[func() int {
+		if years%10 == 1 && years%100 != 11 {
+			return 1
+		}
+		if years%10 >= 2 && years%10 <= 4 && (years%100 < 10 || years%100 >= 20) {
+			return 2
+		}
+		return 5
+	}()]
+
+	monthWord := map[int]string{1: "месяц", 2: "месяца", 5: "месяцев"}[func() int {
+		if months%10 == 1 && months%100 != 11 {
+			return 1
+		}
+		if months%10 >= 2 && months%10 <= 4 && (months%100 < 10 || months%100 >= 20) {
+			return 2
+		}
+		return 5
+	}()]
+
+	if months == 0 {
+		fmt.Printf("Ex85. Ответ: %d %s ровно\n", years, yearWord)
+	} else {
+		fmt.Printf("Ex85. Ответ: %d %s %d %s\n", years, yearWord, months, monthWord)
+	}
+}
+
+func ch4ex86() {
+	var birthYear, birthMonth, birthDay int
+	var currentYear, currentMonth, currentDay int
+
+	fmt.Printf("Ex86. Возраст в полных годах\n")
+	fmt.Printf("Ex86. Введите дату рождения (год месяц день): ")
+	fmt.Scan(&birthYear, &birthMonth, &birthDay)
+	fmt.Printf("Ex86. Введите текущую дату (год месяц день): ")
+	fmt.Scan(&currentYear, &currentMonth, &currentDay)
+
+	age := currentYear - birthYear
+	if currentMonth < birthMonth || (currentMonth == birthMonth && currentDay < birthDay) {
+		age--
+	}
+
+	fmt.Printf("Ex86. Ответ: %d %s\n", age,
+		map[int]string{1: "год", 2: "года", 5: "лет"}[func() int {
+			if age%10 == 1 && age%100 != 11 {
+				return 1
+			}
+			if age%10 >= 2 && age%10 <= 4 && (age%100 < 10 || age%100 >= 20) {
+				return 2
+			}
+			return 5
+		}()])
+}
+
+func ch4ex87() {
+	var year1, month1, day1 int
+	var year2, month2, day2 int
+
+	fmt.Printf("Ex87. Сравнение возраста\n")
+	fmt.Printf("Ex87. Введите дату рождения первого (год месяц день): ")
+	fmt.Scan(&year1, &month1, &day1)
+	fmt.Printf("Ex87. Введите дату рождения второго (год месяц день): ")
+	fmt.Scan(&year2, &month2, &day2)
+
+	older := map[bool]string{true: "первый", false: "второй"}[year1 < year2 || (year1 == year2 && month1 < month2) ||
+		(year1 == year2 && month1 == month2 && day1 < day2)]
+
+	fmt.Printf("Ex87. Ответ: Старше %s человек\n", older)
+}
+
+func ch4ex88() {
+	var birthYear, birthMonth int
+	var currentYear, currentMonth int
+
+	fmt.Printf("Ex88. Возраст в годах и месяцах\n")
+	fmt.Printf("Ex88. Введите год и месяц рождения: ")
+	fmt.Scan(&birthYear, &birthMonth)
+	fmt.Printf("Ex88. Введите текущий год и месяц: ")
+	fmt.Scan(&currentYear, &currentMonth)
+
+	years := currentYear - birthYear
+	months := currentMonth - birthMonth
+
+	if months < 0 {
+		years--
+		months += 12
+	}
+
+	yearWord := map[int]string{1: "год", 2: "года", 5: "лет"}[func() int {
+		if years%10 == 1 && years%100 != 11 {
+			return 1
+		}
+		if years%10 >= 2 && years%10 <= 4 && (years%100 < 10 || years%100 >= 20) {
+			return 2
+		}
+		return 5
+	}()]
+
+	monthWord := map[int]string{1: "месяц", 2: "месяца", 5: "месяцев"}[func() int {
+		if months%10 == 1 && months%100 != 11 {
+			return 1
+		}
+		if months%10 >= 2 && months%10 <= 4 && (months%100 < 10 || months%100 >= 20) {
+			return 2
+		}
+		return 5
+	}()]
+
+	fmt.Printf("Ex88. Ответ: %d %s %d %s\n", years, yearWord, months, monthWord)
+}
+
+func ch4ex89() {
+	var a, b, c, d, n, m int
+	fmt.Printf("Ex89. Поезд на платформе\n")
+	fmt.Printf("Ex89. Введите прибытие (a b), отправление (c d), время пассажира (n m): ")
+	fmt.Scan(&a, &b, &c, &d, &n, &m)
+
+	arrival := a*60 + b
+	departure := c*60 + d
+	passenger := n*60 + m
+
+	onPlatform := passenger >= arrival && passenger < departure
+	fmt.Printf("Ex89. Ответ: Поезд %s на платформе\n",
+		map[bool]string{true: "стоит", false: "не стоит"}[onPlatform])
+}
+
+func ch4ex90() {
+	var n, m int
+	fmt.Printf("Ex90. Соседние даты\n")
+	fmt.Printf("Ex90. Введите число и месяц: ")
+	fmt.Scan(&n, &m)
+
+	daysInMonth := []int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+
+	prevN, prevM := n-1, m
+	if prevN == 0 {
+		prevM = m - 1
+		prevN = daysInMonth[prevM-1]
+	}
+
+	nextN, nextM := n+1, m
+	if nextN > daysInMonth[m-1] {
+		nextM = m + 1
+		nextN = 1
+	}
+
+	fmt.Printf("Ex90a. Ответ: %d.%d\n", prevN, prevM)
+	fmt.Printf("Ex90b. Ответ: %d.%d\n", nextN, nextM)
+}
+
+func ch4ex91() {
+	var g, n, m int
+	fmt.Printf("Ex91. Соседние даты с годом\n")
+	fmt.Printf("Ex91. Введите год, число и месяц: ")
+	fmt.Scan(&g, &n, &m)
+
+	isLeap := (g%4 == 0 && g%100 != 0) || (g%400 == 0)
+	daysInMonth := []int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+	if isLeap {
+		daysInMonth[1] = 29
+	}
+
+	prevG, prevN, prevM := g, n-1, m
+	if prevN == 0 {
+		prevM = m - 1
+		if prevM == 0 {
+			prevM = 12
+			prevG = g - 1
+		}
+		prevN = daysInMonth[prevM-1]
+	}
+
+	nextG, nextN, nextM := g, n+1, m
+	if nextN > daysInMonth[m-1] {
+		nextM = m + 1
+		nextN = 1
+		if nextM > 12 {
+			nextM = 1
+			nextG = g + 1
+		}
+	}
+
+	fmt.Printf("Ex91a. Ответ: %d.%d.%d\n", prevN, prevM, prevG)
+	fmt.Printf("Ex91b. Ответ: %d.%d.%d\n", nextN, nextM, nextG)
+}
+
+func ch4ex92() {
+	var t float64
+	fmt.Printf("Ex92. Светофор для водителей\n")
+	fmt.Printf("Ex92. Введите время в минутах с начала часа: ")
+	fmt.Scan(&t)
+
+	timeInCycle := math.Mod(t, 6)
+
+	var color string
+	switch {
+	case timeInCycle < 3:
+		color = "зеленый"
+	case timeInCycle < 4:
+		color = "желтый"
+	default:
+		color = "красный"
+	}
+
+	fmt.Printf("Ex92. Ответ: Горит %s сигнал\n", color)
+}
+
+func ch4ex93() {
+	var k, d int
+	fmt.Printf("Ex93. День недели года\n")
+	fmt.Printf("Ex93. Введите номер дня года и день недели 1 января: ")
+	fmt.Scan(&k, &d)
+
+	dayOfWeek := (k + d - 2) % 7
+
+	var dayType string
+	switch dayOfWeek {
+	case 0:
+		dayType = "воскресенье"
+	case 6:
+		dayType = "суббота"
+	default:
+		dayType = "рабочий день"
+	}
+
+	fmt.Printf("Ex93. Ответ: %s\n", dayType)
 }
