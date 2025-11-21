@@ -18,7 +18,10 @@ func Run04() {
 		ch4ex65, ch4ex66, ch4ex67, ch4ex68, ch4ex69, ch4ex70, ch4ex71, ch4ex72,
 		ch4ex73, ch4ex74, ch4ex75, ch4ex76, ch4ex77, ch4ex78, ch4ex79, ch4ex80,
 		ch4ex81, ch4ex82, ch4ex83, ch4ex84, ch4ex85, ch4ex86, ch4ex87, ch4ex88,
-		ch4ex89, ch4ex90, ch4ex91, ch4ex92, ch4ex93,
+		ch4ex89, ch4ex90, ch4ex91, ch4ex92, ch4ex93, ch4ex94, ch4ex95, ch4ex96,
+		ch4ex97, ch4ex98, ch4ex99, ch4ex100, ch4ex101, ch4ex102, ch4ex103, ch4ex104,
+		ch4ex105, ch4ex106, ch4ex107, ch4ex108, ch4ex109, ch4ex110, ch4ex111, ch4ex112,
+		ch4ex113, ch4ex114, ch4ex115, ch4ex116,
 	}
 
 	for {
@@ -1949,4 +1952,352 @@ func ch4ex93() {
 	}
 
 	fmt.Printf("Ex93. Ответ: %s\n", dayType)
+}
+
+func ch4ex94() {
+	var k int
+	fmt.Printf("Ex94. Введите k (1-180): ")
+	fmt.Scan(&k)
+
+	number := 10 + (k-1)/2
+	if k%2 == 1 {
+		fmt.Printf("Ex94. Ответ: %d\n", number/10)
+	} else {
+		fmt.Printf("Ex94. Ответ: %d\n", number%10)
+	}
+}
+
+func ch4ex95() {
+	var n int
+	fmt.Printf("Ex95. Введите n (1-32): ")
+	fmt.Scan(&n)
+
+	if n <= 9 {
+		fmt.Printf("Ex95. Ответ: %d\n", n)
+	} else if n <= 28 {
+		number := 10 + (n-10)/2
+		if n%2 == 0 {
+			fmt.Printf("Ex95. Ответ: %d\n", number/10)
+		} else {
+			fmt.Printf("Ex95. Ответ: %d\n", number%10)
+		}
+	} else {
+		fmt.Printf("Ex95. Ответ: %d\n", []int{2, 0}[n-29])
+	}
+}
+
+func ch4ex96() {
+	var k int
+	fmt.Printf("Ex96. k-я цифра в последовательности 50-250\n")
+	fmt.Printf("Ex96. Введите k (1-252): ")
+	fmt.Scan(&k)
+
+	if k <= 102 {
+		number := 50 + (k-1)/2
+		if k%2 == 1 {
+			fmt.Printf("Ex96. Ответ: %d\n", number/10)
+		} else {
+			fmt.Printf("Ex96. Ответ: %d\n", number%10)
+		}
+	} else {
+		number := 100 + (k-103)/3
+		pos := (k - 103) % 3
+		fmt.Printf("Ex96. Ответ: %d\n", []int{number / 100, number / 10 % 10, number % 10}[pos])
+	}
+}
+
+func ch4ex97() {
+	var k int
+	fmt.Printf("Ex97. k-я цифра в последовательности 1-110\n")
+	fmt.Printf("Ex97. Введите k (1-222): ")
+	fmt.Scan(&k)
+
+	if k <= 9 {
+		fmt.Printf("Ex97. Ответ: %d\n", k)
+	} else if k <= 189 {
+		number := 10 + (k-10)/2
+		if k%2 == 0 {
+			fmt.Printf("Ex97. Ответ: %d\n", number/10)
+		} else {
+			fmt.Printf("Ex97. Ответ: %d\n", number%10)
+		}
+	} else {
+		number := 100 + (k-190)/3
+		pos := (k - 190) % 3
+		fmt.Printf("Ex97. Ответ: %d\n", []int{number / 100, number / 10 % 10, number % 10}[pos])
+	}
+}
+
+func ch4ex98() {
+	var n, a int
+	fmt.Printf("Ex98. Четность суммы номеров квартир\n")
+	fmt.Printf("Ex98. Введите количество квартир и номер первой квартиры: ")
+	fmt.Scan(&n, &a)
+
+	isEven := (n*(2*a+n-1))%2 == 0
+	fmt.Printf("Ex98. Ответ: Сумма номеров %s числом\n",
+		map[bool]string{true: "четное", false: "нечетное"}[isEven])
+}
+
+func ch4ex99() {
+	var a, b float64
+	fmt.Printf("Ex99. Наибольшее из двух чисел\n")
+	fmt.Printf("Ex99. Введите два числа: ")
+	fmt.Scan(&a, &b)
+
+	max := a
+	if b > max {
+		max = b
+	}
+	fmt.Printf("Ex99a. Ответ: Наибольшее: %.2f\n", max)
+
+	if a > b {
+		fmt.Printf("Ex99b. Ответ: Наибольшее: %.2f\n", a)
+	} else {
+		fmt.Printf("Ex99b. Ответ: Наибольшее: %.2f\n", b)
+	}
+}
+
+func ch4ex100() {
+	var a, b float64
+	fmt.Printf("Ex100. Наибольшее и наименьшее из двух чисел\n")
+	fmt.Printf("Ex100. Введите два числа: ")
+	fmt.Scan(&a, &b)
+
+	max, min := a, a
+	if b > max {
+		max = b
+	}
+	if b < min {
+		min = b
+	}
+	fmt.Printf("Ex100a. Ответ: Наибольшее: %.2f, Наименьшее: %.2f\n", max, min)
+
+	if a > b {
+		fmt.Printf("Ex100b. Ответ: Наибольшее: %.2f, Наименьшее: %.2f\n", a, b)
+	} else {
+		fmt.Printf("Ex100b. Ответ: Наибольшее: %.2f, Наименьшее: %.2f\n", b, a)
+	}
+}
+
+func ch4ex101() {
+	var a, b, c float64
+	fmt.Printf("Ex101. Наибольшее и наименьшее из трех чисел\n")
+	fmt.Printf("Ex101. Введите три числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	maximum := math.Min(math.Min(a, b), c)
+	fmt.Printf("Ex101a. Ответ: Наибольшее: %.2f\n", maximum)
+
+	minimum := math.Min(math.Min(a, b), c)
+	fmt.Printf("Ex101b. Ответ: Наименьшее: %.2f\n", minimum)
+}
+
+func ch4ex102() {
+	var a, b, c, d float64
+	fmt.Printf("Ex102. Наибольшее и наименьшее из четырех чисел\n")
+	fmt.Printf("Ex102. Введите четыре числа: ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	maximum := math.Min(math.Min(a, b), math.Min(c, d))
+	fmt.Printf("Ex102a. Ответ: Наибольшее: %.2f\n", maximum)
+
+	minimum := math.Min(math.Min(a, b), math.Min(c, d))
+	fmt.Printf("Ex102b. Ответ: Наименьшее: %.2f\n", minimum)
+}
+
+func ch4ex103() {
+	var x float64
+	fmt.Printf("Ex103. Абсолютная величина\n")
+	fmt.Printf("Ex103. Введите число: ")
+	fmt.Scan(&x)
+
+	fmt.Printf("Ex103. Ответ: |%.2f| = %.2f\n", x, math.Abs(x))
+}
+
+func ch4ex104() {
+	var a, b float64
+	fmt.Printf("Ex104. Введите два числа: ")
+	fmt.Scan(&a, &b)
+
+	absA, absB := math.Abs(a), math.Abs(b)
+
+	fmt.Printf("Ex104a. Полусумма: %.2f\n", (absA+absB)/2)
+	fmt.Printf("Ex104b. Корень из произведения: %.2f\n", math.Sqrt(absA*absB))
+}
+
+func ch4ex105() {
+	var a, b float64
+	fmt.Printf("Ex105. Введите два числа: ")
+	fmt.Scan(&a, &b)
+
+	if math.Abs(a) > math.Abs(b) {
+		a /= 2
+	}
+
+	fmt.Printf("Ex105. Ответ: %.2f\n", a)
+}
+
+func ch4ex106() {
+	var a, b float64
+	fmt.Printf("Ex106. Введите два числа: ")
+	fmt.Scan(&a, &b)
+
+	if math.Sqrt(b) < a {
+		b *= 5
+	}
+
+	fmt.Printf("Ex106. Ответ: %.2f\n", b)
+}
+
+func ch4ex107() {
+	var a, b, c int
+	fmt.Printf("Ex107. Введите три целых числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	fmt.Printf("Ex107. Четные числа: ")
+	if a%2 == 0 {
+		fmt.Printf("%d ", a)
+	}
+	if b%2 == 0 {
+		fmt.Printf("%d ", b)
+	}
+	if c%2 == 0 {
+		fmt.Printf("%d ", c)
+	}
+}
+
+func ch4ex108() {
+	var a, b, c float64
+	fmt.Printf("Ex108. Введите три числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	numbers := []float64{a, b, c}
+	for i, x := range numbers {
+		if x >= 0 {
+			numbers[i] = x * x
+		}
+	}
+	fmt.Printf("Ex108. Ответ: %.2f %.2f %.2f\n", numbers[0], numbers[1], numbers[2])
+}
+
+func ch4ex109() {
+	var a, b, c float64
+	fmt.Printf("Ex109. Введите три числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	result := []float64{}
+	for _, x := range []float64{a, b, c} {
+		if x >= 1.6 && x <= 5.8 {
+			result = append(result, x)
+		}
+	}
+
+	fmt.Printf("Ex109. Числа в интервале [1.6, 5.8]: %v\n", result)
+}
+
+func ch4ex110() {
+	var a, b, c, d float64
+	fmt.Printf("Ex110. Введите четыре числа: ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	count := 0
+	for _, x := range []float64{a, b, c, d} {
+		if x < 0 {
+			count++
+		}
+	}
+
+	fmt.Printf("Ex110. Отрицательных чисел: %d\n", count)
+}
+
+func ch4ex111() {
+	var a, b, c, d int
+	fmt.Printf("Ex111. Введите четыре целых числа: ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	count := 0
+	for _, x := range []int{a, b, c, d} {
+		if x%2 == 0 {
+			count++
+		}
+	}
+
+	fmt.Printf("Ex111. Четных чисел: %d\n", count)
+}
+
+func ch4ex112() {
+	var a, b int
+	fmt.Printf("Ex112. Введите два целых числа: ")
+	fmt.Scan(&a, &b)
+
+	sum := 0
+	for _, x := range []int{a, b} {
+		if x > 0 {
+			sum += x
+		}
+	}
+
+	fmt.Printf("Ex112. Сумма положительных: %d\n", sum)
+}
+
+func ch4ex113() {
+	var a, b, c, d float64
+	fmt.Printf("Ex113. Введите четыре числа: ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	sum := 0.0
+	for _, x := range []float64{a, b, c, d} {
+		if x > 5 {
+			sum += x
+		}
+	}
+
+	fmt.Printf("Ex113. Сумма чисел больше пяти: %.2f\n", sum)
+}
+
+func ch4ex114() {
+	var a, b, c, d int
+	fmt.Printf("Ex114. Введите четыре целых числа: ")
+	fmt.Scan(&a, &b, &c, &d)
+
+	sum := 0
+	for _, x := range []int{a, b, c, d} {
+		if x%3 == 0 {
+			sum += x
+		}
+	}
+
+	fmt.Printf("Ex114. Сумма кратных трем: %d\n", sum)
+}
+
+func ch4ex115() {
+	var a, b, c, d, e, f int
+	fmt.Printf("Ex115. Введите шесть целых чисел: ")
+	fmt.Scan(&a, &b, &c, &d, &e, &f)
+
+	sum := 0
+	for _, x := range []int{a, b, c, d, e, f} {
+		if x > 0 {
+			sum += x
+		}
+	}
+
+	fmt.Printf("Ex115. Сумма положительных: %d\n", sum)
+}
+
+func ch4ex116() {
+	var x float64
+	fmt.Printf("Ex116. Вычисление функции y(x)\n")
+	fmt.Printf("Ex116. Введите x: ")
+	fmt.Scan(&x)
+
+	y := 1.0
+	if x < -1 {
+		y = -1
+	} else if x > -1 {
+		y = x
+	}
+
+	fmt.Printf("Ex116. Ответ: y(%.2f) = %.2f\n", x, y)
 }
