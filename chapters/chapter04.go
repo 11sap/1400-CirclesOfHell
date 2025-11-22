@@ -21,7 +21,9 @@ func Run04() {
 		ch4ex89, ch4ex90, ch4ex91, ch4ex92, ch4ex93, ch4ex94, ch4ex95, ch4ex96,
 		ch4ex97, ch4ex98, ch4ex99, ch4ex100, ch4ex101, ch4ex102, ch4ex103, ch4ex104,
 		ch4ex105, ch4ex106, ch4ex107, ch4ex108, ch4ex109, ch4ex110, ch4ex111, ch4ex112,
-		ch4ex113, ch4ex114, ch4ex115, ch4ex116,
+		ch4ex113, ch4ex114, ch4ex115, ch4ex116, ch4ex117, ch4ex118, ch4ex119, ch4ex120,
+		ch4ex121, ch4ex122, ch4ex123, ch4ex124, ch4ex125, ch4ex126, ch4ex127, ch4ex128,
+		ch4ex129, ch4ex130, ch4ex131, ch4ex132, ch4ex133, ch4ex134, ch4ex135,
 	}
 
 	for {
@@ -2300,4 +2302,403 @@ func ch4ex116() {
 	}
 
 	fmt.Printf("Ex116. Ответ: y(%.2f) = %.2f\n", x, y)
+}
+
+func ch4ex117() {
+	var a float64
+	fmt.Printf("Ex117. Знак числа\n")
+	fmt.Printf("Ex117. Введите число a: ")
+	fmt.Scan(&a)
+
+	var z int
+	switch {
+	case a > 0:
+		z = 1
+	case a < 0:
+		z = -1
+	default:
+		z = 0
+	}
+
+	fmt.Printf("Ex117. Ответ: z = %d\n", z)
+}
+
+func ch4ex118() {
+	var x float64
+	fmt.Printf("Ex118. Вычисление функции f(x)\n")
+	fmt.Printf("Ex118. Введите x: ")
+	fmt.Scan(&x)
+
+	var f float64
+	switch {
+	case x <= 0:
+		f = 0
+	case x <= 1:
+		f = x
+	default:
+		f = x * x
+	}
+
+	fmt.Printf("Ex118. Ответ: f(%.2f) = %.2f\n", x, f)
+}
+
+func ch4ex119() {
+	var y float64
+	fmt.Printf("Ex119. Вычисление функции f(y)\n")
+	fmt.Printf("Ex119. Введите y: ")
+	fmt.Scan(&y)
+
+	var f float64
+	switch {
+	case y > 2:
+		f = 2
+	case y > 0:
+		f = 0
+	default:
+		f = -3 * y
+	}
+
+	fmt.Printf("Ex119. Ответ: f(%.2f) = %.2f\n", y, f)
+}
+
+func ch4ex120() {
+	var x float64
+	fmt.Printf("Ex120. Значение функции по графику\n")
+	fmt.Printf("Ex120. Введите x: ")
+	fmt.Scan(&x)
+
+	var ya float64
+	switch {
+	case x < -2:
+		ya = -1
+	case x < 2:
+		ya = 0
+	default:
+		ya = 1
+	}
+
+	yb := math.Abs(x)
+
+	var yc float64
+	if x >= -1 && x <= 1 {
+		yc = x * x
+	} else {
+		yc = 1
+	}
+
+	var yd float64
+	switch {
+	case x < -1:
+		yd = -1
+	case x < 1:
+		yd = x
+	default:
+		yd = 1
+	}
+
+	fmt.Printf("Ex120a. Ответ: y = %.2f\n", ya)
+	fmt.Printf("Ex120b. Ответ: y = %.2f\n", yb)
+	fmt.Printf("Ex120c. Ответ: y = %.2f\n", yc)
+	fmt.Printf("Ex120d. Ответ: y = %.2f\n", yd)
+}
+
+func ch4ex121() {
+	var x, y float64
+	fmt.Printf("Ex121. Область точки (рис 4.9)\n")
+	fmt.Printf("Ex121. Введите координаты x и y: ")
+	fmt.Scan(&x, &y)
+
+	var region string
+	switch {
+	case x < 1:
+		region = "I"
+	case x < 5:
+		region = "II"
+	default:
+		region = "III"
+	}
+
+	fmt.Printf("Ex121. Ответ: Точка в области %s\n", region)
+}
+
+func ch4ex122() {
+	var x, y float64
+	fmt.Printf("Ex122. Область точки (рис 4.10)\n")
+	fmt.Printf("Ex122. Введите координаты x и y: ")
+	fmt.Scan(&x, &y)
+
+	var region string
+	switch {
+	case y > 5.0:
+		region = "I"
+	case y > 2.5:
+		region = "II"
+	default:
+		region = "III"
+	}
+
+	fmt.Printf("Ex122. Ответ: Точка в области %s\n", region)
+}
+
+func ch4ex123() {
+	var points int
+	fmt.Printf("Ex123. Результат футбольной игры\n")
+	fmt.Printf("Ex123. Введите количество очков (0, 1 или 3): ")
+	fmt.Scan(&points)
+
+	result := map[int]string{
+		0: "проигрыш",
+		1: "ничья",
+		3: "выигрыш",
+	}[points]
+
+	fmt.Printf("Ex123. Ответ: %s\n", result)
+}
+
+func ch4ex124() {
+	var mitya, vasya int
+	fmt.Printf("Ex124. Сравнение возраста\n")
+	fmt.Printf("Ex124. Введите возраст Мити и Васи: ")
+	fmt.Scan(&mitya, &vasya)
+
+	result := map[bool]string{
+		true:  "Митя старше",
+		false: "Вася старше",
+	}[mitya > vasya]
+
+	if mitya == vasya {
+		result = "Одного возраста"
+	}
+
+	fmt.Printf("Ex124. Ответ: %s\n", result)
+}
+
+func ch4ex125() {
+	var weight float64
+	fmt.Printf("Ex125. Весовая категория боксера\n")
+	fmt.Printf("Ex125. Введите вес боксера: ")
+	fmt.Scan(&weight)
+
+	category := map[bool]string{
+		true: "легкий вес",
+		false: map[bool]string{
+			true:  "первый полусредний вес",
+			false: "полусредний вес",
+		}[weight < 64],
+	}[weight < 60]
+
+	fmt.Printf("Ex125. Ответ: %s\n", category)
+}
+
+func ch4ex126() {
+	var a, b int
+	fmt.Printf("Ex126. Взаимная делимость\n")
+	fmt.Printf("Ex126. Введите два различных числа: ")
+	fmt.Scan(&a, &b)
+
+	result := map[bool]string{
+		true: "a является делителем b",
+		false: map[bool]string{
+			true:  "b является делителем a",
+			false: "ни одно не является делителем другого",
+		}[a%b == 0],
+	}[b%a == 0]
+
+	fmt.Printf("Ex126. Ответ: %s\n", result)
+}
+
+func ch4ex127() {
+	var a, b, c int
+	fmt.Printf("Ex127. Анализ трех чисел\n")
+	fmt.Printf("Ex127. Введите три различных числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	maxPos := map[bool]string{
+		true: "первое",
+		false: map[bool]string{
+			true:  "второе",
+			false: "третье",
+		}[b > c],
+	}[a > b && a > c]
+
+	minPos := map[bool]string{
+		true: "первое",
+		false: map[bool]string{
+			true:  "второе",
+			false: "третье",
+		}[b < c],
+	}[a < b && a < c]
+
+	midPos := map[bool]string{
+		true: "первое",
+		false: map[bool]string{
+			true:  "второе",
+			false: "третье",
+		}[(b > a && b < c) || (b < a && b > c)],
+	}[(a > b && a < c) || (a < b && a > c)]
+
+	fmt.Printf("Ex127a. Ответ: самое большое - %s\n", maxPos)
+	fmt.Printf("Ex127b. Ответ: самое маленькое - %s\n", minPos)
+	fmt.Printf("Ex127c. Ответ: среднее - %s\n", midPos)
+}
+
+func ch4ex128() {
+	var a, b, c float64
+	fmt.Printf("Ex128. Максимум и минимум из трех чисел\n")
+	fmt.Printf("Ex128. Введите три различных числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	maximum := map[bool]float64{
+		true: a,
+		false: map[bool]float64{
+			true:  b,
+			false: c,
+		}[b > c],
+	}[a > b && a > c]
+
+	minimum := map[bool]float64{
+		true: a,
+		false: map[bool]float64{
+			true:  b,
+			false: c,
+		}[b < c],
+	}[a < b && a < c]
+
+	fmt.Printf("Ex128. Ответ: максимум = %.2f, минимум = %.2f\n", maximum, minimum)
+}
+
+func ch4ex129() {
+	var a, b, c float64
+	fmt.Printf("Ex129. Сумма двух наибольших\n")
+	fmt.Printf("Ex129. Введите три различных числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	sum := map[bool]float64{
+		true: a + b,
+		false: map[bool]float64{
+			true:  a + c,
+			false: b + c,
+		}[a > c],
+	}[a > c && b > c]
+
+	fmt.Printf("Ex129. Ответ: сумма двух наибольших = %.2f\n", sum)
+}
+
+func ch4ex130() {
+	var a, b, c float64
+	fmt.Printf("Ex130. Произведение двух наименьших\n")
+	fmt.Printf("Ex130. Введите три различных числа: ")
+	fmt.Scan(&a, &b, &c)
+
+	product := map[bool]float64{
+		true: a * b,
+		false: map[bool]float64{
+			true:  a * c,
+			false: b * c,
+		}[a < c],
+	}[a < c && b < c]
+
+	fmt.Printf("Ex130. Ответ: произведение двух наименьших = %.2f\n", product)
+}
+
+func ch4ex131() {
+	var a1, b1, c1, a2, b2, c2 float64
+	fmt.Printf("Ex131. Среднее арифметическое средних чисел\n")
+	fmt.Printf("Ex131. Введите первую тройку чисел: ")
+	fmt.Scan(&a1, &b1, &c1)
+	fmt.Printf("Ex131. Введите вторую тройку чисел: ")
+	fmt.Scan(&a2, &b2, &c2)
+
+	mid1 := map[bool]float64{
+		true: a1,
+		false: map[bool]float64{
+			true:  b1,
+			false: c1,
+		}[(b1 > a1 && b1 < c1) || (b1 < a1 && b1 > c1)],
+	}[(a1 > b1 && a1 < c1) || (a1 < b1 && a1 > c1)]
+
+	mid2 := map[bool]float64{
+		true: a2,
+		false: map[bool]float64{
+			true:  b2,
+			false: c2,
+		}[(b2 > a2 && b2 < c2) || (b2 < a2 && b2 > c2)],
+	}[(a2 > b2 && a2 < c2) || (a2 < b2 && a2 > c2)]
+
+	average := (mid1 + mid2) / 2
+	fmt.Printf("Ex131. Ответ: среднее арифметическое = %.2f\n", average)
+}
+
+func ch4ex132() {
+	var x, y float64
+	fmt.Printf("Ex132. Четверть координатной плоскости\n")
+	fmt.Printf("Ex132. Введите координаты x и y: ")
+	fmt.Scan(&x, &y)
+
+	quarter := map[bool]string{
+		true: map[bool]string{
+			true:  "первая",
+			false: "четвертая",
+		}[y > 0],
+		false: map[bool]string{
+			true:  "вторая",
+			false: "третья",
+		}[y > 0],
+	}[x > 0]
+
+	fmt.Printf("Ex132. Ответ: %s четверть\n", quarter)
+}
+
+func ch4ex133() {
+	var day int
+	fmt.Printf("Ex133. Название дня недели\n")
+	fmt.Printf("Ex133. Введите номер дня недели (1-7): ")
+	fmt.Scan(&day)
+
+	dayName := map[int]string{
+		1: "понедельник",
+		2: "вторник",
+		3: "среда",
+		4: "четверг",
+		5: "пятница",
+		6: "суббота",
+		7: "воскресенье",
+	}[day]
+
+	fmt.Printf("Ex133. Ответ: %s\n", dayName)
+}
+
+func ch4ex134() {
+	var month int
+	fmt.Printf("Ex134. Название месяца\n")
+	fmt.Printf("Ex134. Введите номер месяца (1-12): ")
+	fmt.Scan(&month)
+
+	monthName := map[int]string{
+		1: "январь", 2: "февраль", 3: "март", 4: "апрель",
+		5: "май", 6: "июнь", 7: "июль", 8: "август",
+		9: "сентябрь", 10: "октябрь", 11: "ноябрь", 12: "декабрь",
+	}[month]
+
+	fmt.Printf("Ex134. Ответ: %s\n", monthName)
+}
+
+func ch4ex135() {
+	var month int
+	fmt.Printf("Ex135. Время года\n")
+	fmt.Printf("Ex135. Введите номер месяца (1-12): ")
+	fmt.Scan(&month)
+
+	season := map[bool]string{
+		true: "зима",
+		false: map[bool]string{
+			true: "весна",
+			false: map[bool]string{
+				true:  "лето",
+				false: "осень",
+			}[month >= 6 && month <= 8],
+		}[month >= 3 && month <= 5],
+	}[month == 12 || month <= 2]
+
+	fmt.Printf("Ex135. Ответ: %s\n", season)
 }
