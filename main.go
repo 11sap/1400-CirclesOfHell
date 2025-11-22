@@ -9,7 +9,7 @@ func main() {
 	chapters.Run04()
 
 	chaptersList := []func(){
-		chapters.Run01, chapters.Run02, chapters.Run03, chapters.Run04,
+		chapters.Run01, chapters.Run02, chapters.Run03, chapters.Run04, chapters.Run05,
 	}
 
 	for {

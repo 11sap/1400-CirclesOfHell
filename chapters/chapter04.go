@@ -23,7 +23,8 @@ func Run04() {
 		ch4ex105, ch4ex106, ch4ex107, ch4ex108, ch4ex109, ch4ex110, ch4ex111, ch4ex112,
 		ch4ex113, ch4ex114, ch4ex115, ch4ex116, ch4ex117, ch4ex118, ch4ex119, ch4ex120,
 		ch4ex121, ch4ex122, ch4ex123, ch4ex124, ch4ex125, ch4ex126, ch4ex127, ch4ex128,
-		ch4ex129, ch4ex130, ch4ex131, ch4ex132, ch4ex133, ch4ex134, ch4ex135,
+		ch4ex129, ch4ex130, ch4ex131, ch4ex132, ch4ex133, ch4ex134, ch4ex135, ch4ex136,
+		ch4ex137, ch4ex138, ch4ex139, ch4ex140, ch4ex141, ch4ex142, ch4ex143, ch4ex144, ch4ex145,
 	}
 
 	for {
@@ -2167,6 +2168,7 @@ func ch4ex107() {
 	if c%2 == 0 {
 		fmt.Printf("%d ", c)
 	}
+	fmt.Println()
 }
 
 func ch4ex108() {
