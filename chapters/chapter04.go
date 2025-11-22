@@ -2702,3 +2702,208 @@ func ch4ex135() {
 
 	fmt.Printf("Ex135. Ответ: %s\n", season)
 }
+
+func ch4ex136() {
+	var month int
+	var isLeap bool
+	fmt.Printf("Ex136. Количество дней в месяце\n")
+	fmt.Printf("Ex136. Введите номер месяца (1-12): ")
+	fmt.Scan(&month)
+	fmt.Printf("Ex136. Год високосный? (true/false): ")
+	fmt.Scan(&isLeap)
+
+	days := map[int]int{
+		1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30,
+		7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31,
+	}[month]
+
+	if month == 2 && isLeap {
+		days = 29
+	}
+
+	fmt.Printf("Ex136. Ответ: %d дней\n", days)
+}
+
+func ch4ex137() {
+	var month int
+	fmt.Printf("Ex137. Количество дней в месяце (не високосный)\n")
+	fmt.Printf("Ex137. Введите номер месяца (1-12): ")
+	fmt.Scan(&month)
+
+	days := map[bool]int{
+		true: 31,
+		false: map[bool]int{
+			true: 28,
+			false: map[bool]int{
+				true:  30,
+				false: 31,
+			}[month == 4 || month == 6 || month == 9 || month == 11],
+		}[month == 2],
+	}[month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12]
+
+	fmt.Printf("Ex137. Ответ: %d дней\n", days)
+}
+
+func ch4ex138() {
+	var m int
+	fmt.Printf("Ex138. Название масти карт\n")
+	fmt.Printf("Ex138. Введите номер масти (1-4): ")
+	fmt.Scan(&m)
+
+	suit := map[int]string{
+		1: "пики",
+		2: "трефы",
+		3: "бубны",
+		4: "червы",
+	}[m]
+
+	fmt.Printf("Ex138. Ответ: %s\n", suit)
+}
+
+func ch4ex139() {
+	var k int
+	fmt.Printf("Ex139. Достоинство карты\n")
+	fmt.Printf("Ex139. Введите номер карты (6-14): ")
+	fmt.Scan(&k)
+
+	rank := map[int]string{
+		6: "шестерка", 7: "семерка", 8: "восьмерка", 9: "девятка", 10: "десятка",
+		11: "валет", 12: "дама", 13: "король", 14: "туз",
+	}[k]
+
+	fmt.Printf("Ex139. Ответ: %s\n", rank)
+}
+
+func ch4ex140() {
+	var m, k int
+	fmt.Printf("Ex140. Полное название карты\n")
+	fmt.Printf("Ex140. Введите номер масти (1-4) и номер карты (6-14): ")
+	fmt.Scan(&m, &k)
+
+	suit := map[int]string{
+		1: "пик", 2: "треф", 3: "бубен", 4: "червей",
+	}[m]
+
+	rank := map[int]string{
+		6: "Шестерка", 7: "Семерка", 8: "Восьмерка", 9: "Девятка", 10: "Десятка",
+		11: "Валет", 12: "Дама", 13: "Король", 14: "Туз",
+	}[k]
+
+	fmt.Printf("Ex140. Ответ: %s %s\n", rank, suit)
+}
+
+func ch4ex141() {
+	var k, d int
+	fmt.Printf("Ex141. День недели по номеру дня года\n")
+	fmt.Printf("Ex141. Введите номер дня года и день недели 1 января: ")
+	fmt.Scan(&k, &d)
+
+	dayOfWeek := (k + d - 2) % 7
+
+	dayName := map[int]string{
+		0: "воскресенье", 1: "понедельник", 2: "вторник", 3: "среда",
+		4: "четверг", 5: "пятница", 6: "суббота",
+	}[dayOfWeek]
+
+	fmt.Printf("Ex141. Ответ: %s\n", dayName)
+}
+
+func ch4ex142() {
+	var n int
+	fmt.Printf("Ex142. Название месяца с 2010 года\n")
+	fmt.Printf("Ex142. Введите количество прошедших месяцев: ")
+	fmt.Scan(&n)
+
+	monthName := map[int]string{
+		1: "январь", 2: "февраль", 3: "март", 4: "апрель",
+		5: "май", 6: "июнь", 7: "июль", 8: "август",
+		9: "сентябрь", 10: "октябрь", 11: "ноябрь", 12: "декабрь",
+	}[n%12+1]
+
+	fmt.Printf("Ex142. Ответ: %s\n", monthName)
+}
+
+func ch4ex143() {
+	var n, m int
+	fmt.Printf("Ex143. Соседние даты (без года)\n")
+	fmt.Printf("Ex143. Введите число и месяц: ")
+	fmt.Scan(&n, &m)
+
+	daysInMonth := []int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+
+	prevN, prevM := n-1, m
+	if prevN == 0 {
+		prevM = m - 1
+		prevN = daysInMonth[prevM-1]
+	}
+
+	nextN, nextM := n+1, m
+	if nextN > daysInMonth[m-1] {
+		nextM = m + 1
+		nextN = 1
+	}
+
+	fmt.Printf("Ex143a. Ответ: %d.%d\n", prevN, prevM)
+	fmt.Printf("Ex143b. Ответ: %d.%d\n", nextN, nextM)
+}
+
+func ch4ex144() {
+	var g, n, m int
+	fmt.Printf("Ex144. Соседние даты (с годом)\n")
+	fmt.Printf("Ex144. Введите год, число и месяц: ")
+	fmt.Scan(&g, &n, &m)
+
+	isLeap := (g%4 == 0 && g%100 != 0) || (g%400 == 0)
+	daysInMonth := []int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+	if isLeap {
+		daysInMonth[1] = 29
+	}
+
+	prevG, prevN, prevM := g, n-1, m
+	if prevN == 0 {
+		prevM = m - 1
+		if prevM == 0 {
+			prevM = 12
+			prevG = g - 1
+		}
+		prevN = daysInMonth[prevM-1]
+	}
+
+	nextG, nextN, nextM := g, n+1, m
+	if nextN > daysInMonth[m-1] {
+		nextM = m + 1
+		nextN = 1
+		if nextM > 12 {
+			nextM = 1
+			nextG = g + 1
+		}
+	}
+
+	fmt.Printf("Ex144a. Ответ: %d.%d.%d\n", prevN, prevM, prevG)
+	fmt.Printf("Ex144b. Ответ: %d.%d.%d\n", nextN, nextM, nextG)
+}
+
+func ch4ex145() {
+	var year int
+	fmt.Printf("Ex145. Восточный календарь\n")
+	fmt.Printf("Ex145. Введите год: ")
+	fmt.Scan(&year)
+
+	animals := []string{"Крыса", "Корова", "Тигр", "Заяц", "Дракон", "Змея",
+		"Лошадь", "Овца", "Обезьяна", "Петух", "Собака", "Свинья"}
+
+	colors := []string{"Зеленый", "Красный", "Желтый", "Белый", "Черный"}
+
+	cycleYear := (year - 1984) % 60
+	if cycleYear < 0 {
+		cycleYear += 60
+	}
+
+	animalIndex := cycleYear % 12
+	colorIndex := (cycleYear / 2) % 5
+
+	animal := animals[animalIndex]
+	color := colors[colorIndex]
+
+	fmt.Printf("Ex145. Ответ: %s, %s\n", animal, color)
+}
