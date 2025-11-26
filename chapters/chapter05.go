@@ -753,3 +753,318 @@ func ch5ex50() {
 	}
 	fmt.Printf("За 7 дней: %.2f км\n", total)
 }
+
+func ch5ex51() {
+	fmt.Printf("Ex51. Урожайность ячменя\n")
+	area := 100.0
+	yield := 20.0
+
+	fmt.Printf("а) Урожайность:\n")
+	fmt.Printf("1-й год: %.2f ц/га\n", yield)
+	for year := 2; year <= 8; year++ {
+		yield *= 1.02
+		fmt.Printf("%d-й год: %.2f ц/га\n", year, yield)
+	}
+
+	fmt.Printf("б) Площадь участка:\n")
+	area = 100.0
+	for year := 1; year <= 7; year++ {
+		area *= 1.05
+		if year >= 4 {
+			fmt.Printf("%d-й год: %.2f га\n", year, area)
+		}
+	}
+
+	fmt.Printf("в) Урожай за 6 лет:\n")
+	area = 100.0
+	yield = 20.0
+	totalHarvest := 0.0
+	for year := 1; year <= 6; year++ {
+		harvest := area * yield
+		totalHarvest += harvest
+		area *= 1.05
+		yield *= 1.02
+	}
+	fmt.Printf("За 6 лет: %.2f ц\n", totalHarvest)
+}
+
+func ch5ex52() {
+	fmt.Printf("Ex52. Объем шаров\n")
+	thickness := 0.5
+	innerDiameter := 10.0
+	totalVolume := 0.0
+
+	currentDiameter := innerDiameter
+	for i := 1; i <= 12; i++ {
+		radius := currentDiameter / 2
+		volume := (4.0 / 3.0) * math.Pi * math.Pow(radius, 3)
+		totalVolume += volume
+		currentDiameter += 2 * thickness
+	}
+
+	totalVolumeLiters := totalVolume / 1000
+	fmt.Printf("Суммарный объем: %.6f л\n", totalVolumeLiters)
+}
+
+func ch5ex53() {
+	fmt.Printf("Ex53. Сумма 2^2 + 3^2 + ... + 2^10\n")
+	sum, power := 0, 1
+	for i := 1; i <= 10; i++ {
+		power *= 2
+		sum += power
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex54() {
+	fmt.Printf("Ex54. Степени числа a\n")
+	var a float64
+	var n int
+	fmt.Scan(&a, &n)
+
+	p := 1.0
+	for i := 1; i <= n; i++ {
+		p *= a
+		fmt.Printf("a^%d = %.6f\n", i, p)
+	}
+}
+
+func ch5ex55() {
+	fmt.Printf("Ex55. Сумма -1^2 + 2^2 - 3^2 + ... + 10^2\n")
+	sum, sign := 0, -1
+	for i := 1; i <= 10; i++ {
+		sum += sign * i * i
+		sign = -sign
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex56() {
+	fmt.Printf("Ex56. Площадь арки синусоиды\n")
+
+	a, b := 0.0, math.Pi
+	n := 1000
+	h := (b - a) / float64(n)
+	area := 0.0
+
+	for i := 0; i < n; i++ {
+		x := a + float64(i)*h
+		area += math.Sin(x) * h
+	}
+
+	fmt.Printf("Площадь арки синусоиды: %.6f\n", area)
+}
+
+func ch5ex57() {
+	fmt.Printf("Ex57. Площадь фигуры y=0.3(x-1)^2+3\n")
+
+	x1 := 1.0 - math.Sqrt(1.0/0.3)
+	x2 := 1.0 + math.Sqrt(1.0/0.3)
+
+	n := 1000
+	h := (x2 - x1) / float64(n)
+	area := 0.0
+
+	for i := 0; i < n; i++ {
+		x := x1 + float64(i)*h
+		y := 0.3*math.Pow(x-1, 2) + 3
+		area += y * h
+	}
+
+	fmt.Printf("Площадь фигуры: %.6f\n", area)
+}
+
+func ch5ex61() {
+	fmt.Printf("Ex61. Произведение через сложение\n")
+	var x, y int
+	fmt.Scan(&x, &y)
+
+	product1 := 0
+	for i := 0; i < y; i++ {
+		product1 += x
+	}
+
+	product2 := 0
+	for i := 0; i < x; i++ {
+		product2 += y
+	}
+
+	fmt.Printf("Способ 1: %d * %d = %d\n", x, y, product1)
+	fmt.Printf("Способ 2: %d * %d = %d\n", x, y, product2)
+}
+
+func ch5ex62() {
+	fmt.Printf("Ex62. Степень без возведения в степень\n")
+	var a float64
+	var n int
+	fmt.Scan(&a, &n)
+
+	power := 1.0
+	for i := 0; i < n; i++ {
+		power *= a
+	}
+
+	fmt.Printf("%.2f^%d = %.6f\n", a, n, power)
+}
+
+func ch5ex63() {
+	fmt.Printf("Ex63. Сложное выражение\n")
+	result := 20.0*20.0 - 19.0*19.0
+	result = result * result / 2.0
+
+	for i := 18; i >= 1; i-- {
+		result = result*result - float64(i*i)
+	}
+
+	fmt.Printf("Результат: %.6f\n", result)
+}
+
+func ch5ex64() {
+	fmt.Printf("Ex64. Число наоборот (7-значное)\n")
+	var num int
+	fmt.Scan(&num)
+
+	reversed := 0
+	temp := num
+	for temp > 0 {
+		digit := temp % 10
+		reversed = reversed*10 + digit
+		temp /= 10
+	}
+
+	fmt.Printf("Исходное: %d, Наоборот: %d\n", num, reversed)
+}
+
+func ch5ex65() {
+	fmt.Printf("Ex65. Квадрат через сумму нечетных\n")
+	var n int
+	fmt.Scan(&n)
+
+	sum := 0
+	for i := 1; i <= 2*n-1; i += 2 {
+		sum += i
+	}
+
+	fmt.Printf("%d^2 = %d\n", n, sum)
+}
+
+func ch5ex66() {
+	fmt.Printf("Ex66. Сумма квадратов 1^2 + 2^2 + ... + 12^2\n")
+	totalSum := 0
+	for n := 1; n <= 12; n++ {
+		sum := 0
+		for i := 1; i <= 2*n-1; i += 2 {
+			sum += i
+		}
+		totalSum += sum
+	}
+
+	fmt.Printf("Сумма квадратов: %d\n", totalSum)
+}
+
+func ch5ex67() {
+	fmt.Printf("Ex67. Куб через сумму последовательных нечетных\n")
+	var n int
+	fmt.Scan(&n)
+
+	first := n*n - n + 1
+	sum := 0
+	for i := 0; i < n; i++ {
+		sum += first + 2*i
+	}
+
+	fmt.Printf("%d^3 = %d\n", n, sum)
+}
+
+func ch5ex68() {
+	fmt.Printf("Ex68. Сумма факториалов 1! + 2! + ... + n!\n")
+	var n int
+	fmt.Scan(&n)
+
+	totalSum := 0
+	factorial := 1
+	for i := 1; i <= n; i++ {
+		factorial *= i
+		totalSum += factorial
+	}
+
+	fmt.Printf("Сумма факториалов: %d\n", totalSum)
+}
+
+func ch5ex69() {
+	fmt.Printf("Ex69. Сумма 1 + 1/1! + 1/2! + ... + 1/n!\n")
+	var n int
+	fmt.Scan(&n)
+
+	sum := 1.0
+	factorial := 1.0
+	for i := 1; i <= n; i++ {
+		factorial *= float64(i)
+		sum += 1.0 / factorial
+	}
+
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex70() {
+	fmt.Printf("Ex70. Сумма 1 + x^1/1! + x^2/2! + ... + x^n/n!\n")
+	var n int
+	var x float64
+	fmt.Scan(&n, &x)
+
+	sum := 1.0
+	term := 1.0
+	factorial := 1.0
+	for i := 1; i <= n; i++ {
+		term *= x
+		factorial *= float64(i)
+		sum += term / factorial
+	}
+
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex71() {
+	fmt.Printf("Ex71. Сумма вложенных корней\n")
+	result := math.Sqrt(50.0)
+	for i := 49; i >= 1; i-- {
+		result = math.Sqrt(float64(i) + result)
+	}
+
+	fmt.Printf("Результат: %.6f\n", result)
+}
+
+func ch5ex72() {
+	fmt.Printf("Ex72. Разные суммы\n")
+	var n int
+	fmt.Scan(&n)
+
+	sumA := 0.0
+	sinSum := 0.0
+	for i := 1; i <= n; i++ {
+		sinSum += math.Sin(float64(i))
+		sumA += 1.0 / sinSum
+	}
+
+	resultB := math.Sqrt(2.0)
+	for i := 2; i <= n; i++ {
+		resultB = math.Sqrt(2.0 + resultB)
+	}
+
+	sumC := 0.0
+	cosSum := 0.0
+	for i := 1; i <= n; i++ {
+		cosSum += math.Cos(float64(i))
+		sumC += cosSum
+	}
+
+	resultD := math.Sqrt(3.0 * float64(n))
+	for i := n - 1; i >= 1; i-- {
+		resultD = math.Sqrt(3.0*float64(i) + resultD)
+	}
+
+	fmt.Printf("а) Сумма обратных синусов: %.6f\n", sumA)
+	fmt.Printf("б) Вложенные корни из 2: %.6f\n", resultB)
+	fmt.Printf("в) Сумма сумм косинусов: %.6f\n", sumC)
+	fmt.Printf("г) Вложенные корни с 3: %.6f\n", resultD)
+}
