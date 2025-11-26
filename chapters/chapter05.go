@@ -10,7 +10,10 @@ func Run05() {
 		ch5ex01, ch5ex02, ch5ex03, ch5ex04, ch5ex05, ch5ex06, ch5ex07, ch5ex08,
 		ch5ex09, ch5ex10, ch5ex11, ch5ex12, ch5ex13, ch5ex14, ch5ex15, ch5ex16,
 		ch5ex17, ch5ex18, ch5ex19, ch5ex20, ch5ex21, ch5ex22, ch5ex23, ch5ex24,
-		ch5ex25, ch5ex26, ch5ex27, ch5ex28, ch5ex29, ch5ex30,
+		ch5ex25, ch5ex26, ch5ex27, ch5ex28, ch5ex29, ch5ex30, ch5ex31, ch5ex32,
+		ch5ex33, ch5ex34, ch5ex35, ch5ex36, ch5ex37, ch5ex38, ch5ex39, ch5ex40,
+		ch5ex41, ch5ex42, ch5ex43, ch5ex44, ch5ex45, ch5ex46, ch5ex47, ch5ex48,
+		ch5ex49, ch5ex50,
 	}
 
 	for {
@@ -462,4 +465,291 @@ func ch5ex30() {
 		sum += i * i
 	}
 	fmt.Printf("Сумма квадратов от %d до %d: %d\n", a2, b2, sum)
+}
+
+func ch5ex31() {
+	fmt.Printf("Ex31. Сумма n^2 + (n+1)^2 + ... + (2n)^2\n")
+	var n int
+	fmt.Scan(&n)
+	sum := 0
+	for i := n; i <= 2*n; i++ {
+		sum += i * i
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex32() {
+	fmt.Printf("Ex32. Сумма 1 + 1/2 + 1/3 + ... + 1/n\n")
+	var n int
+	fmt.Scan(&n)
+	sum := 0.0
+	for i := 1; i <= n; i++ {
+		sum += 1.0 / float64(i)
+	}
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex33() {
+	fmt.Printf("Ex33. Сумма 2/3 + 3/4 + 4/5 + ... + 10/11\n")
+	sum := 0.0
+	for i := 2; i <= 10; i++ {
+		sum += float64(i) / float64(i+1)
+	}
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex34() {
+	fmt.Printf("Ex34. Сумма 1^2 + 2^2 + 3^2 + ... + n^2\n")
+	var n int
+	fmt.Scan(&n)
+	sum := 0
+	for i := 1; i <= n; i++ {
+		sum += i * i
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex35() {
+	fmt.Printf("Ex35. Сумма 1*2 + 2*3 + ... + (n-1)*n\n")
+	var n int
+	fmt.Scan(&n)
+	sum := 0
+	for i := 1; i < n; i++ {
+		sum += i * (i + 1)
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex36() {
+	fmt.Printf("Ex36. Сумма 1 + 1/3 + 1/3^2 + ... + 1/3^8\n")
+	sum, term := 1.0, 1.0
+	for i := 1; i <= 8; i++ {
+		term /= 3.0
+		sum += term
+	}
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex37() {
+	fmt.Printf("Ex37. Сумма 1 - 1/2 + 1/3 + ... + (-1)^n+1/n\n")
+	var n int
+	fmt.Scan(&n)
+	sum, sign := 0.0, 1.0
+	for i := 1; i <= n; i++ {
+		sum += sign / float64(i)
+		sign = -sign
+	}
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex38() {
+	fmt.Printf("Ex38. Сумма x + x^3/3 + x^5/5 + ... + x^11/11 при x=2\n")
+	x := 2.0
+	sum, power := 0.0, x
+	for i := 1; i <= 11; i += 2 {
+		sum += power / float64(i)
+		power *= x * x
+	}
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex39() {
+	fmt.Printf("Ex39. Сумма 1 - 2/3 x + 3/4 x^2 - ... + 11/12 x^10 при x=2\n")
+	x := 2.0
+	sum, power, sign := 0.0, 1.0, 1.0
+	for i := 1; i <= 11; i++ {
+		sum += sign * float64(i) / float64(i+1) * power
+		power *= x
+		sign = -sign
+	}
+	fmt.Printf("Сумма: %.6f\n", sum)
+}
+
+func ch5ex40() {
+	fmt.Printf("Ex40. Сумма цифр 9-значного числа\n")
+	var num int
+	fmt.Scan(&num)
+	sum := 0
+	for num > 0 {
+		sum += num % 10
+		num /= 10
+	}
+	fmt.Printf("Сумма цифр: %d\n", sum)
+}
+
+func ch5ex41() {
+	fmt.Printf("Ex41. Произведение и сумма последних n цифр числа\n")
+	var num, n int
+	fmt.Scan(&num, &n)
+	sum, product := 0, 1
+
+	for i := 0; i < n; i++ {
+		digit := num % 10
+		sum += digit
+		product *= digit
+		num /= 10
+	}
+	fmt.Printf("Сумма: %d, Произведение: %d\n", sum, product)
+}
+
+func ch5ex42() {
+	fmt.Printf("Ex42. Странный муж\n")
+	n := 100
+	distance := 0.0
+	totalPath := 0.0
+	sign := 1.0
+
+	for i := 1; i <= n; i++ {
+		distance += sign * (1.0 / float64(i))
+		totalPath += 1.0 / float64(i)
+		sign = -sign
+	}
+
+	fmt.Printf("а) Расстояние от дома: %.4f км\n", distance)
+	fmt.Printf("б) Общий путь: %.4f км\n", totalPath)
+}
+
+func ch5ex43() {
+	fmt.Printf("Ex43. Последовательность a0=1, ak=k*a(k-1)+1/k\n")
+	var n int
+	fmt.Scan(&n)
+	a := 1.0
+	fmt.Printf("a0 = %.6f\n", a)
+	for k := 1; k <= n; k++ {
+		a = float64(k)*a + 1.0/float64(k)
+		fmt.Printf("a%d = %.4f\n", k, a)
+	}
+}
+
+func ch5ex44() {
+	fmt.Printf("Ex44. Последовательность Фибоначчи\n")
+	var n int
+	fmt.Scan(&n)
+
+	a, b := 1, 1
+	for i := 3; i <= n; i++ {
+		a, b = b, a+b
+	}
+	fmt.Printf("а) %d-й член: %d\n", n, b)
+
+	fmt.Printf("б) Первые %d членов: ", n)
+	a, b = 1, 1
+	if n >= 1 {
+		fmt.Printf("1 ")
+	}
+	if n >= 2 {
+		fmt.Printf("1 ")
+	}
+	for i := 3; i <= n; i++ {
+		a, b = b, a+b
+		fmt.Printf("%d ", b)
+	}
+	fmt.Println()
+}
+
+func ch5ex45() {
+	fmt.Printf("Ex45. 3-й, 4-й, ..., 10-й член Фибоначчи\n")
+	a, b := 1, 1
+	for i := 3; i <= 10; i++ {
+		a, b = b, a+b
+		fmt.Printf("%d-й член: %d\n", i, b)
+	}
+}
+
+func ch5ex46() {
+	fmt.Printf("Ex46. Последовательность дробей\n")
+
+	var k int
+	fmt.Scan(&k)
+	num1, num2 := 1, 2
+	den1, den2 := 1, 1
+	for i := 3; i <= k; i++ {
+		num1, num2 = num2, num1+num2
+		den1, den2 = den2, den1+den2
+	}
+	fmt.Printf("а) %d-й член: %d/%d = %.6f\n", k, num2, den2, float64(num2)/float64(den2))
+
+	var n int
+	fmt.Scan(&n)
+	fmt.Printf("б) Первые %d членов:\n", n)
+	num1, num2 = 1, 2
+	den1, den2 = 1, 1
+	if n >= 1 {
+		fmt.Printf("1: %d/%d = %.6f\n", num1, den1, float64(num1)/float64(den1))
+	}
+	if n >= 2 {
+		fmt.Printf("2: %d/%d = %.6f\n", num2, den2, float64(num2)/float64(den2))
+	}
+	for i := 3; i <= n; i++ {
+		num1, num2 = num2, num1+num2
+		den1, den2 = den2, den1+den2
+		fmt.Printf("%d: %d/%d = %.6f\n", i, num2, den2, float64(num2)/float64(den2))
+	}
+}
+
+func ch5ex47() {
+	fmt.Printf("Ex47. Последовательность v1, v2, ...\n")
+	var n int
+	fmt.Scan(&n)
+	v := make([]float64, n+1)
+	v[1], v[2], v[3] = 0, 0, 1.5
+
+	for i := 4; i <= n; i++ {
+		v[i] = (float64(i-1)/(float64(i*i)+1))*v[i-1] - v[i-2] + v[i-3]
+	}
+
+	fmt.Printf("v%d = %.6f\n", n, v[n])
+}
+
+func ch5ex48() {
+	fmt.Printf("Ex48. Деление амебы\n")
+	cells := 1
+	fmt.Printf("Начально: %d клеток\n", cells)
+	for hours := 3; hours <= 24; hours += 3 {
+		cells *= 2
+		fmt.Printf("Через %d часов: %d клеток\n", hours, cells)
+	}
+}
+
+func ch5ex49() {
+	fmt.Printf("Ex49. Банковский вклад\n")
+	deposit := 1000.0
+
+	fmt.Printf("а) Прирост суммы вклада:\n")
+	current := deposit
+	for month := 1; month <= 10; month++ {
+		increase := current * 0.02
+		current += increase
+		fmt.Printf("За %d-й месяц: %.2f руб.\n", month, increase)
+	}
+
+	fmt.Printf("б) Сумма вклада:\n")
+	current = deposit
+	for month := 1; month <= 12; month++ {
+		current *= 1.02
+		if month >= 3 {
+			fmt.Printf("Через %d месяцев: %.2f руб.\n", month, current)
+		}
+	}
+}
+
+func ch5ex50() {
+	fmt.Printf("Ex50. Тренировки лыжника\n")
+	distance := 10.0
+
+	fmt.Printf("а) Пробег по дням:\n")
+	fmt.Printf("1-й день: %.2f км\n", distance)
+	for day := 2; day <= 10; day++ {
+		distance *= 1.1
+		fmt.Printf("%d-й день: %.2f км\n", day, distance)
+	}
+
+	fmt.Printf("б) Суммарный путь за 7 дней:\n")
+	distance = 10.0
+	total := distance
+	for day := 2; day <= 7; day++ {
+		distance *= 1.1
+		total += distance
+	}
+	fmt.Printf("За 7 дней: %.2f км\n", total)
 }
