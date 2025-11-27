@@ -13,7 +13,9 @@ func Run05() {
 		ch5ex25, ch5ex26, ch5ex27, ch5ex28, ch5ex29, ch5ex30, ch5ex31, ch5ex32,
 		ch5ex33, ch5ex34, ch5ex35, ch5ex36, ch5ex37, ch5ex38, ch5ex39, ch5ex40,
 		ch5ex41, ch5ex42, ch5ex43, ch5ex44, ch5ex45, ch5ex46, ch5ex47, ch5ex48,
-		ch5ex49, ch5ex50,
+		ch5ex49, ch5ex50, ch5ex51, ch5ex52, ch5ex53, ch5ex54, ch5ex55, ch5ex56,
+		ch5ex57, ch5ex58, ch5ex59, ch5ex60, ch5ex61, ch5ex62, ch5ex63, ch5ex64,
+		ch5ex65, ch5ex66, ch5ex67, ch5ex68, ch5ex69, ch5ex70, ch5ex71, ch5ex72,
 	}
 
 	for {
@@ -872,6 +874,52 @@ func ch5ex57() {
 	}
 
 	fmt.Printf("Площадь фигуры: %.6f\n", area)
+}
+
+func ch5ex58() {
+	fmt.Printf("Ex58. Площадь фигуры y=0.4(x+2)^2+1\n")
+
+	x1 := -2.0 - math.Sqrt(2.5)
+	x2 := -2.0 + math.Sqrt(2.5)
+
+	n := 1000
+	h := (x2 - x1) / float64(n)
+	area := 0.0
+
+	for i := 0; i < n; i++ {
+		x := x1 + float64(i)*h
+		y := 0.4*math.Pow(x+2, 2) + 1
+		area += y * h
+	}
+
+	fmt.Printf("Площадь фигуры: %.6f\n", area)
+}
+
+func ch5ex59() {
+	fmt.Printf("Ex59. Факториал числа\n")
+	var n int
+	fmt.Scan(&n)
+
+	factorial := 1
+	for i := 1; i <= n; i++ {
+		factorial *= i
+	}
+
+	fmt.Printf("%d! = %d\n", n, factorial)
+}
+
+func ch5ex60() {
+	fmt.Printf("Ex60. Произведение без умножения\n")
+	var n int
+	var a float64
+	fmt.Scan(&n, &a)
+
+	product := 0.0
+	for i := 0; i < n; i++ {
+		product += a
+	}
+
+	fmt.Printf("%d * %.2f = %.2f\n", n, a, product)
 }
 
 func ch5ex61() {
