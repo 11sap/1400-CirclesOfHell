@@ -16,6 +16,8 @@ func Run05() {
 		ch5ex49, ch5ex50, ch5ex51, ch5ex52, ch5ex53, ch5ex54, ch5ex55, ch5ex56,
 		ch5ex57, ch5ex58, ch5ex59, ch5ex60, ch5ex61, ch5ex62, ch5ex63, ch5ex64,
 		ch5ex65, ch5ex66, ch5ex67, ch5ex68, ch5ex69, ch5ex70, ch5ex71, ch5ex72,
+		ch5ex73, ch5ex74, ch5ex75, ch5ex76, ch5ex77, ch5ex78, ch5ex80, ch5ex81,
+		ch5ex82, ch5ex83, ch5ex84, ch5ex85, ch5ex86,
 	}
 
 	for {
@@ -184,7 +186,7 @@ func ch5ex12() {
 	p := 1.29
 	z := 1.25e-4
 	fmt.Printf("Ex12. Плотность воздуха от высоты\n")
-	fmt.Printf("Высота (м)\tПлотность (кг/м³)\n")
+	fmt.Printf("Высота (м)\tПлотность (кг/м^3)\n")
 	for h := 0; h <= 1000; h += 100 {
 		p := p * math.Exp(-float64(h)/z)
 		fmt.Printf("%d\t\t%.4f\n", h, p)
@@ -1115,4 +1117,204 @@ func ch5ex72() {
 	fmt.Printf("б) Вложенные корни из 2: %.6f\n", resultB)
 	fmt.Printf("в) Сумма сумм косинусов: %.6f\n", sumC)
 	fmt.Printf("г) Вложенные корни с 3: %.6f\n", resultD)
+}
+
+func ch5ex73() {
+	fmt.Printf("Ex73. Угол палки при скольжении\n")
+	length := 4.5
+	distance := 3.0
+
+	fmt.Printf("Расстояние | Угол\n")
+	for distance >= 0 {
+		cosAngle := distance / length
+		angleRad := math.Acos(cosAngle)
+		angleDeg := angleRad * 180 / math.Pi
+		fmt.Printf("%.1f м | %.2f°\n", distance, angleDeg)
+		distance -= 0.2
+		if distance < 0 {
+			distance = 0
+			cosAngle = distance / length
+			angleRad = math.Acos(cosAngle)
+			angleDeg = angleRad * 180 / math.Pi
+			fmt.Printf("%.1f м | %.2f°\n", distance, angleDeg)
+			break
+		}
+	}
+}
+
+func ch5ex74() {
+	fmt.Printf("Ex74. Нечетные числа 10-100\n")
+
+	fmt.Printf("1) С условным оператором:\n")
+	for i := 10; i <= 100; i++ {
+		if i%2 == 1 {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+
+	fmt.Printf("2) Без условного оператора:\n")
+	for i := 11; i <= 99; i += 2 {
+		fmt.Printf("%d ", i)
+	}
+	fmt.Println()
+}
+
+func ch5ex75() {
+	fmt.Printf("Ex75. Числа 100-200, кратные 3\n")
+	for i := 100; i <= 200; i++ {
+		if i%3 == 0 {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex76() {
+	fmt.Printf("Ex76. Числа от a до b, кратные c\n")
+	var a, b, c int
+	fmt.Scan(&a, &b, &c)
+
+	for i := a; i <= b; i++ {
+		if i%c == 0 {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex77() {
+	fmt.Printf("Ex77. Нечетные двузначные с последней цифрой 3 или 7\n")
+	for i := 11; i <= 99; i += 2 {
+		lastDigit := i % 10
+		if lastDigit == 3 || lastDigit == 7 {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex78() {
+	fmt.Printf("Ex78. Трехзначные с остатками 47→43, 43→45\n")
+	for i := 100; i <= 999; i++ {
+		if i%47 == 43 && i%43 == 45 {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex79() {
+	fmt.Printf("Ex79. Четырехзначные с остатками 133→125, 134→111\n")
+	for i := 1000; i <= 9999; i++ {
+		if i%133 == 125 && i%134 == 111 {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex80() {
+	fmt.Printf("Ex80. Двузначные: делятся на n или содержат n\n")
+	var n int
+	fmt.Scan(&n)
+
+	for i := 10; i <= 99; i++ {
+		digit1 := i / 10
+		digit2 := i % 10
+		if i%n == 0 || digit1 == n || digit2 == n {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex81() {
+	fmt.Printf("Ex81. Особые трехзначные числа\n")
+
+	fmt.Printf("а) Квадрат оканчивается на само число:\n")
+	for i := 100; i <= 999; i++ {
+		square := i * i
+		if square%1000 == i {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+
+	fmt.Printf("б) Кратны 7 и сумма цифр кратна 7:\n")
+	for i := 100; i <= 999; i++ {
+		if i%7 == 0 {
+			sum := (i / 100) + (i/10)%10 + i%10
+			if sum%7 == 0 {
+				fmt.Printf("%d ", i)
+			}
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex82() {
+	fmt.Printf("Ex82. Особые двузначные числа\n")
+
+	fmt.Printf("а) Сумма квадратов цифр делится на 13:\n")
+	for i := 10; i <= 99; i++ {
+		d1, d2 := i/10, i%10
+		if (d1*d1+d2*d2)%13 == 0 {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+
+	fmt.Printf("б) Число = сумма цифр + квадрат суммы:\n")
+	for i := 10; i <= 99; i++ {
+		sum := i/10 + i%10
+		if i == sum+sum*sum {
+			fmt.Printf("%d ", i)
+		}
+	}
+	fmt.Println()
+}
+
+func ch5ex83() {
+	fmt.Printf("Ex83. Сумма нечетных чисел < 50\n")
+	sum := 0
+	for i := 1; i < 50; i += 2 {
+		sum += i
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex84() {
+	fmt.Printf("Ex84. Сумма четных трехзначных\n")
+	sum := 0
+	for i := 100; i <= 998; i += 2 {
+		sum += i
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex85() {
+	fmt.Printf("Ex85. Сумма чисел a-b, кратных 4\n")
+	var a, b int
+	fmt.Scan(&a, &b)
+
+	sum := 0
+	for i := a; i <= b; i++ {
+		if i > 0 && i%4 == 0 {
+			sum += i
+		}
+	}
+	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex86() {
+	fmt.Printf("Ex86. Сумма чисел 30-100, кратных 3, оканчивающихся на 2,4,8\n")
+	sum := 0
+	for i := 31; i < 100; i++ {
+		lastDigit := i % 10
+		if i%3 == 0 && (lastDigit == 2 || lastDigit == 4 || lastDigit == 8) {
+			sum += i
+		}
+	}
+	fmt.Printf("Сумма: %d\n", sum)
 }
