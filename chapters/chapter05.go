@@ -16,8 +16,9 @@ func Run05() {
 		ch5ex49, ch5ex50, ch5ex51, ch5ex52, ch5ex53, ch5ex54, ch5ex55, ch5ex56,
 		ch5ex57, ch5ex58, ch5ex59, ch5ex60, ch5ex61, ch5ex62, ch5ex63, ch5ex64,
 		ch5ex65, ch5ex66, ch5ex67, ch5ex68, ch5ex69, ch5ex70, ch5ex71, ch5ex72,
-		ch5ex73, ch5ex74, ch5ex75, ch5ex76, ch5ex77, ch5ex78, ch5ex80, ch5ex81,
-		ch5ex82, ch5ex83, ch5ex84, ch5ex85, ch5ex86,
+		ch5ex73, ch5ex74, ch5ex75, ch5ex76, ch5ex77, ch5ex78, ch5ex79, ch5ex80,
+		ch5ex81, ch5ex82, ch5ex83, ch5ex84, ch5ex85, ch5ex86, ch5ex87, ch5ex88,
+		ch5ex89, ch5ex90, ch5ex91, ch5ex92, ch5ex93, ch5ex94,
 	}
 
 	for {
@@ -1317,4 +1318,168 @@ func ch5ex86() {
 		}
 	}
 	fmt.Printf("Сумма: %d\n", sum)
+}
+
+func ch5ex87() {
+	fmt.Printf("Ex87. Числа 100-500 с суммой цифр 15\n")
+	count := 0
+	for i := 100; i <= 500; i++ {
+		num := i
+		sum := 0
+		for num > 0 {
+			sum += num % 10
+			num /= 10
+		}
+		if sum == 15 {
+			count++
+		}
+	}
+	fmt.Printf("Количество: %d\n", count)
+}
+
+func ch5ex88() {
+	fmt.Printf("Ex88. Трехзначные с суммой цифр s\n")
+	var s int
+	fmt.Scan(&s)
+
+	count := 0
+	for i := 100; i <= 999; i++ {
+		sum := (i / 100) + (i/10)%10 + i%10
+		if sum == s {
+			count++
+		}
+	}
+	fmt.Printf("Количество: %d\n", count)
+}
+
+func ch5ex89() {
+	fmt.Printf("Ex89. Трехзначные, кратные 7, сумма цифр кратна 7\n")
+	count := 0
+	for i := 100; i <= 999; i++ {
+		if i%7 == 0 {
+			sum := (i / 100) + (i/10)%10 + i%10
+			if sum%7 == 0 {
+				count++
+			}
+		}
+	}
+	fmt.Printf("Количество: %d\n", count)
+}
+
+func ch5ex90() {
+	fmt.Printf("Ex90. Сумма первых n чисел Фибоначчи четна?\n")
+	var n int
+	fmt.Scan(&n)
+
+	a, b := 1, 1
+	sum := 2 // 1+1
+	for i := 3; i <= n; i++ {
+		a, b = b, a+b
+		sum += b
+	}
+
+	if sum%2 == 0 {
+		fmt.Printf("Сумма первых %d чисел Фибоначчи четная: %d\n", n, sum)
+	} else {
+		fmt.Printf("Сумма первых %d чисел Фибоначчи нечетная: %d\n", n, sum)
+	}
+}
+
+func ch5ex91() {
+	fmt.Printf("Ex91. Делители числа\n")
+	var n int
+	fmt.Scan(&n)
+
+	fmt.Printf("а) Все делители: ")
+	count, countOdd, countEven := 0, 0, 0
+	sum, sumEven := 0, 0
+	for i := 1; i <= n; i++ {
+		if n%i == 0 {
+			fmt.Printf("%d ", i)
+			count++
+			sum += i
+			if i%2 == 0 {
+				countEven++
+				sumEven += i
+			} else {
+				countOdd++
+			}
+		}
+	}
+	fmt.Println()
+	fmt.Printf("б) Сумма делителей: %d\n", sum)
+	fmt.Printf("в) Сумма четных делителей: %d\n", sumEven)
+	fmt.Printf("г) Количество делителей: %d\n", count)
+	fmt.Printf("д) Количество нечетных делителей: %d\n", countOdd)
+	fmt.Printf("е) Всего делителей: %d, из них четных: %d\n", count, countEven)
+
+	var d int
+	fmt.Scan(&d)
+	countGreaterD := 0
+	for i := d + 1; i <= n; i++ {
+		if n%i == 0 {
+			countGreaterD++
+		}
+	}
+	fmt.Printf("ж) Делителей больше %d: %d\n", d, countGreaterD)
+}
+
+func ch5ex92() {
+	fmt.Printf("Ex92. Проверка на простое число\n")
+	var n int
+	fmt.Scan(&n)
+
+	if n < 2 {
+		fmt.Printf("Число %d не является простым\n", n)
+		return
+	}
+
+	isPrime := true
+	for i := 2; i*i <= n; i++ {
+		if n%i == 0 {
+			isPrime = false
+			break
+		}
+	}
+
+	if isPrime {
+		fmt.Printf("Число %d простое\n", n)
+	} else {
+		fmt.Printf("Число %d составное\n", n)
+	}
+}
+
+func ch5ex93() {
+	fmt.Printf("Ex93. Проверка на совершенное число\n")
+	var n int
+	fmt.Scan(&n)
+
+	sum := 0
+	for i := 1; i <= n/2; i++ {
+		if n%i == 0 {
+			sum += i
+		}
+	}
+
+	if sum == n && n > 0 {
+		fmt.Printf("Число %d совершенное\n", n)
+	} else {
+		fmt.Printf("Число %d не совершенное (сумма делителей: %d)\n", n, sum)
+	}
+}
+
+func ch5ex94() {
+	fmt.Printf("Ex94. Числа, квадрат которых <= n\n")
+	var n int
+	fmt.Scan(&n)
+
+	i := 1
+	for {
+		if i*i > n {
+			break
+		}
+		fmt.Printf("%d ", i)
+		i++
+	}
+	fmt.Println()
 }
