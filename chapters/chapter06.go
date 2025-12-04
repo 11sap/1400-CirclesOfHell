@@ -13,7 +13,11 @@ func Run06() {
 		ch6ex25, ch6ex26, ch6ex27, ch6ex28, ch6ex29, ch6ex30, ch6ex31, ch6ex32,
 		ch6ex33, ch6ex34, ch6ex35, ch6ex36, ch6ex37, ch6ex38, ch6ex39, ch6ex40,
 		ch6ex41, ch6ex42, ch6ex43, ch6ex44, ch6ex45, ch6ex46, ch6ex47, ch6ex48,
-		ch6ex49, ch6ex50, ch6ex51,
+		ch6ex49, ch6ex50, ch6ex51, ch6ex52, ch6ex53, ch6ex54, ch6ex55, ch6ex56,
+		ch6ex57, ch6ex58, ch6ex59, ch6ex60, ch6ex61, ch6ex62, ch6ex63, ch6ex64,
+		ch6ex65, ch6ex66, ch6ex67, ch6ex68, ch6ex69, ch6ex70, ch6ex71, ch6ex72,
+		ch6ex73, ch6ex74, ch6ex75, ch6ex76, ch6ex77, ch6ex78, ch6ex79, ch6ex80,
+		ch6ex81, ch6ex82, ch6ex83,
 	}
 
 	for {
@@ -1262,4 +1266,972 @@ func ch6ex51() {
 	resultE := sum > m && n%k == 0
 	fmt.Printf("д) Сумма цифр > %d и число делится на %d: ", m, k)
 	fmt.Println(resultE)
+}
+
+func ch6ex52() {
+	fmt.Printf("Ex52. Проверки наличия цифр\n")
+	var n int
+	fmt.Scan(&n)
+
+	hasThree := false
+	hasTwoOrFive := false
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit == 3 {
+			hasThree = true
+		}
+
+		if digit == 2 || digit == 5 {
+			hasTwoOrFive = true
+		}
+
+		temp /= 10
+	}
+
+	fmt.Printf("а) Есть цифра 3: %v\n", hasThree)
+	fmt.Printf("б) Есть цифры 2 или 5: %v\n", hasTwoOrFive)
+}
+
+func ch6ex53() {
+	fmt.Printf("Ex53. Проверки цифр 2\n")
+	var n, a, b, k int
+	fmt.Scan(&n, &a, &b, &k)
+
+	hasA := false
+	hasNotB := true
+	countA := 0
+	hasAB := false
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit == a {
+			hasA = true
+			countA++
+		}
+
+		if digit == b {
+			hasNotB = false
+		}
+
+		if digit == a || digit == b {
+			hasAB = true
+		}
+
+		temp /= 10
+	}
+
+	fmt.Printf("а) Есть цифра %d: %v\n", a, hasA)
+	fmt.Printf("б) Нет цифры %d: %v\n", b, hasNotB)
+	fmt.Printf("в) Цифра %d встречается не более %d раз: %v\n", a, k, countA <= k)
+	fmt.Printf("г) Есть цифры %d или %d: %v\n", a, b, hasAB)
+}
+
+func ch6ex54() {
+	fmt.Printf("Ex54. Что встречается чаще: 0 или 9\n")
+	var n int
+	fmt.Scan(&n)
+
+	countZero := 0
+	countNine := 0
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit == 0 {
+			countZero++
+		} else if digit == 9 {
+			countNine++
+		}
+
+		temp /= 10
+	}
+
+	if countZero > countNine {
+		fmt.Printf("Цифра 0 встречается чаще (%d > %d)\n", countZero, countNine)
+	} else if countNine > countZero {
+		fmt.Printf("Цифра 9 встречается чаще (%d > %d)\n", countNine, countZero)
+	} else {
+		fmt.Printf("Цифры 0 и 9 встречаются одинаково (%d раз)\n", countZero)
+	}
+}
+
+func ch6ex55() {
+	fmt.Printf("Ex55. Цифра a встречается реже чем b\n")
+	var n, a, b int
+	fmt.Scan(&n, &a, &b)
+
+	countA := 0
+	countB := 0
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit == a {
+			countA++
+		}
+
+		if digit == b {
+			countB++
+		}
+
+		temp /= 10
+	}
+
+	result := countA < countB
+	fmt.Printf("Цифра %d встречается реже чем %d: %v\n", a, b, result)
+}
+
+func ch6ex56() {
+	fmt.Printf("Ex56. Что левее: 2 или 5\n")
+	var n int
+	fmt.Scan(&n)
+
+	pos2 := 0
+	pos5 := 0
+	position := 1
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit == 2 && pos2 == 0 {
+			pos2 = position
+		}
+
+		if digit == 5 && pos5 == 0 {
+			pos5 = position
+		}
+
+		temp /= 10
+		position++
+	}
+
+	if pos2 > 0 && pos5 > 0 {
+		if pos2 > pos5 {
+			fmt.Printf("Цифра 2 левее цифры 5\n")
+		} else {
+			fmt.Printf("Цифра 5 левее цифры 2\n")
+		}
+	} else {
+		fmt.Printf("Одна из цифр отсутствует\n")
+	}
+}
+
+func ch6ex57() {
+	fmt.Printf("Ex57. Что правее: цифра a или b\n")
+	var n, a, b int
+	fmt.Scan(&n, &a, &b)
+
+	posA := 0
+	posB := 0
+	position := 1
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit == a {
+			posA = position
+		}
+
+		if digit == b {
+			posB = position
+		}
+
+		temp /= 10
+		position++
+	}
+
+	if posA > 0 && posB > 0 {
+		if posA < posB {
+			fmt.Printf("Цифра %d правее цифры %d\n", a, b)
+		} else {
+			fmt.Printf("Цифра %d правее цифры %d\n", b, a)
+		}
+	} else {
+		fmt.Printf("Одна из цифр отсутствует\n")
+	}
+}
+
+func ch6ex58() {
+	fmt.Printf("Ex58. Сколько раз встречается максимальная цифра\n")
+	var n int
+	fmt.Scan(&n)
+
+	fmt.Printf("1) С двумя циклами:\n")
+
+	maxDigit := -1
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+		if digit > maxDigit {
+			maxDigit = digit
+		}
+		temp /= 10
+	}
+
+	count := 0
+	temp = n
+	for temp > 0 {
+		if temp%10 == maxDigit {
+			count++
+		}
+		temp /= 10
+	}
+	fmt.Printf("Максимальная цифра %d встречается %d раз\n", maxDigit, count)
+
+	fmt.Printf("2) С одним циклом:\n")
+	maxDigit = -1
+	count = 0
+	temp = n
+
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit > maxDigit {
+			maxDigit = digit
+			count = 1
+		} else if digit == maxDigit {
+			count++
+		}
+
+		temp /= 10
+	}
+	fmt.Printf("Максимальная цифра %d встречается %d раз\n", maxDigit, count)
+}
+
+func ch6ex59() {
+	fmt.Printf("Ex59. Сколько раз встречается минимальная цифра\n")
+	var n int
+	fmt.Scan(&n)
+
+	fmt.Printf("1) С двумя циклами:\n")
+
+	minDigit := 10
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+		if digit < minDigit {
+			minDigit = digit
+		}
+		temp /= 10
+	}
+
+	count := 0
+	temp = n
+	for temp > 0 {
+		if temp%10 == minDigit {
+			count++
+		}
+		temp /= 10
+	}
+	fmt.Printf("Минимальная цифра %d встречается %d раз\n", minDigit, count)
+
+	fmt.Printf("2) С одним циклом:\n")
+	minDigit = 10
+	count = 0
+	temp = n
+
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit < minDigit {
+			minDigit = digit
+			count = 1
+		} else if digit == minDigit {
+			count++
+		}
+
+		temp /= 10
+	}
+	fmt.Printf("Минимальная цифра %d встречается %d раз\n", minDigit, count)
+}
+
+func ch6ex60() {
+	fmt.Printf("Ex60. Две max и две min цифры (все цифры различны)\n")
+	var n int
+	fmt.Scan(&n)
+
+	max1, max2 := -1, -1
+	min1, min2 := 10, 10
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+
+		if digit > max1 {
+			max2 = max1
+			max1 = digit
+		} else if digit > max2 {
+			max2 = digit
+		}
+
+		if digit < min1 {
+			min2 = min1
+			min1 = digit
+		} else if digit < min2 {
+			min2 = digit
+		}
+
+		temp /= 10
+	}
+
+	fmt.Printf("а) Две максимальные цифры: %d и %d\n", max1, max2)
+	fmt.Printf("б) Две минимальные цифры: %d и %d\n", min1, min2)
+}
+
+func ch6ex61() {
+	fmt.Printf("Ex61. Порядковые номера двух max и min цифр (все цифры различны)\n")
+	var n int
+	fmt.Scan(&n)
+
+	max1, max2 := -1, -1
+	min1, min2 := 10, 10
+	max1PosEnd, max2PosEnd := 0, 0
+	min1PosEnd, min2PosEnd := 0, 0
+	max1PosStart, max2PosStart := 0, 0
+	min1PosStart, min2PosStart := 0, 0
+
+	temp := n
+	position := 1
+	totalDigits := 0
+
+	temp2 := n
+	for temp2 > 0 {
+		totalDigits++
+		temp2 /= 10
+	}
+
+	for temp > 0 {
+		digit := temp % 10
+		posFromStart := totalDigits - position + 1
+
+		if digit > max1 {
+			max2 = max1
+			max2PosEnd = max1PosEnd
+			max2PosStart = max1PosStart
+
+			max1 = digit
+			max1PosEnd = position
+			max1PosStart = posFromStart
+		} else if digit > max2 {
+			max2 = digit
+			max2PosEnd = position
+			max2PosStart = posFromStart
+		}
+
+		if digit < min1 {
+			min2 = min1
+			min2PosEnd = min1PosEnd
+			min2PosStart = min1PosStart
+
+			min1 = digit
+			min1PosEnd = position
+			min1PosStart = posFromStart
+		} else if digit < min2 {
+			min2 = digit
+			min2PosEnd = position
+			min2PosStart = posFromStart
+		}
+
+		temp /= 10
+		position++
+	}
+
+	fmt.Printf("а) Две максимальные цифры %d и %d:\n", max1, max2)
+	fmt.Printf("   От конца: позиции %d и %d\n", max1PosEnd, max2PosEnd)
+	fmt.Printf("   От начала: позиции %d и %d\n", max1PosStart, max2PosStart)
+
+	fmt.Printf("б) Две минимальные цифры %d и %d:\n", min1, min2)
+	fmt.Printf("   От конца: позиции %d и %d\n", min1PosEnd, min2PosEnd)
+	fmt.Printf("   От начала: позиции %d и %d\n", min1PosStart, min2PosStart)
+}
+
+func ch6ex62() {
+	fmt.Printf("Ex62. Преобразования числа\n")
+	var n int
+	fmt.Scan(&n)
+
+	reversed := 0
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+		reversed = reversed*10 + digit
+		temp /= 10
+	}
+	fmt.Printf("а) Число наоборот: %d\n", reversed)
+
+	digits := 0
+	temp = n
+	for temp > 0 {
+		digits++
+		temp /= 10
+	}
+
+	multiplier := 1
+	for i := 0; i < digits; i++ {
+		multiplier *= 10
+	}
+	appended := n*multiplier + n
+	fmt.Printf("б) С приписанным таким же: %d\n", appended)
+
+	var a int
+	fmt.Scan(&a)
+	result := 0
+	multiplier = 1
+	temp = n
+	for temp > 0 {
+		digit := temp % 10
+		if digit != a {
+			result += digit * multiplier
+			multiplier *= 10
+		}
+		temp /= 10
+	}
+	fmt.Printf("в) Без цифр %d: %d\n", a, result)
+
+	lastDigit := n % 10
+	firstDigit := 0
+	temp = n
+	for temp > 0 {
+		firstDigit = temp % 10
+		temp /= 10
+	}
+
+	middle := n / 10
+	middleDigits := 0
+	temp = middle
+	for temp >= 10 {
+		middleDigits = middleDigits*10 + temp%10
+		temp /= 10
+	}
+
+	reversedMiddle := 0
+	temp = middleDigits
+	for temp > 0 {
+		reversedMiddle = reversedMiddle*10 + temp%10
+		temp /= 10
+	}
+	swapped := lastDigit
+	temp = reversedMiddle
+	for temp > 0 {
+		swapped = swapped*10 + temp%10
+		temp /= 10
+	}
+	swapped = swapped*10 + firstDigit
+	fmt.Printf("г) С переставленными первой и последней: %d\n", swapped)
+}
+
+func ch6ex63() {
+	fmt.Printf("Ex63. Проверка на палиндром\n")
+	var n int
+	fmt.Scan(&n)
+
+	original := n
+	reversed := 0
+	for n > 0 {
+		digit := n % 10
+		reversed = reversed*10 + digit
+		n /= 10
+	}
+
+	if original == reversed {
+		fmt.Printf("Число %d является палиндромом\n", original)
+	} else {
+		fmt.Printf("Число %d не является палиндромом\n", original)
+	}
+}
+
+func ch6ex64() {
+	fmt.Printf("Ex64. Минимальное количество купюр 1,2,4,8,16...\n")
+	var n int
+	fmt.Scan(&n)
+
+	count := 0
+	for n > 0 {
+		if n%2 == 1 {
+			count++
+		}
+		n /= 2
+	}
+
+	fmt.Printf("Минимальное количество купюр: %d\n", count)
+}
+
+func ch6ex65() {
+	fmt.Printf("Ex65. НОД двух чисел (алгоритм Евклида)\n")
+	var a, b int
+	fmt.Scan(&a, &b)
+
+	for b != 0 {
+		a, b = b, a%b
+	}
+
+	fmt.Printf("НОД: %d\n", a)
+}
+
+func ch6ex66() {
+	fmt.Printf("Ex66. НОД трех чисел\n")
+	var a, b, c int
+	fmt.Scan(&a, &b, &c)
+
+	for b != 0 {
+		a, b = b, a%b
+	}
+
+	temp := a
+	for c != 0 {
+		temp, c = c, temp%c
+	}
+
+	fmt.Printf("НОД трех чисел: %d\n", temp)
+}
+
+func ch6ex67() {
+	fmt.Printf("Ex67. НОК двух чисел\n")
+	var a, b int
+	fmt.Scan(&a, &b)
+
+	originalA, originalB := a, b
+	for b != 0 {
+		a, b = b, a%b
+	}
+	gcd := a
+
+	lcm := originalA * originalB / gcd
+	fmt.Printf("НОК: %d\n", lcm)
+}
+
+func ch6ex68() {
+	fmt.Printf("Ex68. Сокращение дроби\n")
+	var a, b int
+	fmt.Scan(&a, &b)
+
+	originalA, originalB := a, b
+	for b != 0 {
+		a, b = b, a%b
+	}
+	gcd := a
+
+	p := originalA / gcd
+	q := originalB / gcd
+
+	fmt.Printf("Сокращенная дробь: %d/%d\n", p, q)
+}
+
+func ch6ex69() {
+	fmt.Printf("Ex69. Разрезание прямоугольника 425x131 на квадраты\n")
+	a, b := 425, 131
+	side := 131
+	count := 0
+
+	for a >= side && b >= side {
+		count++
+		if a >= b {
+			a -= side
+		} else {
+			b -= side
+		}
+	}
+
+	fmt.Printf("Количество квадратов со стороной %d: %d\n", side, count)
+}
+
+func ch6ex70() {
+	fmt.Printf("Ex70. Разрезание прямоугольника axb на квадраты\n")
+	var a, b int
+	fmt.Scan(&a, &b)
+
+	fmt.Printf("Квадраты максимального размера:\n")
+	for a > 0 && b > 0 {
+		if a > b {
+			count := a / b
+			fmt.Printf("Квадратов со стороной %d: %d\n", b, count)
+			a %= b
+		} else {
+			count := b / a
+			fmt.Printf("Квадратов со стороной %d: %d\n", a, count)
+			b %= a
+		}
+	}
+}
+
+func ch6ex71() {
+	fmt.Printf("Ex71. Проверка на число Фибоначчи\n")
+	var n int
+	fmt.Scan(&n)
+
+	a, b := 0, 1
+	for b < n {
+		a, b = b, a+b
+	}
+
+	if b == n || n == 0 {
+		fmt.Printf("Число %d является числом Фибоначчи\n", n)
+	} else {
+		fmt.Printf("Число %d не является числом Фибоначчи\n", n)
+	}
+}
+
+func ch6ex72() {
+	fmt.Printf("Ex72. Проверка на член арифметической прогрессии\n")
+	var n, f, s int
+	fmt.Scan(&n, &f, &s)
+
+	if s == 0 {
+		fmt.Printf("Шаг не может быть нулевым\n")
+		return
+	}
+
+	if (n-f)%s == 0 && (n-f)/s >= 0 {
+		fmt.Printf("Число %d является членом прогрессии\n", n)
+	} else {
+		fmt.Printf("Число %d не является членом прогрессии\n", n)
+	}
+}
+
+func ch6ex73() {
+	fmt.Printf("Ex73. Проверка на член геометрической прогрессии\n")
+	var n, g, z int
+	fmt.Scan(&n, &g, &z)
+
+	if g == 0 || z == 0 || z == 1 {
+		fmt.Printf("Неверные параметры прогрессии\n")
+		return
+	}
+
+	temp := n
+	for temp > g && temp%z == 0 {
+		temp /= z
+	}
+
+	if temp == g {
+		fmt.Printf("Число %d является членом прогрессии\n", n)
+	} else {
+		fmt.Printf("Число %d не является членом прогрессии\n", n)
+	}
+}
+
+func ch6ex74() {
+	fmt.Printf("Ex74. Проверка на степень числа\n")
+	var n int
+	fmt.Scan(&n)
+
+	isPowerOfThree := false
+	temp := n
+	for temp%3 == 0 && temp > 0 {
+		temp /= 3
+	}
+	if temp == 1 {
+		isPowerOfThree = true
+	}
+
+	isPowerOfFive := false
+	temp = n
+	for temp%5 == 0 && temp > 0 {
+		temp /= 5
+	}
+	if temp == 1 {
+		isPowerOfFive = true
+	}
+
+	fmt.Printf("а) Степень числа 3: %v\n", isPowerOfThree)
+	fmt.Printf("б) Степень числа 5: %v\n", isPowerOfFive)
+}
+
+func ch6ex75() {
+	fmt.Printf("Ex75. Метод половинного деления\n")
+
+	fmt.Printf("а) f(x) = x³ + 2x² - x - 1 на [0, 1]:\n")
+	a, b := 0.0, 1.0
+	epsilon := 0.001
+
+	for b-a > epsilon {
+		c := (a + b) / 2
+		fa := a*a*a + 2*a*a - a - 1
+		fc := c*c*c + 2*c*c - c - 1
+
+		if fa*fc < 0 {
+			b = c
+		} else {
+			a = c
+		}
+	}
+
+	root := (a + b) / 2
+	fmt.Printf("   Корень: %.4f\n", root)
+
+	fmt.Printf("б) f(x) = x³ - 0.2x² - 0.2x - 1.2 на [1, 1.5]:\n")
+	a, b = 1.0, 1.5
+
+	for b-a > epsilon {
+		c := (a + b) / 2
+		fa := a*a*a - 0.2*a*a - 0.2*a - 1.2
+		fc := c*c*c - 0.2*c*c - 0.2*c - 1.2
+
+		if fa*fc < 0 {
+			b = c
+		} else {
+			a = c
+		}
+	}
+
+	root = (a + b) / 2
+	fmt.Printf("   Корень: %.4f\n", root)
+}
+
+func ch6ex76() {
+	fmt.Printf("Ex76. Спиральная дорожка в парке\n")
+	var a, b int
+	fmt.Scan(&a, &b)
+
+	length := 0
+	for a > 0 && b > 0 {
+		if a > b {
+			length += b
+			a -= b
+		} else {
+			length += a
+			b -= a
+		}
+	}
+
+	fmt.Printf("Длина спиральной дорожки: %d\n", length)
+}
+
+func ch6ex77() {
+	fmt.Printf("Ex77. Проверка одинаковых цифр\n")
+	var n int
+	fmt.Scan(&n)
+
+	allSame := true
+	lastDigit := n % 10
+	temp := n
+	for temp > 0 {
+		if temp%10 != lastDigit {
+			allSame = false
+			break
+		}
+		temp /= 10
+	}
+
+	hasConsecutive := false
+	temp = n
+	prevDigit := -1
+	for temp > 0 {
+		digit := temp % 10
+		if digit == prevDigit {
+			hasConsecutive = true
+			break
+		}
+		prevDigit = digit
+		temp /= 10
+	}
+
+	fmt.Printf("а) Все цифры одинаковые: %v\n", allSame)
+	fmt.Printf("б) Есть две одинаковые цифры подряд: %v\n", hasConsecutive)
+}
+
+func ch6ex78() {
+	fmt.Printf("Ex78. Цифры возрастают справа налево\n")
+	var n int
+	fmt.Scan(&n)
+
+	increasing := true
+	prevDigit := 10
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+		if digit >= prevDigit {
+			increasing = false
+			break
+		}
+		prevDigit = digit
+		temp /= 10
+	}
+
+	fmt.Printf("Цифры возрастают справа налево: %v\n", increasing)
+}
+
+func ch6ex79() {
+	fmt.Printf("Ex79. Цифры не возрастают справа налево\n")
+	var n int
+	fmt.Scan(&n)
+
+	nonIncreasing := true
+	prevDigit := -1
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+		if digit <= prevDigit {
+			nonIncreasing = false
+			break
+		}
+		prevDigit = digit
+		temp /= 10
+	}
+
+	fmt.Printf("Цифры не возрастают справа налево: %v\n", nonIncreasing)
+}
+
+func ch6ex80() {
+	fmt.Printf("Ex80. Цифры возрастают слева направо\n")
+	var n int
+	fmt.Scan(&n)
+
+	reversed := 0
+	temp := n
+	for temp > 0 {
+		reversed = reversed*10 + temp%10
+		temp /= 10
+	}
+
+	increasing := true
+	prevDigit := -1
+
+	temp = reversed
+	for temp > 0 {
+		digit := temp % 10
+		if digit <= prevDigit {
+			increasing = false
+			break
+		}
+		prevDigit = digit
+		temp /= 10
+	}
+
+	fmt.Printf("Цифры возрастают слева направо: %v\n", increasing)
+}
+
+func ch6ex81() {
+	fmt.Printf("Ex81. Монотонно возрастающая последовательность слева направо\n")
+	var n int
+	fmt.Scan(&n)
+
+	monotonicIncreasing := true
+	prevDigit := -1
+
+	temp := n
+	for temp > 0 {
+		digit := temp % 10
+		if digit <= prevDigit {
+			monotonicIncreasing = false
+			break
+		}
+		prevDigit = digit
+		temp /= 10
+	}
+
+	if monotonicIncreasing {
+
+		reversed := 0
+		temp = n
+		for temp > 0 {
+			reversed = reversed*10 + temp%10
+			temp /= 10
+		}
+
+		prevDigit = -1
+		temp = reversed
+		for temp > 0 {
+			digit := temp % 10
+			if digit <= prevDigit {
+				monotonicIncreasing = false
+				break
+			}
+			prevDigit = digit
+			temp /= 10
+		}
+	}
+
+	fmt.Printf("Цифры образуют монотонно возрастающую последовательность: %v\n", monotonicIncreasing)
+}
+
+func ch6ex82() {
+	fmt.Printf("Ex82. Цифры не возрастают слева направо\n")
+	var n int
+	fmt.Scan(&n)
+
+	reversed := 0
+	temp := n
+	for temp > 0 {
+		reversed = reversed*10 + temp%10
+		temp /= 10
+	}
+
+	nonIncreasing := true
+	prevDigit := 10
+
+	temp = reversed
+	for temp > 0 {
+		digit := temp % 10
+		if digit >= prevDigit {
+			nonIncreasing = false
+			break
+		}
+		prevDigit = digit
+		temp /= 10
+	}
+
+	fmt.Printf("Цифры не возрастают слева направо: %v\n", nonIncreasing)
+}
+
+func ch6ex83() {
+	fmt.Printf("Ex83. Монотонная последовательность цифр\n")
+	var n int
+	fmt.Scan(&n)
+
+	reversed := 0
+	temp := n
+	for temp > 0 {
+		reversed = reversed*10 + temp%10
+		temp /= 10
+	}
+
+	monotonic := true
+	direction := 0
+	prevDigit := -1
+
+	temp = reversed
+	for temp > 0 {
+		digit := temp % 10
+
+		if prevDigit != -1 {
+			if direction == 0 {
+				if digit > prevDigit {
+					direction = 1
+				} else if digit < prevDigit {
+					direction = -1
+				} else {
+					monotonic = false
+					break
+				}
+			} else if direction == 1 && digit <= prevDigit {
+				monotonic = false
+				break
+			} else if direction == -1 && digit >= prevDigit {
+				monotonic = false
+				break
+			}
+		}
+
+		prevDigit = digit
+		temp /= 10
+	}
+
+	fmt.Printf("Цифры образуют монотонную последовательность: %v\n", monotonic)
+	if monotonic && direction == 1 {
+		fmt.Printf("  (возрастающая)\n")
+	} else if monotonic && direction == -1 {
+		fmt.Printf("  (убывающая)\n")
+	}
 }

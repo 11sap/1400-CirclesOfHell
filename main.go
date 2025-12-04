@@ -8,7 +8,7 @@ import (
 func main() {
 	chaptersList := []func(){
 		chapters.Run01, chapters.Run02, chapters.Run03, chapters.Run04, chapters.Run05,
-		chapters.Run06,
+		chapters.Run06, chapters.Run07,
 	}
 
 	for {
