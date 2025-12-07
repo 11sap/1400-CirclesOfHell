@@ -26,7 +26,10 @@ func Run07() {
 		ch7ex129, ch7ex130, ch7ex131, ch7ex132, ch7ex132, ch7ex133, ch7ex134, ch7ex134,
 		ch7ex135, ch7ex136, ch7ex137, ch7ex138, ch7ex139, ch7ex140, ch7ex141, ch7ex142,
 		ch7ex143, ch7ex144, ch7ex145, ch7ex146, ch7ex147, ch7ex148, ch7ex149, ch7ex150,
-		ch7ex151, ch7ex152, ch7ex153, ch7ex154, ch7ex155,
+		ch7ex151, ch7ex152, ch7ex153, ch7ex154, ch7ex155, ch7ex156, ch7ex157, ch7ex158,
+		ch7ex159, ch7ex160, ch7ex161, ch7ex162, ch7ex163, ch7ex164, ch7ex165, ch7ex166,
+		ch7ex167, ch7ex168, ch7ex169, ch7ex170, ch7ex171, ch7ex172, ch7ex173, ch7ex174,
+		ch7ex175, ch7ex176, ch7ex177, ch7ex178, ch7ex179, ch7ex180, ch7ex181,
 	}
 
 	for {
@@ -4056,4 +4059,1157 @@ func ch7ex155() {
 	}
 
 	fmt.Printf("Наибольшая длина монотонно возрастающего фрагмента: %d\n", maxLength)
+}
+
+func ch7ex156() {
+	fmt.Printf("Ex156. Наибольшая длина монотонного фрагмента (два способа)\n")
+
+	var n int
+	fmt.Print("Введите длину последовательности: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректная длина")
+		return
+	}
+
+	fmt.Println("Способ 1: С повторным вводом")
+
+	numbers := make([]int, n)
+	fmt.Printf("Введите %d чисел:\n", n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&numbers[i])
+	}
+
+	maxLength := 1
+	currentLength := 1
+
+	for i := 1; i < n; i++ {
+		if numbers[i] > numbers[i-1] {
+			currentLength++
+			if currentLength > maxLength {
+				maxLength = currentLength
+			}
+		} else {
+			currentLength = 1
+		}
+	}
+
+	currentLength = 1
+	for i := 1; i < n; i++ {
+		if numbers[i] < numbers[i-1] {
+			currentLength++
+			if currentLength > maxLength {
+				maxLength = currentLength
+			}
+		} else {
+			currentLength = 1
+		}
+	}
+
+	fmt.Printf("Наибольшая длина монотонного фрагмента (способ 1): %d\n", maxLength)
+
+	fmt.Println("\nСпособ 2: С однократным вводом")
+
+	var prev2, curr2 int
+	fmt.Print("Введите последовательность еще раз: ")
+	fmt.Scan(&prev2)
+
+	maxLength2 := 1
+	incLength := 1
+	decLength := 1
+
+	for i := 1; i < n; i++ {
+		fmt.Scan(&curr2)
+
+		if curr2 > prev2 {
+			incLength++
+			decLength = 1
+			if incLength > maxLength2 {
+				maxLength2 = incLength
+			}
+		} else if curr2 < prev2 {
+			decLength++
+			incLength = 1
+			if decLength > maxLength2 {
+				maxLength2 = decLength
+			}
+		} else {
+			incLength = 1
+			decLength = 1
+		}
+
+		prev2 = curr2
+	}
+
+	fmt.Printf("Наибольшая длина монотонного фрагмента (способ 2): %d\n", maxLength2)
+}
+
+func ch7ex157() {
+	fmt.Printf("Ex157. Поиск позиций максимального и минимального элементов\n")
+
+	var n int
+	fmt.Print("Введите количество чисел: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректное количество чисел")
+		return
+	}
+
+	var num int
+	fmt.Scan(&num)
+
+	maxVal := num
+	maxIndex := 1
+	minVal := num
+	minIndex := 1
+
+	for i := 2; i <= n; i++ {
+		fmt.Scan(&num)
+
+		if num >= maxVal {
+			maxVal = num
+			maxIndex = i
+		}
+
+		if num < minVal {
+			minVal = num
+			minIndex = i
+		}
+	}
+
+	fmt.Printf("a) Номер последнего максимального (%d): %d\n", maxVal, maxIndex)
+	fmt.Printf("б) Номер первого минимального (%d): %d\n", minVal, minIndex)
+}
+
+func ch7ex158() {
+	fmt.Printf("Ex158. Поиск позиций максимального и минимального (последние)\n")
+
+	var n int
+	fmt.Print("Введите количество чисел: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректное количество чисел")
+		return
+	}
+
+	var num int
+	fmt.Scan(&num)
+
+	maxVal := num
+	maxIndex := 1
+	minVal := num
+	minIndex := 1
+
+	for i := 2; i <= n; i++ {
+		fmt.Scan(&num)
+
+		if num >= maxVal {
+			maxVal = num
+			maxIndex = i
+		}
+
+		if num <= minVal {
+			minVal = num
+			minIndex = i
+		}
+	}
+
+	fmt.Printf("Номер последнего максимального (%d): %d\n", maxVal, maxIndex)
+	fmt.Printf("Номер последнего минимального (%d): %d\n", minVal, minIndex)
+}
+
+func ch7ex159() {
+	fmt.Printf("Ex159. Квартира с наибольшим количеством жильцов\n")
+
+	maxResidents := 0
+	maxApartment := 0
+
+	fmt.Println("Введите количество жильцов в квартирах (0 - конец):")
+
+	apartmentNum := 1
+	for {
+		var residents int
+		fmt.Scan(&residents)
+
+		if residents == 0 {
+			break
+		}
+
+		if residents >= maxResidents {
+			maxResidents = residents
+			maxApartment = apartmentNum
+		}
+
+		apartmentNum++
+	}
+
+	if maxApartment > 0 {
+		fmt.Printf("Квартира с наибольшим количеством жильцов: №%d (%d чел.)\n",
+			maxApartment, maxResidents)
+	} else {
+		fmt.Println("Нет данных о квартирах")
+	}
+}
+
+func ch7ex160() {
+	fmt.Printf("Ex160. Первый спортсмен с лучшим результатом\n")
+
+	var n int
+	fmt.Print("Введите количество спортсменов: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректное количество спортсменов")
+		return
+	}
+
+	bestTime := math.MaxFloat64
+	bestAthlete := 0
+
+	fmt.Println("Введите результаты спортсменов (время):")
+	for i := 1; i <= n; i++ {
+		var time float64
+		fmt.Scan(&time)
+
+		if time < bestTime {
+			bestTime = time
+			bestAthlete = i
+		}
+	}
+
+	if bestAthlete > 0 {
+		fmt.Printf("Первый спортсмен с лучшим результатом: №%d (время: %.2f)\n",
+			bestAthlete, bestTime)
+	}
+}
+
+func ch7ex161() {
+	fmt.Printf("Ex161. Команда с наименьшим количеством очков\n")
+
+	minPoints := math.MaxInt32
+	minTeam := 0
+
+	fmt.Println("Введите количество очков команд:")
+	for i := 1; i <= 12; i++ {
+		var points int
+		fmt.Scan(&points)
+
+		if points < minPoints {
+			minPoints = points
+			minTeam = i
+		}
+	}
+
+	if minTeam > 0 {
+		fmt.Printf("Команда с наименьшим количеством очков: №%d (%d очков)\n",
+			minTeam, minPoints)
+	}
+}
+
+func ch7ex162() {
+	fmt.Printf("Ex162. День с максимальным количеством осадков\n")
+
+	var days int
+	fmt.Print("Введите количество дней в месяце: ")
+	fmt.Scan(&days)
+
+	if days <= 0 {
+		fmt.Println("Некорректное количество дней")
+		return
+	}
+
+	maxPrecipitation := 0.0
+	maxDay := 0
+
+	fmt.Printf("Введите количество осадков за %d дней:\n", days)
+	for day := 1; day <= days; day++ {
+		var precipitation float64
+		fmt.Scan(&precipitation)
+
+		if precipitation >= maxPrecipitation {
+			maxPrecipitation = precipitation
+			maxDay = day
+		}
+	}
+
+	if maxDay > 0 {
+		fmt.Printf("День с максимальным количеством осадков: %d-е число (%.1f мм)\n",
+			maxDay, maxPrecipitation)
+	}
+}
+
+func ch7ex163() {
+	fmt.Printf("Ex163. Покупатель с наименьшим временем ожидания\n")
+
+	var n int
+	fmt.Print("Введите количество покупателей: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректное количество покупателей")
+		return
+	}
+
+	serviceTimes := make([]float64, n)
+	fmt.Println("Введите время обслуживания каждого покупателя:")
+	for i := 0; i < n; i++ {
+		fmt.Scan(&serviceTimes[i])
+	}
+
+	waitingTimes := make([]float64, n)
+	waitingTimes[0] = 0
+
+	for i := 1; i < n; i++ {
+		waitingTimes[i] = waitingTimes[i-1] + serviceTimes[i-1]
+	}
+
+	minWait := math.MaxFloat64
+	minIndex := 0
+
+	for i := 0; i < n; i++ {
+		if waitingTimes[i] <= minWait {
+			minWait = waitingTimes[i]
+			minIndex = i + 1
+		}
+	}
+
+	fmt.Printf("Покупатель с наименьшим временем ожидания: №%d (ожидание: %.2f)\n",
+		minIndex, minWait)
+}
+
+func ch7ex164() {
+	fmt.Printf("Ex164. Анализ пар чисел\n")
+
+	var n int
+	fmt.Print("Введите количество пар: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректное количество пар")
+		return
+	}
+
+	fmt.Println("Введите пары положительных чисел:")
+	var a1, b1 float64
+	fmt.Scan(&a1, &b1)
+
+	maxArithAvg := (a1 + b1) / 2
+	maxArithPair := 1
+
+	for i := 2; i <= n; i++ {
+		var a, b float64
+		fmt.Scan(&a, &b)
+
+		arithAvg := (a + b) / 2
+		if arithAvg >= maxArithAvg {
+			maxArithAvg = arithAvg
+			maxArithPair = i
+		}
+	}
+
+	fmt.Printf("a) Пара с максимальным средним арифметическим: №%d (%.2f)\n",
+		maxArithPair, maxArithAvg)
+
+	fmt.Println("Введите те же пары еще раз:")
+	fmt.Scan(&a1, &b1)
+
+	minGeomAvg := math.Sqrt(a1 * b1)
+	minGeomPair := 1
+
+	for i := 2; i <= n; i++ {
+		var a, b float64
+		fmt.Scan(&a, &b)
+
+		geomAvg := math.Sqrt(a * b)
+		if geomAvg <= minGeomAvg {
+			minGeomAvg = geomAvg
+			minGeomPair = i
+		}
+	}
+
+	fmt.Printf("б) Пара с минимальным средним геометрическим: №%d (%.2f)\n",
+		minGeomPair, minGeomAvg)
+}
+
+func ch7ex165() {
+	fmt.Printf("Ex165. Автомобиль с максимальной средней скоростью\n")
+
+	maxAvgSpeed := 0.0
+	bestCar := 0
+
+	fmt.Println("Введите данные 25 автомобилей (путь в км и время в часах):")
+	for i := 1; i <= 25; i++ {
+		var distance, time float64
+		fmt.Scan(&distance, &time)
+
+		if time > 0 {
+			avgSpeed := distance / time
+			if avgSpeed > maxAvgSpeed {
+				maxAvgSpeed = avgSpeed
+				bestCar = i
+			}
+		}
+	}
+
+	if bestCar > 0 {
+		fmt.Printf("Автомобиль с максимальной средней скоростью: №%d (%.1f км/ч)\n",
+			bestCar, maxAvgSpeed)
+	}
+}
+
+func ch7ex166() {
+	fmt.Printf("Ex166. Сопротивление с минимальным током\n")
+
+	minCurrent := math.MaxFloat64
+	bestResistor := 0
+
+	fmt.Println("Введите напряжение и сопротивление для 20 резисторов:")
+	for i := 1; i <= 20; i++ {
+		var voltage, resistance float64
+		fmt.Scan(&voltage, &resistance)
+
+		if resistance > 0 {
+			current := voltage / resistance
+			if current < minCurrent {
+				minCurrent = current
+				bestResistor = i
+			}
+		}
+	}
+
+	if bestResistor > 0 {
+		fmt.Printf("Резистор с минимальным током: №%d (%.3f А)\n",
+			bestResistor, minCurrent)
+	}
+}
+
+func ch7ex167() {
+	fmt.Printf("Ex167. Что встретится раньше: максимум или минимум?\n")
+
+	var n int
+	fmt.Print("Введите количество чисел: ")
+	_, err := fmt.Scan(&n)
+
+	if err != nil || n <= 0 {
+		fmt.Printf("Ошибка: требуется натуральное число\n")
+		return
+	}
+
+	var currentNum int
+	fmt.Print("Введите число 1: ")
+	fmt.Scan(&currentNum)
+
+	maxValue := currentNum
+	minValue := currentNum
+	maxFirstPos := 1
+	minFirstPos := 1
+	maxCount := 1
+	minCount := 1
+
+	for i := 2; i <= n; i++ {
+		fmt.Printf("Введите число %d: ", i)
+		fmt.Scan(&currentNum)
+
+		if currentNum > maxValue {
+			maxValue = currentNum
+			maxFirstPos = i
+			maxCount = 1
+		} else if currentNum == maxValue {
+			maxCount++
+		}
+
+		if currentNum < minValue {
+			minValue = currentNum
+			minFirstPos = i
+			minCount = 1
+		} else if currentNum == minValue {
+			minCount++
+		}
+	}
+
+	fmt.Println("\nРезультаты анализа:")
+	fmt.Printf("Максимальное значение: %d\n", maxValue)
+	fmt.Printf("  Впервые встретилось на позиции: %d\n", maxFirstPos)
+	fmt.Printf("  Количество раз встретилось: %d\n", maxCount)
+
+	fmt.Printf("\nМинимальное значение: %d\n", minValue)
+	fmt.Printf("  Впервые встретилось на позиции: %d\n", minFirstPos)
+	fmt.Printf("  Количество раз встретилось: %d\n", minCount)
+
+	fmt.Println("\nСравнение:")
+	if maxFirstPos < minFirstPos {
+		fmt.Printf("Максимум встретился раньше минимума (на позиции %d < %d)\n",
+			maxFirstPos, minFirstPos)
+	} else if maxFirstPos > minFirstPos {
+		fmt.Printf("Минимум встретился раньше максимума (на позиции %d < %d)\n",
+			minFirstPos, maxFirstPos)
+	} else {
+		fmt.Printf("Максимум и минимум встретились одновременно на позиции %d\n",
+			maxFirstPos)
+	}
+
+	fmt.Println("\nДополнительно:")
+	if maxCount > 1 {
+		fmt.Printf("Максимальное значение %d встречается несколько раз\n", maxValue)
+	}
+	if minCount > 1 {
+		fmt.Printf("Минимальное значение %d встречается несколько раз\n", minValue)
+	}
+
+	if maxValue == minValue {
+		fmt.Println("Все числа в последовательности равны!")
+	}
+}
+
+func ch7ex168() {
+	fmt.Printf("Ex168. Кто указан раньше: самый старший или самый младший?\n")
+
+	var n int
+	fmt.Print("Введите количество людей: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректное количество людей")
+		return
+	}
+
+	var age int
+	fmt.Scan(&age)
+
+	maxAge := age
+	minAge := age
+	maxFirstIndex := 1
+	minFirstIndex := 1
+
+	for i := 2; i <= n; i++ {
+		fmt.Scan(&age)
+
+		if age > maxAge {
+			maxAge = age
+			maxFirstIndex = i
+		}
+
+		if age < minAge {
+			minAge = age
+			minFirstIndex = i
+		}
+	}
+
+	fmt.Printf("Самый старший: %d лет (впервые на позиции %d)\n", maxAge, maxFirstIndex)
+	fmt.Printf("Самый младший: %d лет (впервые на позиции %d)\n", minAge, minFirstIndex)
+
+	if maxFirstIndex < minFirstIndex {
+		fmt.Println("Самый старший указан раньше самого младшего")
+	} else {
+		fmt.Println("Самый младший указан раньше самого старшего")
+	}
+}
+
+func ch7ex169() {
+	fmt.Printf("Ex169. Проверка порядка этапов гонки\n")
+
+	var stages int
+	fmt.Print("Введите количество этапов: ")
+	fmt.Scan(&stages)
+
+	if stages <= 0 {
+		fmt.Println("Некорректное количество этапов")
+		return
+	}
+
+	firstWinStage := 0
+	lastPlaceStage := 0
+
+	fmt.Println("Введите места на каждом этапе (1 - первое место):")
+	for stage := 1; stage <= stages; stage++ {
+		var place int
+		fmt.Scan(&place)
+
+		if place == 1 && firstWinStage == 0 {
+			firstWinStage = stage
+		}
+
+		if place == stages {
+			lastPlaceStage = stage
+		}
+	}
+
+	fmt.Printf("Первый выигранный этап: %d\n", firstWinStage)
+	fmt.Printf("Этап с последним местом: %d\n", lastPlaceStage)
+
+	if firstWinStage > 0 && lastPlaceStage > 0 && firstWinStage < lastPlaceStage {
+		fmt.Println("Верно: выигранный этап был раньше этапа с последним местом")
+	} else {
+		fmt.Println("Неверно: этап с последним местом был раньше или равен выигранному")
+	}
+}
+
+func ch7ex170() {
+	fmt.Printf("Ex170. Анализ суммы соседних чисел\n")
+
+	var n int
+	fmt.Print("Введите количество чисел (n > 3): ")
+	fmt.Scan(&n)
+
+	if n <= 3 {
+		fmt.Println("n должно быть больше 3")
+		return
+	}
+
+	var prev, current int
+	fmt.Scan(&prev, &current)
+
+	maxSum := prev + current
+	maxIndex1 := 1
+	maxIndex2 := 2
+
+	minSum := prev + current
+	minIndex1 := 1
+	minIndex2 := 2
+
+	firstMaxIndex1 := 1
+	firstMaxIndex2 := 2
+
+	lastMinIndex1 := 1
+	lastMinIndex2 := 2
+
+	for i := 3; i <= n; i++ {
+		prev = current
+		fmt.Scan(&current)
+
+		sum := prev + current
+
+		if sum > maxSum {
+			maxSum = sum
+			maxIndex1 = i - 1
+			maxIndex2 = i
+		}
+
+		if sum < minSum {
+			minSum = sum
+			minIndex1 = i - 1
+			minIndex2 = i
+		}
+
+		if sum == maxSum && maxSum == prev+current {
+
+		}
+
+		if sum == minSum {
+			lastMinIndex1 = i - 1
+			lastMinIndex2 = i
+		}
+	}
+
+	fmt.Printf("a) Максимальная сумма: %d (между %d и %d)\n", maxSum, maxIndex1, maxIndex2)
+	fmt.Printf("б) Минимальная сумма: %d (между %d и %d)\n", minSum, minIndex1, minIndex2)
+	fmt.Printf("в) Первая пара с максимальной суммой: %d и %d\n", firstMaxIndex1, firstMaxIndex2)
+	fmt.Printf("г) Последняя пара с минимальной суммой: %d и %d\n", lastMinIndex1, lastMinIndex2)
+}
+
+func ch7ex171() {
+	fmt.Printf("Ex171. Два максимальных и два минимальных элемента\n")
+
+	var n int
+	fmt.Print("Введите количество чисел (n > 3): ")
+	fmt.Scan(&n)
+
+	if n <= 3 {
+		fmt.Println("n должно быть больше 3")
+		return
+	}
+
+	var a, b, c int
+	fmt.Scan(&a, &b, &c)
+
+	max1, max2 := a, b
+	min1, min2 := a, b
+
+	if max1 < max2 {
+		max1, max2 = max2, max1
+	}
+
+	if min1 > min2 {
+		min1, min2 = min2, min1
+	}
+
+	if c > max1 {
+		max2 = max1
+		max1 = c
+	} else if c > max2 {
+		max2 = c
+	}
+
+	if c < min1 {
+		min2 = min1
+		min1 = c
+	} else if c < min2 {
+		min2 = c
+	}
+
+	for i := 4; i <= n; i++ {
+		var num int
+		fmt.Scan(&num)
+
+		if num > max1 {
+			max2 = max1
+			max1 = num
+		} else if num > max2 {
+			max2 = num
+		}
+
+		if num < min1 {
+			min2 = min1
+			min1 = num
+		} else if num < min2 {
+			min2 = num
+		}
+	}
+
+	fmt.Printf("a) Два максимальных элемента: %d и %d\n", max1, max2)
+	fmt.Printf("б) Два минимальных элемента: %d и %d\n", min1, min2)
+}
+
+func ch7ex172() {
+	fmt.Printf("Ex172. Первое и второе места в беге на 100 м\n")
+
+	var times [22]float64
+
+	fmt.Println("Введите время 22 спортсменов (в секундах):")
+	for i := 0; i < 22; i++ {
+		fmt.Scan(&times[i])
+	}
+
+	firstTime := math.MaxFloat64
+	secondTime := math.MaxFloat64
+
+	for i := 0; i < 22; i++ {
+		if times[i] < firstTime {
+			secondTime = firstTime
+			firstTime = times[i]
+		} else if times[i] < secondTime {
+			secondTime = times[i]
+		}
+	}
+
+	fmt.Printf("Первое место: %.2f сек\n", firstTime)
+	fmt.Printf("Второе место: %.2f сек\n", secondTime)
+}
+
+func ch7ex173() {
+	fmt.Printf("Ex173. Вторая максимальная скорость автомобиля\n")
+
+	var speeds [12]float64
+
+	fmt.Println("Введите максимальные скорости 12 автомобилей:")
+	for i := 0; i < 12; i++ {
+		fmt.Scan(&speeds[i])
+	}
+
+	maxSpeed := 0.0
+	secondMaxSpeed := 0.0
+
+	for i := 0; i < 12; i++ {
+		if speeds[i] > maxSpeed {
+			secondMaxSpeed = maxSpeed
+			maxSpeed = speeds[i]
+		} else if speeds[i] > secondMaxSpeed {
+			secondMaxSpeed = speeds[i]
+		}
+	}
+
+	fmt.Printf("Максимальная скорость: %.1f км/ч\n", maxSpeed)
+	fmt.Printf("Вторая максимальная скорость: %.1f км/ч\n", secondMaxSpeed)
+}
+
+func ch7ex174() {
+	fmt.Printf("Ex174. Первое, второе и третье места по очкам\n")
+
+	var points [12]int
+
+	fmt.Println("Введите количество очков 12 команд:")
+	for i := 0; i < 12; i++ {
+		fmt.Scan(&points[i])
+	}
+
+	first := -1
+	second := -1
+	third := -1
+
+	for i := 0; i < 12; i++ {
+		if points[i] > first {
+			third = second
+			second = first
+			first = points[i]
+		} else if points[i] > second {
+			third = second
+			second = points[i]
+		} else if points[i] > third {
+			third = points[i]
+		}
+	}
+
+	fmt.Printf("Первое место: %d очков\n", first)
+	fmt.Printf("Второе место: %d очков\n", second)
+	fmt.Printf("Третье место: %d очков\n", third)
+}
+
+func ch7ex175() {
+	fmt.Printf("Ex175. Команда из четырех лучших бегунов\n")
+
+	var n int
+	fmt.Print("Введите количество спортсменов: ")
+	fmt.Scan(&n)
+
+	if n < 4 {
+		fmt.Println("Нужно хотя бы 4 спортсмена")
+		return
+	}
+
+	results := make([]float64, n)
+	fmt.Printf("Введите результаты %d спортсменов (в секундах):\n", n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&results[i])
+	}
+
+	indices := make([]int, n)
+	for i := 0; i < n; i++ {
+		indices[i] = i
+	}
+
+	for i := 0; i < n-1; i++ {
+		for j := 0; j < n-i-1; j++ {
+			if results[indices[j]] > results[indices[j+1]] {
+				indices[j], indices[j+1] = indices[j+1], indices[j]
+			}
+		}
+	}
+
+	fmt.Printf("Команда из четырех лучших: спортсмены %d, %d, %d, %d\n",
+		indices[0]+1, indices[1]+1, indices[2]+1, indices[3]+1)
+	fmt.Printf("Суммарное время: %.2f сек\n",
+		results[indices[0]]+results[indices[1]]+results[indices[2]]+results[indices[3]])
+}
+
+func ch7ex176() {
+	fmt.Printf("Ex176. Два самых холодных дня месяца\n")
+
+	var days int
+	fmt.Print("Введите количество дней в месяце: ")
+	fmt.Scan(&days)
+
+	if days < 2 {
+		fmt.Println("Нужно хотя бы 2 дня")
+		return
+	}
+
+	temperatures := make([]float64, days)
+	fmt.Printf("Введите среднюю температуру за %d дней:\n", days)
+	for i := 0; i < days; i++ {
+		fmt.Scan(&temperatures[i])
+	}
+
+	min1 := math.MaxFloat64
+	min2 := math.MaxFloat64
+	day1 := 0
+	day2 := 0
+
+	for i := 0; i < days; i++ {
+		if temperatures[i] < min1 {
+			min2 = min1
+			day2 = day1
+			min1 = temperatures[i]
+			day1 = i + 1
+		} else if temperatures[i] < min2 {
+			min2 = temperatures[i]
+			day2 = i + 1
+		}
+	}
+
+	fmt.Printf("Два самых холодных дня: %d-е (%.1f°C) и %d-е (%.1f°C)\n",
+		day1, min1, day2, min2)
+}
+
+func ch7ex177() {
+	fmt.Printf("Ex177. Количество максимальных элементов после добавления числа\n")
+
+	var n int
+	fmt.Print("Введите количество элементов: ")
+	fmt.Scan(&n)
+
+	if n <= 0 {
+		fmt.Println("Некорректное количество элементов")
+		return
+	}
+
+	sequence := make([]int, n)
+	fmt.Printf("Введите %d целых чисел:\n", n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&sequence[i])
+	}
+
+	maxVal := sequence[0]
+	countMax := 1
+
+	for i := 1; i < n; i++ {
+		if sequence[i] > maxVal {
+			maxVal = sequence[i]
+			countMax = 1
+		} else if sequence[i] == maxVal {
+			countMax++
+		}
+	}
+
+	fmt.Printf("Максимальный элемент: %d, количество: %d\n", maxVal, countMax)
+
+	var A int
+	fmt.Print("Введите число A для добавления в конец: ")
+	fmt.Scan(&A)
+
+	if A > maxVal {
+		fmt.Printf("При A=%d: максимальных элементов станет 1\n", A)
+	} else if A == maxVal {
+		fmt.Printf("При A=%d: максимальных элементов станет %d\n", A, countMax+1)
+	} else {
+		fmt.Printf("При A=%d: максимальных элементов останется %d\n", A, countMax)
+	}
+
+	if A == 0 {
+		fmt.Println("При A=0: максимальных элементов останется", countMax)
+	}
+	if A == maxVal {
+		fmt.Println("При A=8 (если 8 - максимум): максимальных элементов станет", countMax+1)
+	}
+}
+
+func ch7ex178() {
+	fmt.Printf("Ex178. Подсчет количества максимальных и минимальных чисел\n")
+
+	numbers := make([]int, 12)
+	fmt.Println("Введите 12 целых чисел:")
+
+	fmt.Print("Число 1: ")
+	fmt.Scan(&numbers[0])
+
+	maxVal := numbers[0]
+	minVal := numbers[0]
+	maxCount := 1
+	minCount := 1
+
+	for i := 1; i < 12; i++ {
+		fmt.Printf("Число %d: ", i+1)
+		fmt.Scan(&numbers[i])
+
+		if numbers[i] > maxVal {
+			maxVal = numbers[i]
+			maxCount = 1
+		} else if numbers[i] == maxVal {
+			maxCount++
+		}
+
+		if numbers[i] < minVal {
+			minVal = numbers[i]
+			minCount = 1
+		} else if numbers[i] == minVal {
+			minCount++
+		}
+	}
+
+	fmt.Println("\nРезультаты:")
+	fmt.Printf("a) Максимальное число: %d, встречается %d раз(а)\n", maxVal, maxCount)
+	fmt.Printf("б) Минимальное число: %d, встречается %d раз(а)\n", minVal, minCount)
+}
+
+func ch7ex179() {
+	fmt.Printf("Ex179. Квартиры с максимальным количеством жильцов\n")
+
+	var count int
+	fmt.Print("Введите количество квартир: ")
+	fmt.Scan(&count)
+
+	if count <= 0 {
+		fmt.Println("Ошибка: количество квартир должно быть положительным")
+		return
+	}
+
+	maxResidents := 0
+	maxApartments := 0
+	currentResidents := 0
+
+	fmt.Println("Введите количество жильцов в каждой квартире:")
+
+	fmt.Print("Квартира 1: ")
+	fmt.Scan(&currentResidents)
+
+	if currentResidents > 0 {
+		maxResidents = currentResidents
+		maxApartments = 1
+	}
+
+	for i := 2; i <= count; i++ {
+		fmt.Printf("Квартира %d: ", i)
+		fmt.Scan(&currentResidents)
+
+		if currentResidents > maxResidents {
+			maxResidents = currentResidents
+			maxApartments = 1
+		} else if currentResidents == maxResidents && currentResidents > 0 {
+			maxApartments++
+		}
+	}
+
+	fmt.Println("\nРезультаты:")
+	if maxResidents == 0 {
+		fmt.Println("Во всех квартирах проживает 0 жильцов")
+	} else {
+		fmt.Printf("Максимальное количество жильцов: %d\n", maxResidents)
+		fmt.Printf("Количество квартир с таким числом жильцов: %d\n", maxApartments)
+	}
+}
+
+func ch7ex180() {
+	fmt.Printf("Ex180. Дни с минимальной температурой\n")
+
+	var days int
+	fmt.Print("Введите количество дней в месяце: ")
+	fmt.Scan(&days)
+
+	if days <= 0 || days > 31 {
+		fmt.Println("Ошибка: количество дней должно быть от 1 до 31")
+		return
+	}
+
+	minTemp := 100.0
+	minDaysCount := 0
+	var currentTemp float64
+
+	fmt.Println("Введите температуру воздуха за каждый день (°C):")
+
+	fmt.Print("День 1: ")
+	fmt.Scan(&currentTemp)
+
+	minTemp = currentTemp
+	minDaysCount = 1
+
+	for i := 2; i <= days; i++ {
+		fmt.Printf("День %d: ", i)
+		fmt.Scan(&currentTemp)
+
+		if currentTemp < minTemp {
+			minTemp = currentTemp
+			minDaysCount = 1
+		} else if currentTemp == minTemp {
+			minDaysCount++
+		}
+	}
+
+	fmt.Println("\nРезультаты:")
+	fmt.Printf("Минимальная температура: %.1f°C\n", minTemp)
+	fmt.Printf("Количество дней с такой температурой: %d\n", minDaysCount)
+}
+
+func ch7ex181() {
+	fmt.Printf("Ex181. Проверка последовательности костей домино\n")
+
+	fmt.Println("\n=== СЛУЧАЙ А ===")
+	fmt.Println("Последняя цифра каждого числа - правая половина кости")
+
+	prevRight := -1
+	isValid := true
+
+	fmt.Println("Введите 20 чисел от 0 до 66 (каждое число - две цифры):")
+
+	for i := 1; i <= 20; i++ {
+		var num int
+		fmt.Printf("Кость %d: ", i)
+		fmt.Scan(&num)
+
+		if num < 0 || num > 66 {
+			fmt.Printf("Ошибка: число %d вне диапазона 0-66\n", num)
+			isValid = false
+			continue
+		}
+
+		left := num / 10
+		right := num % 10
+
+		if left < 0 || left > 6 || right < 0 || right > 6 {
+			fmt.Printf("Ошибка: цифры числа %d вне диапазона 0-6\n", num)
+			isValid = false
+			continue
+		}
+
+		if i == 1 {
+
+			prevRight = right
+		} else {
+
+			if left != prevRight {
+				isValid = false
+				fmt.Printf("Нарушение на кости %d: левая половина (%d) не равна правой половине предыдущей кости (%d)\n",
+					i, left, prevRight)
+			}
+			prevRight = right
+		}
+	}
+
+	if isValid {
+		fmt.Println("Последовательность соответствует правилам домино!")
+	} else {
+		fmt.Println("Последовательность НЕ соответствует правилам домино")
+	}
+
+	fmt.Println("\n=== СЛУЧАЙ Б ===")
+	fmt.Println("Любая цифра может быть правой или левой половиной")
+
+	prevRight = -1
+	isValid = true
+
+	fmt.Println("Введите те же 20 чисел еще раз:")
+
+	for i := 1; i <= 20; i++ {
+		var num int
+		fmt.Printf("Кость %d: ", i)
+		fmt.Scan(&num)
+
+		if num < 0 || num > 66 {
+			fmt.Printf("Ошибка: число %d вне диапазона 0-66\n", num)
+			isValid = false
+			continue
+		}
+
+		left := num / 10
+		right := num % 10
+
+		if left < 0 || left > 6 || right < 0 || right > 6 {
+			fmt.Printf("Ошибка: цифры числа %d вне диапазона 0-6\n", num)
+			isValid = false
+			continue
+		}
+
+		if i == 1 {
+
+			prevRight = right
+		} else {
+
+			if left == prevRight {
+				prevRight = right
+			} else if right == prevRight {
+				prevRight = left
+			} else {
+				isValid = false
+				fmt.Printf("Нарушение на кости %d: ни одна половина (%d или %d) не равна предыдущей правой половине (%d)\n",
+					i, left, right, prevRight)
+			}
+		}
+	}
+
+	if isValid {
+		fmt.Println("Последовательность соответствует правилам домино!")
+	} else {
+		fmt.Println("Последовательность НЕ соответствует правилам домино")
+	}
 }
