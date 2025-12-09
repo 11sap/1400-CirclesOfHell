@@ -1372,7 +1372,7 @@ func ch5ex90() {
 	fmt.Scan(&n)
 
 	a, b := 1, 1
-	sum := 2 // 1+1
+	sum := 2
 	for i := 3; i <= n; i++ {
 		a, b = b, a+b
 		sum += b

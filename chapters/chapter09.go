@@ -4,7 +4,9 @@ import "fmt"
 
 func Run09() {
 	tasks := []func(){
-		ch9ex01,
+		ch9ex01, ch9ex04, ch9ex05, ch9ex06, ch9ex07, ch9ex08,
+		ch9ex09, ch9ex10, ch9ex11, ch9ex12, ch9ex13, ch9ex14, ch9ex15, ch9ex16,
+		ch9ex17, ch9ex18, ch9ex19, ch9ex20,
 	}
 
 	for {
@@ -24,12 +26,857 @@ func Run09() {
 }
 
 func ch9ex01() {
-	fmt.Printf("Ex1. Сумма 10 чисел\n")
-	sum := 0
-	for i := 1; i <= 10; i++ {
-		var num int
-		fmt.Scan(&num)
-		sum += num
+	fmt.Printf("Ex1. Заполнение массивов по заданным шаблонам\n\n")
+
+	fmt.Println("а)")
+
+	for i := 0; i < 5; i++ {
+		fmt.Println("8 8 8")
 	}
-	fmt.Printf("Сумма: %d\n", sum)
+	fmt.Println()
+
+	fmt.Println("б)")
+	for i := 1; i <= 7; i++ {
+		fmt.Printf("%d %d %d %d %d\n", i, i, i, i, i)
+	}
+	fmt.Println()
+
+	fmt.Println("в)")
+	for i := 10; i <= 80; i += 10 {
+		fmt.Printf("%d %d %d %d\n", i, i, i, i)
+	}
+	fmt.Println()
+
+	fmt.Println("г)")
+	for i := 12; i <= 82; i += 10 {
+		fmt.Printf("%d %d %d %d\n", i, i, i, i)
+	}
+	fmt.Println()
+
+	fmt.Println("д)")
+	for i := 0; i < 5; i++ {
+		for j := 2; j <= 20; j++ {
+			fmt.Print(j)
+			if j < 20 {
+				fmt.Print(" ")
+			}
+		}
+		fmt.Println()
+	}
+
+	fmt.Println("е)")
+	for i := 0; i < 4; i++ {
+		for j := 15; j >= 3; j-- {
+			fmt.Print(j)
+			if j <= 15 {
+				fmt.Print(" ")
+			}
+		}
+		fmt.Println()
+	}
+	// я устал босс, это полный треш
+}
+
+func ch9ex04() {
+	fmt.Println("9.4. Оценки 12 учеников по 3 предметам")
+
+	fmt.Println("Вариант 1 - ввод по строкам:")
+	var marks1 [12][3]int
+	sum1 := 0
+
+	for i := 0; i < 12; i++ {
+		fmt.Printf("Введите 3 оценки для ученика %d: ", i+1)
+		for j := 0; j < 3; j++ {
+			fmt.Scan(&marks1[i][j])
+			sum1 += marks1[i][j]
+		}
+	}
+	fmt.Printf("Сумма всех оценок: %d\n\n", sum1)
+
+	fmt.Println("Вариант 2 - ввод по столбцам:")
+	var marks2 [12][3]int
+	sum2 := 0
+
+	for j := 0; j < 3; j++ {
+		fmt.Printf("Введите оценки для предмета %d (12 учеников): ", j+1)
+		for i := 0; i < 12; i++ {
+			fmt.Scan(&marks2[i][j])
+			sum2 += marks2[i][j]
+		}
+	}
+	fmt.Printf("Сумма всех оценок: %d\n", sum2)
+}
+
+func ch9ex05() {
+	fmt.Println("9.5. Зарплата работников за квартал")
+
+	var salary [12][3]float64
+	totalQuarter := 0.0
+	var monthTotal [3]float64
+	var workerTotal [12]float64
+
+	fmt.Println("Введите зарплату для 12 работников за 3 месяца:")
+	for i := 0; i < 12; i++ {
+		fmt.Printf("Работник %d: ", i+1)
+		for j := 0; j < 3; j++ {
+			fmt.Scan(&salary[i][j])
+			workerTotal[i] += salary[i][j]
+			monthTotal[j] += salary[i][j]
+			totalQuarter += salary[i][j]
+		}
+	}
+
+	fmt.Printf("а) Общая сумма за квартал: %.2f\n", totalQuarter)
+
+	fmt.Println("б) Зарплата каждого работника за квартал:")
+	for i := 0; i < 12; i++ {
+		fmt.Printf("  Работник %d: %.2f\n", i+1, workerTotal[i])
+	}
+
+	fmt.Println("в) Общая зарплата за каждый месяц:")
+	for j := 0; j < 3; j++ {
+		fmt.Printf("  Месяц %d: %.2f\n", j+1, monthTotal[j])
+	}
+}
+
+func ch9ex06() {
+	fmt.Println("9.6. Результаты спортсменов")
+
+	var results [15][3]float64
+
+	fmt.Println("Введите баллы для 15 спортсменов по 3 программам:")
+	for i := 0; i < 15; i++ {
+		fmt.Printf("Спортсмен %d: ", i+1)
+		for j := 0; j < 3; j++ {
+			fmt.Scan(&results[i][j])
+		}
+	}
+
+	fmt.Println("а) Средний балл каждого спортсмена:")
+	for i := 0; i < 15; i++ {
+		sum := 0.0
+		for j := 0; j < 3; j++ {
+			sum += results[i][j]
+		}
+		average := sum / 3.0
+		fmt.Printf("  Спортсмен %d: %.2f\n", i+1, average)
+	}
+
+	fmt.Println("б) Средний балл по каждой программе:")
+	for j := 0; j < 3; j++ {
+		sum := 0.0
+		for i := 0; i < 15; i++ {
+			sum += results[i][j]
+		}
+		average := sum / 15.0
+		programName := ""
+		switch j {
+		case 0:
+			programName = "Обязательная"
+		case 1:
+			programName = "Короткая"
+		case 2:
+			programName = "Произвольная"
+		}
+		fmt.Printf("  %s программа: %.2f\n", programName, average)
+	}
+}
+
+func ch9ex07() {
+	fmt.Println("9.7. Оценки учеников")
+
+	var marks [15][3]int
+
+	fmt.Println("Введите оценки для 15 учеников по 3 предметам (2-5):")
+	for i := 0; i < 15; i++ {
+		fmt.Printf("Ученик %d: ", i+1)
+		for j := 0; j < 3; j++ {
+			fmt.Scan(&marks[i][j])
+		}
+	}
+
+	fives := 0
+	for i := 0; i < 15; i++ {
+		for j := 0; j < 3; j++ {
+			if marks[i][j] == 5 {
+				fives++
+			}
+		}
+	}
+	fmt.Printf("а) Общее количество пятерок: %d\n", fives)
+
+	fmt.Println("б) Количество двоек у каждого ученика:")
+	for i := 0; i < 15; i++ {
+		twos := 0
+		for j := 0; j < 3; j++ {
+			if marks[i][j] == 2 {
+				twos++
+			}
+		}
+		fmt.Printf("  Ученик %d: %d двоек\n", i+1, twos)
+	}
+
+	fmt.Println("в) Количество двоек по каждому предмету:")
+	for j := 0; j < 3; j++ {
+		twos := 0
+		for i := 0; i < 15; i++ {
+			if marks[i][j] == 2 {
+				twos++
+			}
+		}
+		fmt.Printf("  Предмет %d: %d двоек\n", j+1, twos)
+	}
+}
+
+func ch9ex08() {
+	fmt.Println("9.8. Оценки студентов в сессию")
+
+	var marks [14][3]int
+
+	fmt.Println("Введите оценки для 14 студентов по 3 предметам (2-5):")
+	for i := 0; i < 14; i++ {
+		fmt.Printf("Студент %d: ", i+1)
+		for j := 0; j < 3; j++ {
+			fmt.Scan(&marks[i][j])
+		}
+	}
+
+	noTwos := 0
+	for i := 0; i < 14; i++ {
+		hasTwo := false
+		for j := 0; j < 3; j++ {
+			if marks[i][j] == 2 {
+				hasTwo = true
+				break
+			}
+		}
+		if !hasTwo {
+			noTwos++
+		}
+	}
+	fmt.Printf("а) Студентов без двоек: %d\n", noTwos)
+
+	goodSubjects := 0
+	for j := 0; j < 3; j++ {
+		onlyGood := true
+		for i := 0; i < 14; i++ {
+			if marks[i][j] != 5 && marks[i][j] != 4 && marks[i][j] != 6 {
+				onlyGood = false
+				break
+			}
+		}
+		if onlyGood {
+			goodSubjects++
+		}
+	}
+	fmt.Printf("б) Предметов только с 5+ и 4+: %d\n", goodSubjects)
+
+	fmt.Println("в) Количество двоек по каждому предмету:")
+	for j := 0; j < 3; j++ {
+		twos := 0
+		for i := 0; i < 14; i++ {
+			if marks[i][j] == 2 {
+				twos++
+			}
+		}
+		fmt.Printf("  Предмет %d: %d двоек\n", j+1, twos)
+	}
+}
+
+func ch9ex09() {
+	fmt.Println("9.9. Баллы спортсменов по пятиборью")
+
+	var scores [8][5]int
+
+	fmt.Println("Введите баллы для 8 спортсменов по 5 видам спорта:")
+	for i := 0; i < 8; i++ {
+		fmt.Printf("Спортсмен %d (5 видов): ", i+1)
+		for j := 0; j < 5; j++ {
+			fmt.Scan(&scores[i][j])
+		}
+	}
+
+	maxScore := scores[0][0]
+	for i := 0; i < 8; i++ {
+		for j := 0; j < 5; j++ {
+			if scores[i][j] > maxScore {
+				maxScore = scores[i][j]
+			}
+		}
+	}
+	fmt.Printf("а) Максимальная оценка: %d\n", maxScore)
+
+	winnerIndex := 0
+	maxTotal := 0
+
+	for i := 0; i < 8; i++ {
+		total := 0
+		for j := 0; j < 5; j++ {
+			total += scores[i][j]
+		}
+		if total > maxTotal {
+			maxTotal = total
+			winnerIndex = i
+		}
+	}
+	fmt.Printf("б) Победитель (спортсмен %d) набрал: %d баллов\n",
+		winnerIndex+1, maxTotal)
+}
+
+func ch9ex10() {
+	fmt.Println("9.10. Зарплата работников за квартал")
+
+	var salary [12][3]float64
+
+	fmt.Println("Введите зарплату 12 работников за 3 месяца:")
+	for i := 0; i < 12; i++ {
+		fmt.Printf("Работник %d: ", i+1)
+		for j := 0; j < 3; j++ {
+			fmt.Scan(&salary[i][j])
+		}
+	}
+
+	maxSalary := salary[0][0]
+	for i := 0; i < 12; i++ {
+		for j := 0; j < 3; j++ {
+			if salary[i][j] > maxSalary {
+				maxSalary = salary[i][j]
+			}
+		}
+	}
+	fmt.Printf("а) Максимальная зарплата: %.2f\n", maxSalary)
+
+	maxTotal := 0.0
+	workerWithMaxTotal := 0
+
+	for i := 0; i < 12; i++ {
+		total := 0.0
+		for j := 0; j < 3; j++ {
+			total += salary[i][j]
+		}
+		if total > maxTotal {
+			maxTotal = total
+			workerWithMaxTotal = i
+		}
+	}
+	fmt.Printf("б) Работник %d получил наибольшую сумму: %.2f\n",
+		workerWithMaxTotal+1, maxTotal)
+
+	var monthTotal [3]float64
+	for j := 0; j < 3; j++ {
+		for i := 0; i < 12; i++ {
+			monthTotal[j] += salary[i][j]
+		}
+	}
+
+	maxMonthIndex := 0
+	maxMonthTotal := monthTotal[0]
+	for j := 1; j < 3; j++ {
+		if monthTotal[j] > maxMonthTotal {
+			maxMonthTotal = monthTotal[j]
+			maxMonthIndex = j
+		}
+	}
+	fmt.Printf("в) Максимальная общая зарплата была в месяце %d: %.2f\n",
+		maxMonthIndex+1, maxMonthTotal)
+}
+
+func ch9ex11() {
+	fmt.Println("9.11. Зарплата работников за квартал (доп.)")
+
+	var salary [12][3]float64
+
+	fmt.Println("Введите зарплату 12 работников за 3 месяца:")
+	for i := 0; i < 12; i++ {
+		fmt.Printf("Работник %d: ", i+1)
+		for j := 0; j < 3; j++ {
+			fmt.Scan(&salary[i][j])
+		}
+	}
+
+	fmt.Println("а) Месяц с наибольшей зарплатой для каждого работника:")
+	for i := 0; i < 12; i++ {
+		maxMonth := 0
+		maxSalary := salary[i][0]
+
+		for j := 1; j < 3; j++ {
+			if salary[i][j] > maxSalary {
+				maxSalary = salary[i][j]
+				maxMonth = j
+			}
+		}
+		fmt.Printf("  Работник %d: месяц %d (%.2f)\n",
+			i+1, maxMonth+1, maxSalary)
+	}
+
+	fmt.Println("б) Работник с наибольшей зарплатой в каждом месяце:")
+	for j := 0; j < 3; j++ {
+		maxWorker := 0
+		maxSalary := salary[0][j]
+
+		for i := 1; i < 12; i++ {
+			if salary[i][j] > maxSalary {
+				maxSalary = salary[i][j]
+				maxWorker = i
+			}
+		}
+		fmt.Printf("  Месяц %d: работник %d (%.2f)\n",
+			j+1, maxWorker+1, maxSalary)
+	}
+}
+
+func ch9ex12() {
+	fmt.Println("9.12. Количество учеников в классах")
+
+	var students [11][4]int
+
+	data := [11][4]int{
+		{23, 25, 27, 22},
+		{24, 26, 25, 23},
+		{22, 24, 26, 21},
+		{25, 27, 24, 22},
+		{23, 25, 26, 24},
+		{24, 26, 25, 23},
+		{22, 25, 27, 21},
+		{23, 24, 26, 22},
+		{25, 26, 24, 23},
+		{24, 25, 26, 22},
+		{20, 25, 21, 26},
+	}
+	students = data
+
+	minStudents := students[0][0]
+	for i := 0; i < 11; i++ {
+		for j := 0; j < 4; j++ {
+			if students[i][j] < minStudents {
+				minStudents = students[i][j]
+			}
+		}
+	}
+	fmt.Printf("а) В самом малочисленном классе: %d учеников\n", minStudents)
+
+	fmt.Println("б) Минимальное количество учеников в параллели:")
+	minParallelTotal := 0
+	for i := 0; i < 11; i++ {
+		parallelTotal := 0
+		for j := 0; j < 4; j++ {
+			parallelTotal += students[i][j]
+		}
+		if i == 0 || parallelTotal < minParallelTotal {
+			minParallelTotal = parallelTotal
+		}
+	}
+	fmt.Printf("  Минимальное: %d учеников\n", minParallelTotal)
+
+	fmt.Println("в) Минимальное количество учеников по классам (А,Б,В,Г):")
+	var classTotal [4]int
+	for j := 0; j < 4; j++ {
+		for i := 0; i < 11; i++ {
+			classTotal[j] += students[i][j]
+		}
+	}
+
+	minClassTotal := classTotal[0]
+	for j := 1; j < 4; j++ {
+		if classTotal[j] < minClassTotal {
+			minClassTotal = classTotal[j]
+		}
+	}
+	fmt.Printf("  Минимальное: %d учеников\n", minClassTotal)
+}
+
+func ch9ex13() {
+	fmt.Println("9.13. Самый малочисленный класс")
+
+	var students [11][4]int
+
+	data := [11][4]int{
+		{23, 25, 27, 22},
+		{24, 26, 25, 23},
+		{22, 24, 26, 21},
+		{25, 27, 24, 22},
+		{23, 25, 26, 24},
+		{24, 26, 25, 23},
+		{22, 25, 27, 21},
+		{23, 24, 26, 22},
+		{25, 26, 24, 23},
+		{24, 25, 26, 22},
+		{20, 25, 21, 26},
+	}
+	students = data
+
+	minStudents := students[0][0]
+	minParallel := 0
+
+	for i := 0; i < 11; i++ {
+		for j := 0; j < 4; j++ {
+			if students[i][j] < minStudents {
+				minStudents = students[i][j]
+				minParallel = i
+			}
+		}
+	}
+
+	classLetters := []string{"А", "Б", "В", "Г"}
+	fmt.Printf("а) Самый малочисленный класс находится в параллели: %d\n",
+		minParallel+1)
+
+	fmt.Println("б) Самый малочисленный класс среди классов с буквой:")
+	for j := 0; j < 4; j++ {
+		minForLetter := students[0][j]
+		for i := 1; i < 11; i++ {
+			if students[i][j] < minForLetter {
+				minForLetter = students[i][j]
+			}
+		}
+		fmt.Printf("  Класс %s: %d учеников\n", classLetters[j], minForLetter)
+	}
+}
+
+func ch9ex14() {
+	fmt.Println("9.14. Доход магазинов")
+
+	var income [3][10]float64
+
+	fmt.Println("Введите доход 3 магазинов за 10 дней:")
+	for i := 0; i < 3; i++ {
+		fmt.Printf("Магазин %d: ", i+1)
+		for j := 0; j < 10; j++ {
+			fmt.Scan(&income[i][j])
+		}
+	}
+
+	var shopTotal [3]float64
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 10; j++ {
+			shopTotal[i] += income[i][j]
+		}
+	}
+
+	maxShopIndex := 0
+	maxShopTotal := shopTotal[0]
+	for i := 1; i < 3; i++ {
+		if shopTotal[i] > maxShopTotal {
+			maxShopTotal = shopTotal[i]
+			maxShopIndex = i
+		}
+	}
+	fmt.Printf("а) Магазин %d получил максимальный общий доход: %.2f\n",
+		maxShopIndex+1, maxShopTotal)
+
+	var dayTotal [10]float64
+	for j := 0; j < 10; j++ {
+		for i := 0; i < 3; i++ {
+			dayTotal[j] += income[i][j]
+		}
+	}
+
+	maxDayIndex := 0
+	maxDayTotal := dayTotal[0]
+	for j := 1; j < 10; j++ {
+		if dayTotal[j] > maxDayTotal {
+			maxDayTotal = dayTotal[j]
+			maxDayIndex = j
+		}
+	}
+	fmt.Printf("б) Максимальный общий доход был в день %d: %.2f\n",
+		maxDayIndex+1, maxDayTotal)
+
+	maxIncome := income[0][0]
+	maxShopDay := 0
+	maxDayShop := 0
+
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 10; j++ {
+			if income[i][j] > maxIncome {
+				maxIncome = income[i][j]
+				maxShopDay = i
+				maxDayShop = j
+			}
+		}
+	}
+	fmt.Printf("в) Магазин %d в день %d получил максимальный доход за день: %.2f\n",
+		maxShopDay+1, maxDayShop+1, maxIncome)
+}
+
+func ch9ex15() {
+	fmt.Println("9.15. Доход магазинов (доп.)")
+
+	var income [3][10]float64
+
+	fmt.Println("Введите доход 3 магазинов за 10 дней:")
+	for i := 0; i < 3; i++ {
+		fmt.Printf("Магазин %d: ", i+1)
+		for j := 0; j < 10; j++ {
+			fmt.Scan(&income[i][j])
+		}
+	}
+
+	fmt.Println("а) День с максимальным доходом для каждого магазина:")
+	for i := 0; i < 3; i++ {
+		maxDay := 0
+		maxDayIncome := income[i][0]
+
+		for j := 1; j < 10; j++ {
+			if income[i][j] > maxDayIncome {
+				maxDayIncome = income[i][j]
+				maxDay = j
+			}
+		}
+		fmt.Printf("  Магазин %d: день %d (%.2f)\n",
+			i+1, maxDay+1, maxDayIncome)
+	}
+
+	fmt.Println("б) Магазин с максимальным доходом в каждый день:")
+	for j := 0; j < 10; j++ {
+		maxShop := 0
+		maxIncome := income[0][j]
+
+		for i := 1; i < 3; i++ {
+			if income[i][j] > maxIncome {
+				maxIncome = income[i][j]
+				maxShop = i
+			}
+		}
+		fmt.Printf("  День %d: магазин %d (%.2f)\n",
+			j+1, maxShop+1, maxIncome)
+	}
+}
+
+func ch9ex16() {
+	fmt.Println("9.16. Количество студентов в группах")
+
+	var students [5][6]int
+
+	fmt.Println("Введите количество студентов (5 курсов по 6 групп):")
+	for i := 0; i < 5; i++ {
+		fmt.Printf("Курс %d: ", i+1)
+		for j := 0; j < 6; j++ {
+			fmt.Scan(&students[i][j])
+		}
+	}
+
+	var courseTotal [5]int
+	for i := 0; i < 5; i++ {
+		for j := 0; j < 6; j++ {
+			courseTotal[i] += students[i][j]
+		}
+	}
+
+	maxCourseIndex := 0
+	maxCourseTotal := courseTotal[0]
+	for i := 1; i < 5; i++ {
+		if courseTotal[i] > maxCourseTotal {
+			maxCourseTotal = courseTotal[i]
+			maxCourseIndex = i
+		}
+	}
+	fmt.Printf("а) Больше всего студентов на курсе %d: %d студентов\n",
+		maxCourseIndex+1, maxCourseTotal)
+
+	minStudents := students[0][0]
+	minCourse := 0
+	minGroup := 0
+
+	for i := 0; i < 5; i++ {
+		for j := 0; j < 6; j++ {
+			if students[i][j] < minStudents {
+				minStudents = students[i][j]
+				minCourse = i
+				minGroup = j
+			}
+		}
+	}
+	fmt.Printf("б) Самая малочисленная группа: курс %d, группа %d (%d студентов)\n",
+		minCourse+1, minGroup+1, minStudents)
+
+	fmt.Println("в) Самая малочисленная группа на каждом курсе:")
+	for i := 0; i < 5; i++ {
+		minGroupOnCourse := 0
+		minOnCourse := students[i][0]
+
+		for j := 1; j < 6; j++ {
+			if students[i][j] < minOnCourse {
+				minOnCourse = students[i][j]
+				minGroupOnCourse = j
+			}
+		}
+		fmt.Printf("  Курс %d: группа %d (%d студентов)\n",
+			i+1, minGroupOnCourse+1, minOnCourse)
+	}
+}
+
+func ch9ex17() {
+	fmt.Println("9.17. Продажи товаров")
+
+	var prices [5]float64
+	var quantities [5][6]int
+
+	fmt.Println("Введите цены 5 видов товаров:")
+	for i := 0; i < 5; i++ {
+		fmt.Printf("Товар %d: ", i+1)
+		fmt.Scan(&prices[i])
+	}
+
+	fmt.Println("Введите количество проданных товаров за 6 дней:")
+	for i := 0; i < 5; i++ {
+		fmt.Printf("Товар %d (6 дней): ", i+1)
+		for j := 0; j < 6; j++ {
+			fmt.Scan(&quantities[i][j])
+		}
+	}
+
+	fmt.Println("а) Общий доход от каждого вида товара:")
+	var goodsIncome [5]float64
+	for i := 0; i < 5; i++ {
+		totalQty := 0
+		for j := 0; j < 6; j++ {
+			totalQty += quantities[i][j]
+		}
+		goodsIncome[i] = float64(totalQty) * prices[i]
+		fmt.Printf("  Товар %d: %.2f\n", i+1, goodsIncome[i])
+	}
+
+	fmt.Println("б) Общий доход за каждый день:")
+	var daysIncome [6]float64
+	for j := 0; j < 6; j++ {
+		for i := 0; i < 5; i++ {
+			daysIncome[j] += float64(quantities[i][j]) * prices[i]
+		}
+		fmt.Printf("  День %d: %.2f\n", j+1, daysIncome[j])
+	}
+
+	totalIncome := 0.0
+	for j := 0; j < 6; j++ {
+		totalIncome += daysIncome[j]
+	}
+	fmt.Printf("в) Общий доход за 6 дней: %.2f\n", totalIncome)
+
+	maxGoodIndex := 0
+	maxGoodIncome := goodsIncome[0]
+	for i := 1; i < 5; i++ {
+		if goodsIncome[i] > maxGoodIncome {
+			maxGoodIncome = goodsIncome[i]
+			maxGoodIndex = i
+		}
+	}
+	fmt.Printf("г) Максимальный доход от товара %d: %.2f\n",
+		maxGoodIndex+1, maxGoodIncome)
+
+	maxDayIndex := 0
+	maxDayIncome := daysIncome[0]
+	for j := 1; j < 6; j++ {
+		if daysIncome[j] > maxDayIncome {
+			maxDayIncome = daysIncome[j]
+			maxDayIndex = j
+		}
+	}
+	fmt.Printf("д) Максимальный общий доход был в день %d: %.2f\n",
+		maxDayIndex+1, maxDayIncome)
+
+	threshold := 1000.0
+	daysAboveThreshold := 0
+	for j := 0; j < 6; j++ {
+		if daysIncome[j] > threshold {
+			daysAboveThreshold++
+		}
+	}
+	fmt.Printf("е) Дней с доходом выше %.2f: %d\n", threshold, daysAboveThreshold)
+}
+
+func ch9ex18() {
+	fmt.Println("9.18. Лучшая группа по среднему баллу")
+
+	var groups [3][20][3]float64
+
+	studentsInGroup := [3]int{18, 20, 17}
+
+	fmt.Println("Введите оценки студентов (3 группы, 3 экзамена):")
+	for g := 0; g < 3; g++ {
+		fmt.Printf("Группа %d (%d студентов):\n", g+1, studentsInGroup[g])
+		for s := 0; s < studentsInGroup[g]; s++ {
+			fmt.Printf("  Студент %d: ", s+1)
+			for e := 0; e < 3; e++ {
+				fmt.Scan(&groups[g][s][e])
+			}
+		}
+	}
+
+	var groupAverages [3]float64
+
+	for g := 0; g < 3; g++ {
+		groupTotal := 0.0
+		totalGrades := 0
+
+		for s := 0; s < studentsInGroup[g]; s++ {
+			studentTotal := 0.0
+			for e := 0; e < 3; e++ {
+				studentTotal += groups[g][s][e]
+			}
+			groupTotal += studentTotal / 3.0
+			totalGrades++
+		}
+
+		groupAverages[g] = groupTotal / float64(totalGrades)
+	}
+
+	bestGroup := 0
+	bestAverage := groupAverages[0]
+
+	for g := 1; g < 3; g++ {
+		if groupAverages[g] > bestAverage {
+			bestAverage = groupAverages[g]
+			bestGroup = g
+		}
+	}
+
+	fmt.Printf("Лучшая группа: №%d со средним баллом: %.2f\n",
+		bestGroup+1, bestAverage)
+}
+
+func ch9ex19() {
+	fmt.Println("9.19. Количество делителей чисел 120-140")
+
+	fmt.Println("Число | Кол-во делителей")
+	fmt.Println("-----------------------")
+
+	for num := 120; num <= 140; num++ {
+		divisors := 0
+
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				divisors++
+			}
+		}
+
+		fmt.Printf("%5d | %d\n", num, divisors)
+	}
+}
+
+func ch9ex20() {
+	fmt.Println("9.20. График количества делителей")
+
+	var n int
+	fmt.Print("Введите n: ")
+	fmt.Scan(&n)
+
+	fmt.Printf("Количество делителей для чисел от 1 до %d:\n", n)
+
+	for num := 1; num <= n; num++ {
+
+		divisors := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				divisors++
+			}
+		}
+
+		fmt.Printf("%d", num)
+
+		for i := 0; i < divisors; i++ {
+			fmt.Print("+")
+		}
+
+		fmt.Println()
+	}
 }
