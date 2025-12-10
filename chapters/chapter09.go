@@ -6,7 +6,9 @@ func Run09() {
 	tasks := []func(){
 		ch9ex01, ch9ex04, ch9ex05, ch9ex06, ch9ex07, ch9ex08,
 		ch9ex09, ch9ex10, ch9ex11, ch9ex12, ch9ex13, ch9ex14, ch9ex15, ch9ex16,
-		ch9ex17, ch9ex18, ch9ex19, ch9ex20,
+		ch9ex17, ch9ex18, ch9ex19, ch9ex20, ch9ex21, ch9ex22, ch9ex23, ch9ex24,
+		ch9ex25, ch9ex26, ch9ex27, ch9ex28, ch9ex29, ch9ex30, ch9ex31, ch9ex32,
+		ch9ex33, ch9ex34, ch9ex35, ch9ex36, ch9ex37, ch9ex38, ch9ex39,
 	}
 
 	for {
@@ -879,4 +881,529 @@ func ch9ex20() {
 
 		fmt.Println()
 	}
+}
+
+func ch9ex21() {
+	fmt.Println("9.21. Числа от 1 до 500 с 5 делителями:")
+
+	count := 0
+	for num := 1; num <= 500; num++ {
+		divisors := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				divisors++
+			}
+		}
+		if divisors == 5 {
+			fmt.Printf("%d ", num)
+			count++
+		}
+	}
+	fmt.Printf("\nНайдено чисел: %d\n", count)
+}
+
+func ch9ex22() {
+	fmt.Println("9.22. Числа от 200 до 500 с 6 делителями:")
+
+	count := 0
+	for num := 200; num <= 500; num++ {
+		divisors := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				divisors++
+			}
+		}
+		if divisors == 6 {
+			fmt.Printf("%d ", num)
+			count++
+		}
+	}
+	fmt.Printf("\nНайдено чисел: %d\n", count)
+}
+
+func ch9ex23() {
+	fmt.Println("9.23. Числа с заданным количеством делителей")
+
+	var a, b, k int
+	fmt.Print("Введите a, b и k: ")
+	fmt.Scan(&a, &b, &k)
+
+	fmt.Printf("Числа от %d до %d с %d делителями:\n", a, b, k)
+
+	count := 0
+	for num := a; num <= b; num++ {
+		divisors := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				divisors++
+			}
+		}
+		if divisors == k {
+			fmt.Printf("%d ", num)
+			count++
+		}
+	}
+	if count == 0 {
+		fmt.Println("Таких чисел нет")
+	} else {
+		fmt.Printf("\nНайдено чисел: %d\n", count)
+	}
+}
+
+func ch9ex24() {
+	fmt.Println("9.24. Число с максимальным количеством делителей")
+
+	var a, b int
+	fmt.Print("Введите a и b: ")
+	fmt.Scan(&a, &b)
+
+	maxDivisors := 0
+	var numbersWithMax []int
+
+	for num := a; num <= b; num++ {
+		divisors := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				divisors++
+			}
+		}
+
+		if divisors > maxDivisors {
+			maxDivisors = divisors
+			numbersWithMax = []int{num}
+		} else if divisors == maxDivisors {
+			numbersWithMax = append(numbersWithMax, num)
+		}
+	}
+
+	fmt.Printf("Максимальное количество делителей: %d\n", maxDivisors)
+	fmt.Printf("Числа с таким количеством делителей: %v\n", numbersWithMax)
+
+	if len(numbersWithMax) > 0 {
+		maxNum := numbersWithMax[0]
+		for _, num := range numbersWithMax {
+			if num > maxNum {
+				maxNum = num
+			}
+		}
+		fmt.Printf("а) Максимальное число: %d\n", maxNum)
+
+		minNum := numbersWithMax[0]
+		for _, num := range numbersWithMax {
+			if num < minNum {
+				minNum = num
+			}
+		}
+		fmt.Printf("б) Минимальное число: %d\n", minNum)
+	}
+}
+
+func ch9ex25() {
+	fmt.Println("9.25. Трехзначные простые числа:")
+
+	count := 0
+	for num := 100; num <= 999; num++ {
+		isPrime := true
+
+		for d := 2; d*d <= num; d++ {
+			if num%d == 0 {
+				isPrime = false
+				break
+			}
+		}
+		if isPrime {
+			fmt.Printf("%d ", num)
+			count++
+			if count%10 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+	fmt.Printf("\nВсего: %d простых чисел\n", count)
+}
+
+func ch9ex26() {
+	fmt.Println("9.26. Первые 100 простых чисел:")
+
+	count := 0
+	num := 2
+
+	for count < 100 {
+		isPrime := true
+		for d := 2; d*d <= num; d++ {
+			if num%d == 0 {
+				isPrime = false
+				break
+			}
+		}
+		if isPrime {
+			fmt.Printf("%4d ", num)
+			count++
+			if count%10 == 0 {
+				fmt.Println()
+			}
+		}
+		num++
+	}
+	fmt.Println()
+}
+
+func ch9ex27() {
+	fmt.Println("9.27. Сумма делителей чисел от 50 до 70:")
+
+	fmt.Println("Число | Сумма делителей")
+	fmt.Println("----------------------")
+	for num := 50; num <= 70; num++ {
+		sum := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				sum += d
+			}
+		}
+		fmt.Printf("%5d | %d\n", num, sum)
+	}
+}
+
+func ch9ex28() {
+	fmt.Println("9.28. Числа от 100 до 300 с суммой делителей = 50:")
+
+	found := false
+	for num := 100; num <= 300; num++ {
+		sum := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				sum += d
+			}
+		}
+		if sum == 50 {
+			fmt.Printf("%d ", num)
+			found = true
+		}
+	}
+	if !found {
+		fmt.Println("Таких чисел нет")
+	} else {
+		fmt.Println()
+	}
+}
+
+func ch9ex29() {
+	fmt.Println("9.29. Числа от 300 до 600 с суммой делителей кратной 10:")
+
+	count := 0
+	for num := 300; num <= 600; num++ {
+		sum := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				sum += d
+			}
+		}
+		if sum%10 == 0 {
+			fmt.Printf("%d (сумма: %d) ", num, sum)
+			count++
+			if count%5 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+	fmt.Printf("\nВсего: %d чисел\n", count)
+}
+
+func ch9ex30() {
+	fmt.Println("9.30. Трехзначное совершенное число:")
+
+	for num := 100; num <= 999; num++ {
+		sum := 0
+		for d := 1; d <= num/2; d++ {
+			if num%d == 0 {
+				sum += d
+			}
+		}
+		if sum == num {
+			fmt.Printf("Найдено совершенное число: %d\n", num)
+			fmt.Printf("Его делители (кроме самого числа): ")
+			for d := 1; d <= num/2; d++ {
+				if num%d == 0 {
+					fmt.Printf("%d ", d)
+				}
+			}
+			fmt.Println()
+			return
+		}
+	}
+	fmt.Println("Трехзначных совершенных чисел нет")
+}
+
+func ch9ex31() {
+	fmt.Println("9.31. Совершенные числа меньше 100000:")
+
+	num := 1
+	count := 0
+
+	for {
+		sum := 0
+		for d := 1; d <= num/2; d++ {
+			if num%d == 0 {
+				sum += d
+			}
+		}
+
+		if sum == num && num < 100000 {
+			fmt.Printf("%d ", num)
+			count++
+		}
+
+		num++
+		if num >= 100000 {
+			break
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Совершенных чисел не найдено")
+	} else {
+		fmt.Printf("\nВсего: %d совершенных чисел\n", count)
+	}
+}
+
+func ch9ex32() {
+	fmt.Println("9.32. Число с максимальной суммой делителей")
+
+	var a, b int
+	fmt.Print("Введите a и b: ")
+	fmt.Scan(&a, &b)
+
+	maxSum := 0
+	numberWithMaxSum := a
+
+	for num := a; num <= b; num++ {
+		sum := 0
+		for d := 1; d <= num; d++ {
+			if num%d == 0 {
+				sum += d
+			}
+		}
+
+		if sum > maxSum {
+			maxSum = sum
+			numberWithMaxSum = num
+		}
+	}
+
+	fmt.Printf("Число с максимальной суммой делителей: %d\n", numberWithMaxSum)
+	fmt.Printf("Сумма его делителей: %d\n", maxSum)
+}
+
+func ch9ex33() {
+	fmt.Println("9.33. Дружественные числа меньше 50000:")
+
+	divisorSums := make([]int, 50001)
+
+	for num := 1; num <= 50000; num++ {
+		sum := 0
+		for d := 1; d <= num/2; d++ {
+			if num%d == 0 {
+				sum += d
+			}
+		}
+		divisorSums[num] = sum
+	}
+
+	count := 0
+	for a := 1; a <= 50000; a++ {
+		b := divisorSums[a]
+		if b <= 50000 && b > a && divisorSums[b] == a {
+			fmt.Printf("(%d, %d) ", a, b)
+			count++
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Дружественных чисел не найдено")
+	} else {
+		fmt.Printf("\nВсего пар: %d\n", count)
+	}
+}
+
+func ch9ex34() {
+	fmt.Println("9.34. Способы выплаты суммы")
+
+	var n int
+	fmt.Print("Введите сумму n (n < 100): ")
+	fmt.Scan(&n)
+
+	count := 0
+	fmt.Println("\na) Подсчет количества способов:")
+
+	for tens := 0; tens <= n/10; tens++ {
+		remaining := n - tens*10
+		for fives := 0; fives <= remaining/5; fives++ {
+			remaining2 := remaining - fives*5
+			for twos := 0; twos <= remaining2/2; twos++ {
+				count++
+			}
+		}
+	}
+
+	fmt.Printf("Количество способов выплаты: %d\n", count)
+
+	fmt.Println("\nb) Все способы выплаты:")
+	fmt.Println("10р 5р 2р 1р")
+	fmt.Println("------------")
+
+	wayNum := 1
+	for tens := 0; tens <= n/10; tens++ {
+		remaining := n - tens*10
+		for fives := 0; fives <= remaining/5; fives++ {
+			remaining2 := remaining - fives*5
+			for twos := 0; twos <= remaining2/2; twos++ {
+				ones := remaining2 - twos*2
+				fmt.Printf("%2d. %2d  %2d  %2d  %2d\n",
+					wayNum, tens, fives, twos, ones)
+				wayNum++
+			}
+		}
+	}
+}
+
+func ch9ex35() {
+	fmt.Println("9.35. Минимальное количество купюр для выплаты")
+
+	var n int
+	fmt.Print("Введите n: ")
+	fmt.Scan(&n)
+
+	denominations := []int{64, 32, 16, 8, 4, 2, 1}
+
+	for amount := n; amount <= n+10; amount++ {
+		fmt.Printf("\nСумма %d рублей:\n", amount)
+		remaining := amount
+
+		for _, denom := range denominations {
+			if remaining == 0 {
+				break
+			}
+			count := remaining / denom
+			if count > 0 {
+				fmt.Printf("  Купюры по %d руб: %d шт.\n", denom, count)
+				remaining -= count * denom
+			}
+		}
+	}
+}
+
+func ch9ex36() {
+	fmt.Println("9.36. Прямоугольники с заданной площадью")
+
+	var s int
+	fmt.Print("Введите площадь s: ")
+	fmt.Scan(&s)
+
+	fmt.Println("\na) Решения разными (с перестановкой):")
+	countA := 0
+	for a := 1; a <= s; a++ {
+		if s%a == 0 {
+			b := s / a
+			fmt.Printf("  %d x %d\n", a, b)
+			countA++
+		}
+	}
+	fmt.Printf("Всего решений: %d\n", countA)
+
+	fmt.Println("\nb) Решения совпадающими (без перестановки):")
+	countB := 0
+	for a := 1; a*a <= s; a++ {
+		if s%a == 0 {
+			b := s / a
+			fmt.Printf("  %d x %d\n", a, b)
+			countB++
+		}
+	}
+	fmt.Printf("Всего решений: %d\n", countB)
+}
+
+func ch9ex37() {
+	fmt.Println("9.37. Параллелепипеды с заданным объемом")
+
+	var v int
+	fmt.Print("Введите объем v: ")
+	fmt.Scan(&v)
+
+	fmt.Println("\na) Решения разными (с перестановкой):")
+	countA := 0
+	for a := 1; a <= v; a++ {
+		if v%a == 0 {
+			for b := 1; b <= v/a; b++ {
+				if (v/a)%b == 0 {
+					c := v / (a * b)
+					if a*b*c == v {
+						fmt.Printf("  %d x %d x %d\n", a, b, c)
+						countA++
+					}
+				}
+			}
+		}
+	}
+	fmt.Printf("Всего решений: %d\n", countA)
+
+	fmt.Println("\nb) Решения совпадающими (без перестановки):")
+	countB := 0
+	for a := 1; a*a*a <= v; a++ {
+		if v%a == 0 {
+			for b := a; b*b <= v/a; b++ {
+				if (v/a)%b == 0 {
+					c := v / (a * b)
+					if a*b*c == v && c >= b {
+						fmt.Printf("  %d x %d x %d\n", a, b, c)
+						countB++
+					}
+				}
+			}
+		}
+	}
+	fmt.Printf("Всего решений: %d\n", countB)
+}
+
+func ch9ex38() {
+	fmt.Println("9.38. Решения уравнения x² + y² = k² (1-30):")
+
+	solutions := make(map[string]bool)
+	count := 0
+
+	for x := 1; x <= 30; x++ {
+		for y := x; y <= 30; y++ {
+			for k := 1; k <= 30; k++ {
+				if x*x+y*y == k*k {
+					key := fmt.Sprintf("%d² + %d² = %d²", x, y, k)
+					if !solutions[key] {
+						fmt.Printf("  %s\n", key)
+						solutions[key] = true
+						count++
+					}
+				}
+			}
+		}
+	}
+
+	fmt.Printf("Всего решений: %d\n", count)
+}
+
+func ch9ex39() {
+	fmt.Println("9.39. Сумма степеней 1ⁿ + 2ⁿ + ... + mⁿ")
+
+	var m, n int
+	fmt.Print("Введите m и n: ")
+	fmt.Scan(&m, &n)
+
+	sum := 0
+	for i := 1; i <= m; i++ {
+
+		power := 1
+		for j := 0; j < n; j++ {
+			power *= i
+		}
+		sum += power
+	}
+
+	fmt.Printf("1^%d + 2^%d + ... + %d^%d = %d\n", n, n, m, n, sum)
 }
