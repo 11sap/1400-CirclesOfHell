@@ -1,14 +1,19 @@
 package chapters
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func Run09() {
 	tasks := []func(){
-		ch9ex01, ch9ex04, ch9ex05, ch9ex06, ch9ex07, ch9ex08,
+		ch9ex01, ch9ex02, ch9ex03, ch9ex04, ch9ex05, ch9ex06, ch9ex07, ch9ex08,
 		ch9ex09, ch9ex10, ch9ex11, ch9ex12, ch9ex13, ch9ex14, ch9ex15, ch9ex16,
 		ch9ex17, ch9ex18, ch9ex19, ch9ex20, ch9ex21, ch9ex22, ch9ex23, ch9ex24,
 		ch9ex25, ch9ex26, ch9ex27, ch9ex28, ch9ex29, ch9ex30, ch9ex31, ch9ex32,
-		ch9ex33, ch9ex34, ch9ex35, ch9ex36, ch9ex37, ch9ex38, ch9ex39,
+		ch9ex33, ch9ex34, ch9ex35, ch9ex36, ch9ex37, ch9ex38, ch9ex39, ch9ex40,
+		ch9ex41, ch9ex42, ch9ex43, ch9ex44, ch9ex45, ch9ex46, ch9ex47, ch9ex48,
+		ch9ex49, ch9ex50, ch9ex51, ch9ex52, ch9ex53, ch9ex54,
 	}
 
 	for {
@@ -77,6 +82,54 @@ func ch9ex01() {
 		fmt.Println()
 	}
 	// я устал босс, это полный треш
+}
+
+func ch9ex02() {
+	fmt.Println("9.2. Таблица сложения")
+
+	fmt.Println("\nа)")
+	for j := 1; j <= 9; j++ {
+		for i := 1; i <= 9; i++ {
+			fmt.Printf("%d+%d=%2d  ", i, j, i+j)
+			if i%9 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	fmt.Println("\nб)")
+	for i := 1; i <= 9; i++ {
+		for j := 1; j <= 9; j++ {
+			fmt.Printf("%d+%d=%2d  ", i, j, i+j)
+			if j%9 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+}
+
+func ch9ex03() {
+	fmt.Println("9.3. Таблица умножения")
+
+	fmt.Println("\nа)")
+	for i := 1; i <= 9; i++ {
+		for j := 1; j <= 9; j++ {
+			fmt.Printf("%d*%d=%2d  ", i, j, i*j)
+			if j%9 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	fmt.Println("\nб)")
+	for j := 1; j <= 9; j++ {
+		for i := 1; i <= 9; i++ {
+			fmt.Printf("%d*%d=%2d  ", i, j, i*j)
+			if i%9 == 0 {
+				fmt.Println()
+			}
+		}
+	}
 }
 
 func ch9ex04() {
@@ -1406,4 +1459,523 @@ func ch9ex39() {
 	}
 
 	fmt.Printf("1^%d + 2^%d + ... + %d^%d = %d\n", n, n, m, n, sum)
+}
+
+func ch9ex40() {
+	fmt.Println("9.40. Сумма 1¹ + 2² + ... + nⁿ")
+
+	var n int
+	fmt.Print("Введите n: ")
+	fmt.Scan(&n)
+
+	sum := 0
+	for i := 1; i <= n; i++ {
+
+		power := 1
+		for j := 0; j < i; j++ {
+			power *= i
+		}
+		sum += power
+	}
+
+	fmt.Printf("1¹ + 2² + ... + %d^%d = %d\n", n, n, sum)
+}
+
+func ch9ex41() {
+	fmt.Println("9.41. Трехзначные числа с заданной суммой цифр")
+
+	var n int
+	fmt.Print("Введите n (1-27): ")
+	fmt.Scan(&n)
+
+	if n < 1 || n > 27 {
+		fmt.Println("n должно быть от 1 до 27")
+		return
+	}
+
+	fmt.Printf("Трехзначные числа с суммой цифр %d:\n", n)
+	count := 0
+
+	for num := 100; num <= 999; num++ {
+
+		str := fmt.Sprintf("%d", num)
+
+		sumDigits := 0
+		for _, ch := range str {
+			sumDigits += int(ch - '0')
+		}
+
+		if sumDigits == n {
+			fmt.Printf("%d ", num)
+			count++
+			if count%10 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Таких чисел нет")
+	} else {
+		fmt.Printf("\nВсего: %d чисел\n", count)
+	}
+}
+
+func ch9ex42() {
+	fmt.Println("9.42. Трехзначные числа без повторяющихся цифр:")
+
+	count := 0
+
+	for num := 100; num <= 999; num++ {
+		str := fmt.Sprintf("%d", num)
+
+		a, b, c := str[0], str[1], str[2]
+		if a != b && a != c && b != c {
+			fmt.Printf("%d ", num)
+			count++
+			if count%10 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	fmt.Printf("\nВсего: %d чисел\n", count)
+}
+
+func ch9ex43() {
+	fmt.Println("9.43. НОД нескольких чисел (алгоритм Евклида)")
+
+	var n int
+	fmt.Print("Сколько чисел? ")
+	fmt.Scan(&n)
+
+	if n < 2 {
+		fmt.Println("Нужно как минимум 2 числа")
+		return
+	}
+
+	numbers := make([]int, n)
+	fmt.Printf("Введите %d чисел: ", n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&numbers[i])
+	}
+
+	gcd := func(a, b int) int {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+
+	result := numbers[0]
+	for i := 1; i < n; i++ {
+		result = gcd(result, numbers[i])
+	}
+
+	fmt.Printf("НОД всех чисел: %d\n", result)
+}
+
+func ch9ex44() {
+	fmt.Println("9.44. Способы составления веса из гирь")
+
+	weights := []int{100, 200, 500, 500, 1000, 1200, 1400, 1500, 2000, 3000}
+	n := len(weights)
+
+	var v int
+	fmt.Print("Введите вес v (в граммах): ")
+	fmt.Scan(&v)
+
+	count := 0
+
+	var findCombinations func(int, int)
+	findCombinations = func(index int, currentSum int) {
+		if currentSum == v {
+			count++
+			return
+		}
+		if currentSum > v || index >= n {
+			return
+		}
+
+		findCombinations(index+1, currentSum)
+
+		findCombinations(index+1, currentSum+weights[index])
+	}
+
+	findCombinations(0, 0)
+
+	fmt.Printf("Число способов составить вес %d г: %d\n", v, count)
+}
+
+func ch9ex45() {
+	fmt.Println("9.45. Числа с квадратом суммы цифр = m")
+
+	var m, n int
+	fmt.Print("Введите m и n: ")
+	fmt.Scan(&m, &n)
+
+	fmt.Printf("Числа < %d, у которых (сумма цифр)² = %d:\n", n, m)
+
+	count := 0
+	for num := 1; num < n; num++ {
+
+		sumDigits := 0
+		temp := num
+		for temp > 0 {
+			sumDigits += temp % 10
+			temp /= 10
+		}
+
+		if sumDigits*sumDigits == m {
+			fmt.Printf("%d (сумма цифр: %d) ", num, sumDigits)
+			count++
+			if count%5 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Таких чисел нет")
+	} else {
+		fmt.Printf("\nВсего: %d чисел\n", count)
+	}
+}
+
+func ch9ex46() {
+	fmt.Println("9.46. Цифровой корень числа")
+
+	var num int
+	fmt.Print("Введите натуральное число: ")
+	fmt.Scan(&num)
+
+	original := num
+
+	for num >= 10 {
+		sum := 0
+		temp := num
+		for temp > 0 {
+			sum += temp % 10
+			temp /= 10
+		}
+		num = sum
+	}
+
+	fmt.Printf("Цифровой корень числа %d: %d\n", original, num)
+}
+
+func ch9ex47() {
+	fmt.Println("9.47. Покупка скота (100 рублей, 100 голов)")
+	fmt.Println("Бык - 10 руб, Корова - 5 руб, Теленок - 0.5 руб")
+	fmt.Println("Варианты покупки 100 голов на 100 рублей:")
+
+	count := 0
+
+	for bulls := 0; bulls <= 10; bulls++ {
+		for cows := 0; cows <= 20; cows++ {
+			calves := 100 - bulls - cows
+			if calves >= 0 {
+				totalCost := float64(bulls)*10 + float64(cows)*5 + float64(calves)*0.5
+				if totalCost == 100 {
+					fmt.Printf("Быков: %d, Коров: %d, Телят: %d\n",
+						bulls, cows, calves)
+					count++
+				}
+			}
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Нет возможных вариантов")
+	} else {
+		fmt.Printf("Всего вариантов: %d\n", count)
+	}
+}
+
+func ch9ex48() {
+	fmt.Println("9.48. Разложение на простые множители")
+
+	var n int
+	fmt.Print("Введите натуральное число: ")
+	fmt.Scan(&n)
+
+	fmt.Printf("Разложение числа %d:\n", n)
+
+	fmt.Println("1) Каждый множитель один раз:")
+	factorsSet := make(map[int]bool)
+	temp := n
+	divisor := 2
+
+	for temp > 1 {
+		if temp%divisor == 0 {
+			factorsSet[divisor] = true
+			temp /= divisor
+		} else {
+			divisor++
+		}
+	}
+
+	sortedFactors := make([]int, 0, len(factorsSet))
+	for factor := range factorsSet {
+		sortedFactors = append(sortedFactors, factor)
+	}
+	sort.Ints(sortedFactors)
+
+	for i, factor := range sortedFactors {
+		if i > 0 {
+			fmt.Print(" * ")
+		}
+		fmt.Print(factor)
+	}
+	if len(sortedFactors) == 0 {
+		fmt.Print("1")
+	}
+	fmt.Println()
+
+	fmt.Println("2) Множители с кратностями:")
+	temp = n
+	divisor = 2
+	first := true
+
+	for temp > 1 {
+		count := 0
+		for temp%divisor == 0 {
+			count++
+			temp /= divisor
+		}
+
+		if count > 0 {
+			if !first {
+				fmt.Print(" * ")
+			}
+			if count == 1 {
+				fmt.Print(divisor)
+			} else {
+				fmt.Printf("%d^%d", divisor, count)
+			}
+			first = false
+		}
+		divisor++
+	}
+
+	if first {
+		fmt.Print("1")
+	}
+	fmt.Println()
+}
+
+func ch9ex49() {
+	fmt.Println("9.49. Все простые делители числа")
+
+	var n int
+	fmt.Print("Введите натуральное число: ")
+	fmt.Scan(&n)
+
+	fmt.Printf("Простые делители числа %d: ", n)
+
+	temp := n
+	divisor := 2
+	first := true
+
+	for temp > 1 {
+		if temp%divisor == 0 {
+			if !first {
+				fmt.Print(", ")
+			}
+			fmt.Print(divisor)
+			first = false
+
+			for temp%divisor == 0 {
+				temp /= divisor
+			}
+		}
+		divisor++
+	}
+
+	if first {
+		fmt.Print("нет (или 1)")
+	}
+	fmt.Println()
+}
+
+func ch9ex50() {
+	fmt.Println("9.50. Числа, взаимно простые с n")
+
+	var n int
+	fmt.Print("Введите натуральное число n: ")
+	fmt.Scan(&n)
+
+	gcd := func(a, b int) int {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+
+	fmt.Printf("Числа < %d, взаимно простые с %d:\n", n, n)
+
+	count := 0
+	for i := 1; i < n; i++ {
+		if gcd(i, n) == 1 {
+			fmt.Printf("%d ", i)
+			count++
+			if count%10 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Таких чисел нет")
+	} else {
+		fmt.Printf("\nВсего: %d чисел\n", count)
+	}
+}
+
+func ch9ex51() {
+	fmt.Println("9.51. Числа, взаимно простые с p, меньшие n")
+
+	var n, p int
+	fmt.Print("Введите n и p: ")
+	fmt.Scan(&n, &p)
+
+	gcd := func(a, b int) int {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+
+	fmt.Printf("Числа < %d, взаимно простые с %d:\n", n, p)
+
+	count := 0
+	for i := 1; i < n; i++ {
+		if gcd(i, p) == 1 {
+			fmt.Printf("%d ", i)
+			count++
+			if count%10 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Таких чисел нет")
+	} else {
+		fmt.Printf("\nВсего: %d чисел\n", count)
+	}
+}
+
+func ch9ex52() {
+	fmt.Println("9.52. Делители q, взаимно простые с p")
+
+	var p, q int
+	fmt.Print("Введите p и q: ")
+	fmt.Scan(&p, &q)
+
+	gcd := func(a, b int) int {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+
+	fmt.Printf("Делители %d, взаимно простые с %d:\n", q, p)
+
+	count := 0
+	for d := 1; d <= q; d++ {
+		if q%d == 0 && gcd(d, p) == 1 {
+			fmt.Printf("%d ", d)
+			count++
+			if count%10 == 0 {
+				fmt.Println()
+			}
+		}
+	}
+
+	if count == 0 {
+		fmt.Println("Таких делителей нет")
+	} else {
+		fmt.Printf("\nВсего: %d делителей\n", count)
+	}
+}
+
+func ch9ex53() {
+	fmt.Println("9.53. Число, представимое двумя способами как сумма кубов")
+
+	limit := 10000
+	sums := make(map[int][]string)
+
+	for a := 1; a*a*a < limit; a++ {
+		for b := a; b*b*b < limit; b++ {
+			sum := a*a*a + b*b*b
+			if sum < limit {
+				representation := fmt.Sprintf("%d³ + %d³", a, b)
+				sums[sum] = append(sums[sum], representation)
+			}
+		}
+	}
+
+	smallest := -1
+	for sum, representations := range sums {
+		if len(representations) >= 2 {
+			if smallest == -1 || sum < smallest {
+				smallest = sum
+			}
+		}
+	}
+
+	if smallest != -1 {
+		fmt.Printf("Наименьшее такое число: %d\n", smallest)
+		fmt.Println("Представления:")
+		for _, rep := range sums[smallest] {
+			fmt.Printf("  %s = %d\n", rep, smallest)
+		}
+	} else {
+		fmt.Println("Такое число не найдено в пределах", limit)
+	}
+}
+
+func ch9ex54() {
+	fmt.Println("9.54. Простые несократимые дроби 0 < дробь < 1, знаменатель ≤ 7")
+
+	gcd := func(a, b int) int {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+
+	fractions := make([]struct {
+		num, den int
+		str      string
+	}, 0)
+
+	for denominator := 2; denominator <= 7; denominator++ {
+		for numerator := 1; numerator < denominator; numerator++ {
+			if gcd(numerator, denominator) == 1 {
+				fractions = append(fractions, struct {
+					num, den int
+					str      string
+				}{
+					num: numerator,
+					den: denominator,
+					str: fmt.Sprintf("%d/%d", numerator, denominator),
+				})
+			}
+		}
+	}
+
+	sort.Slice(fractions, func(i, j int) bool {
+		return fractions[i].num*fractions[j].den < fractions[j].num*fractions[i].den
+	})
+
+	fmt.Println("Дроби в порядке возрастания:")
+	for i, f := range fractions {
+		fmt.Printf("%s ", f.str)
+		if (i+1)%6 == 0 {
+			fmt.Println()
+		}
+	}
+	fmt.Printf("\nВсего: %d дробей\n", len(fractions))
 }
