@@ -2,14 +2,16 @@ package chapters
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 )
 
 func Run10() {
 	tasks := []func(){
 		ch10ex01, ch10ex02, ch10ex03, ch10ex04, ch10ex05, ch10ex06, ch10ex07, ch10ex08,
-		ch10ex09, ch10ex10, ch10ex11, ch10ex12, ch10ex12, ch10ex13, ch10ex14, ch10ex15,
-		ch10ex16, ch10ex17, ch10ex18, ch10ex19, ch10ex20, ch10ex21, ch10ex22, ch10ex23,
+		ch10ex09, ch10ex10, ch10ex11, ch10ex12, ch10ex13, ch10ex14, ch10ex15, ch10ex16,
+		ch10ex17, ch10ex18, ch10ex19, ch10ex20, ch10ex21, ch10ex22, ch10ex23, ch10ex24,
+		ch10ex25, ch10ex26, ch10ex27, ch10ex28,
 	}
 
 	for {
@@ -846,4 +848,263 @@ func ch10ex23() {
 	} else {
 		fmt.Println("Это некозырная карта.")
 	}
+}
+
+func ch10ex24() {
+	fmt.Println("10.24. Слон на шахматной доске")
+
+	a := rand.Intn(8) + 1
+	b := rand.Intn(8) + 1
+	c := rand.Intn(8) + 1
+	d := rand.Intn(8) + 1
+
+	fmt.Printf("Поле 1: (%d, %d)\n", a, b)
+	fmt.Printf("Поле 2: (%d, %d)\n", c, d)
+
+	if math.Abs(float64(a-c)) == math.Abs(float64(b-d)) {
+		fmt.Println("Слон угрожает полю (c, d)")
+	} else {
+		fmt.Println("Слон НЕ угрожает полю (c, d)")
+	}
+}
+
+func ch10ex25() {
+	fmt.Println("10.25. Пешка и конь на шахматной доске")
+
+	a := rand.Intn(8) + 1
+	b := rand.Intn(8) + 1
+	c := rand.Intn(8) + 1
+	d := rand.Intn(8) + 1
+
+	fmt.Printf("Поле 1: (%d, %d)\n", a, b)
+	fmt.Printf("Поле 2: (%d, %d)\n", c, d)
+
+	fmt.Println("\nа) Белая пешка:")
+	fmt.Println("  Обычный ход:")
+
+	if a == c && d == b+1 {
+		fmt.Println("  Может пойти обычным ходом")
+	} else {
+		fmt.Println("  Не может пойти обычным ходом")
+	}
+
+	fmt.Println("  Ход со взятием:")
+
+	if math.Abs(float64(a-c)) == 1 && d == b+1 {
+		fmt.Println("  Может пойти со взятием")
+	} else {
+		fmt.Println("  Не может пойти со взятием")
+	}
+
+	fmt.Println("\nб) Черная пешка:")
+	fmt.Println("  Обычный ход:")
+
+	if a == c && d == b-1 {
+		fmt.Println("  Может пойти обычным ходом")
+	} else {
+		fmt.Println("  Не может пойти обычным ходом")
+	}
+
+	fmt.Println("  Ход со взятием:")
+
+	if math.Abs(float64(a-c)) == 1 && d == b-1 {
+		fmt.Println("  Может пойти со взятием")
+	} else {
+		fmt.Println("  Не может пойти со взятием")
+	}
+
+	fmt.Println("\nв) Конь:")
+
+	dx := math.Abs(float64(a - c))
+	dy := math.Abs(float64(b - d))
+	if (dx == 1 && dy == 2) || (dx == 2 && dy == 1) {
+		fmt.Println("  Конь угрожает полю (c, d)")
+	} else {
+		fmt.Println("  Конь НЕ угрожает полю (c, d)")
+	}
+}
+
+func ch10ex26() {
+	fmt.Println("10.26. Взаимодействие шахматных фигур")
+
+	a := rand.Intn(8) + 1
+	b := rand.Intn(8) + 1
+	c := rand.Intn(8) + 1
+	d := rand.Intn(8) + 1
+	e := rand.Intn(8) + 1
+	f := rand.Intn(8) + 1
+
+	fmt.Printf("Белая фигура на: (%d, %d)\n", a, b)
+	fmt.Printf("Черная фигура на: (%d, %d)\n", c, d)
+	fmt.Printf("Целевое поле: (%d, %d)\n", e, f)
+
+	blackThreatensTarget := func(whiteType string, blackType string) bool {
+		switch blackType {
+		case "ладья":
+
+			return c == e || d == f
+		case "ферзь":
+
+			return c == e || d == f || math.Abs(float64(c-e)) == math.Abs(float64(d-f))
+		case "конь":
+
+			dx := math.Abs(float64(c - e))
+			dy := math.Abs(float64(d - f))
+			return (dx == 1 && dy == 2) || (dx == 2 && dy == 1)
+		case "слон":
+
+			return math.Abs(float64(c-e)) == math.Abs(float64(d-f))
+		default:
+			return false
+		}
+	}
+
+	whiteCanMoveToTarget := func(whiteType string) bool {
+		switch whiteType {
+		case "ладья":
+
+			return a == e || b == f
+		case "ферзь":
+
+			return a == e || b == f || math.Abs(float64(a-e)) == math.Abs(float64(b-f))
+		case "конь":
+
+			dx := math.Abs(float64(a - e))
+			dy := math.Abs(float64(b - f))
+			return (dx == 1 && dy == 2) || (dx == 2 && dy == 1)
+		case "слон":
+
+			return math.Abs(float64(a-e)) == math.Abs(float64(b-f))
+		case "король":
+
+			dx := math.Abs(float64(a - e))
+			dy := math.Abs(float64(b - f))
+			return dx <= 1 && dy <= 1 && !(dx == 0 && dy == 0)
+		default:
+			return false
+		}
+	}
+
+	combinations := []struct {
+		white string
+		black string
+	}{
+		{"ладья", "ладья"},
+		{"ладья", "ферзь"},
+		{"ладья", "конь"},
+		{"ладья", "слон"},
+		{"ферзь", "ферзь"},
+		{"ферзь", "ладья"},
+		{"ферзь", "конь"},
+		{"ферзь", "слон"},
+		{"конь", "конь"},
+		{"конь", "ладья"},
+		{"конь", "ферзь"},
+		{"конь", "слон"},
+		{"слон", "слон"},
+		{"слон", "конь"},
+		{"слон", "ладья"},
+		{"король", "слон"},
+		{"король", "ферзь"},
+		{"король", "конь"},
+		{"король", "ладья"},
+	}
+
+	fmt.Println("\nРезультаты проверки:")
+	for _, combo := range combinations {
+		canMove := whiteCanMoveToTarget(combo.white)
+		underThreat := blackThreatensTarget(combo.white, combo.black)
+
+		fmt.Printf("%s против %s: ", combo.white, combo.black)
+		if canMove && !underThreat {
+			fmt.Println("Может пойти безопасно")
+		} else if canMove && underThreat {
+			fmt.Println("Может пойти, но попадет под удар")
+		} else {
+			fmt.Println("Не может пойти")
+		}
+	}
+}
+
+func ch10ex27() {
+	fmt.Println("10.27. Вычисление площади методом Монте-Карло")
+
+	fmt.Println("\nа) Половина синусоиды (0 до π):")
+
+	points := 1000000
+	hits := 0
+
+	for i := 0; i < points; i++ {
+		x := rand.Float64() * math.Pi
+		y := rand.Float64()
+
+		if y <= math.Sin(x) {
+			hits++
+		}
+	}
+
+	area := float64(hits) / float64(points) * math.Pi
+	exactArea := 2.0
+	fmt.Printf("Приближенная площадь: %.6f\n", area)
+	fmt.Printf("Точная площадь: %.6f\n", exactArea)
+	fmt.Printf("Погрешность: %.6f\n", math.Abs(area-exactArea))
+
+	fmt.Println("\nб) Парабола y = x² от 0 до 3:")
+
+	hits = 0
+	for i := 0; i < points; i++ {
+		x := rand.Float64() * 3
+		y := rand.Float64() * 9
+
+		if y <= x*x {
+			hits++
+		}
+	}
+
+	area = float64(hits) / float64(points) * (3 * 9)
+	exactArea = 9.0
+	fmt.Printf("Приближенная площадь: %.6f\n", area)
+	fmt.Printf("Точная площадь: %.6f\n", exactArea)
+	fmt.Printf("Погрешность: %.6f\n", math.Abs(area-exactArea))
+}
+
+func ch10ex28() {
+	fmt.Println("10.28. Вычисление числа π методом Монте-Карло")
+
+	targetPrecision := 0.0001
+	points := 0
+	hits := 0
+	piEstimate := 0.0
+
+	fmt.Println("Вычисление с точностью 0.0001...")
+
+	for {
+		points++
+
+		x := rand.Float64()*2 - 1
+		y := rand.Float64()*2 - 1
+
+		if x*x+y*y <= 1 {
+			hits++
+		}
+
+		if points%10000 == 0 {
+			piEstimate = 4.0 * float64(hits) / float64(points)
+
+			if math.Abs(piEstimate-math.Pi) < targetPrecision {
+				break
+			}
+		}
+
+		if points > 10000000 {
+			fmt.Println("Достигнуто максимальное количество итераций")
+			break
+		}
+	}
+
+	fmt.Printf("Количество точек: %d\n", points)
+	fmt.Printf("Приближенное значение π: %.10f\n", piEstimate)
+	fmt.Printf("Точное значение π: %.10f\n", math.Pi)
+	fmt.Printf("Разница: %.10f\n", math.Abs(piEstimate-math.Pi))
+	fmt.Printf("Точность достигнута: %v\n", math.Abs(piEstimate-math.Pi) < targetPrecision)
 }
