@@ -6,6 +6,8 @@ import (
 	"math/rand"
 )
 
+var localRand = rand.New(rand.NewSource(99))
+
 func Run11() {
 	tasks := []func(){
 		ch11ex01, ch11ex02, ch11ex03, ch11ex04, ch11ex05, ch11ex06, ch11ex07, ch11ex08,
@@ -14,7 +16,10 @@ func Run11() {
 		ch11ex25, ch11ex26, ch11ex27, ch11ex28, ch11ex29, ch11ex30, ch11ex31, ch11ex32,
 		ch11ex33, ch11ex34, ch11ex35, ch11ex36, ch11ex37, ch11ex38, ch11ex39, ch11ex40,
 		ch11ex41, ch11ex42, ch11ex43, ch11ex44, ch11ex45, ch11ex46, ch11ex47, ch11ex48,
-		ch11ex49, ch11ex50, ch11ex51, ch11ex52,
+		ch11ex49, ch11ex50, ch11ex51, ch11ex52, ch11ex53, ch11ex54, ch11ex55, ch11ex56,
+		ch11ex57, ch11ex58, ch11ex59, ch11ex60, ch11ex61, ch11ex62, ch11ex63, ch11ex64,
+		ch11ex65, ch11ex66, ch11ex67, ch11ex68, ch11ex69, ch11ex70, ch11ex71, ch11ex72,
+		ch11ex73, ch11ex74, ch11ex75, ch11ex76,
 	}
 
 	for {
@@ -1177,23 +1182,721 @@ func ch11ex51() {
 }
 
 func ch11ex52() {
-	fmt.Println("11.52. Проверка свойств суммы")
+	fmt.Println("11.52. Проверка свойств массива")
 
-	arr := []int{23, 45, 67, 89, 12, 34, 56, 78, 90, 11}
-	printArray(arr, "Исходный массив")
+	arr := []int{5, 12, 8, 3, 17, 9, 21, 4, 15, 6}
+
+	printArray(arr, "Массив")
 
 	sum := 0
 	for _, v := range arr {
 		sum += v
 	}
-	isEvenSum := sum%2 == 0
-	fmt.Printf("а) Сумма элементов (%d) четная: %v\n", sum, isEvenSum)
+
+	fmt.Printf("а) Сумма элементов: %d\n", sum)
+	if sum%2 == 0 {
+		fmt.Println("Сумма элементов - четное число (верно)")
+	} else {
+		fmt.Println("Сумма элементов - нечетное число (неверно)")
+	}
 
 	sumSquares := 0
 	for _, v := range arr {
 		sumSquares += v * v
 	}
-	isFiveDigit := sumSquares >= 10000 && sumSquares <= 99999
-	fmt.Printf("б) Сумма квадратов (%d) пятизначная: %v\n",
-		sumSquares, isFiveDigit)
+
+	fmt.Printf("б) Сумма квадратов элементов: %d\n", sumSquares)
+	if sumSquares >= 10000 && sumSquares <= 99999 {
+		fmt.Println("Сумма квадратов - пятизначное число (верно)")
+	} else {
+		fmt.Println("Сумма квадратов - не пятизначное число (неверно)")
+	}
+}
+
+func ch11ex53() {
+	fmt.Println("11.53. Количество учеников в школе")
+
+	localRand := rand.New(rand.NewSource(99))
+	classes := make([]int, 42)
+
+	total := 0
+	for i := 0; i < 42; i++ {
+		classes[i] = 15 + localRand.Intn(21)
+		total += classes[i]
+	}
+
+	fmt.Printf("Общее количество учеников: %d\n", total)
+
+	if total >= 1000 && total <= 9999 {
+		fmt.Println("Общее число учеников - четырехзначное число (верно)")
+	} else {
+		fmt.Println("Общее число учеников - не четырехзначное число (неверно)")
+	}
+}
+
+func ch11ex54() {
+	fmt.Println("11.54. Количество книг в библиотеке")
+
+	localRand := rand.New(rand.NewSource(100))
+	sections := make([]int, 35)
+
+	total := 0
+	for i := 0; i < 35; i++ {
+		sections[i] = 50 + localRand.Intn(251)
+		total += sections[i]
+	}
+
+	fmt.Printf("Общее количество книг: %d\n", total)
+
+	if total >= 100000 && total <= 999999 {
+		fmt.Println("Общее число книг - шестизначное число (верно)")
+	} else {
+		fmt.Println("Общее число книг - не шестизначное число (неверно)")
+	}
+}
+
+func ch11ex55() {
+	fmt.Println("11.55. Проверка грузоподъемности автомобиля")
+
+	localRand := rand.New(rand.NewSource(101))
+	weights := make([]int, 50)
+
+	carryingCapacity := 5000
+
+	totalWeight := 0
+	for i := 0; i < 50; i++ {
+		weights[i] = 50 + localRand.Intn(151)
+		totalWeight += weights[i]
+	}
+
+	fmt.Printf("Грузоподъемность автомобиля: %d кг\n", carryingCapacity)
+	fmt.Printf("Общая масса предметов: %d кг\n", totalWeight)
+
+	if totalWeight <= carryingCapacity {
+		fmt.Println("Общая масса не превышает грузоподъемность (верно)")
+	} else {
+		fmt.Println("Общая масса превышает грузоподъемность (неверно)")
+	}
+}
+
+func ch11ex56() {
+	fmt.Println("11.56. Спортсмен-десятиборец")
+
+	localRand := rand.New(rand.NewSource(102))
+	scores := make([]int, 10)
+
+	requiredScore := 700
+
+	totalScore := 0
+	for i := 0; i < 10; i++ {
+		scores[i] = 50 + localRand.Intn(51)
+		totalScore += scores[i]
+	}
+
+	printArray(scores, "Баллы по видам спорта")
+	fmt.Printf("Общая сумма баллов: %d\n", totalScore)
+	fmt.Printf("Необходимая сумма для выхода: %d\n", requiredScore)
+
+	if totalScore > requiredScore {
+		fmt.Println("Спортсмен вышел в следующий этап соревнований")
+	} else {
+		fmt.Println("Спортсмен не вышел в следующий этас соревнований")
+	}
+}
+
+func ch11ex57() {
+	fmt.Println("11.57. Осадки за июнь")
+
+	localRand := rand.New(rand.NewSource(103))
+	precipitation := make([]int, 30)
+
+	for i := 0; i < 30; i++ {
+		precipitation[i] = localRand.Intn(26)
+	}
+
+	firstHalf := 0
+	secondHalf := 0
+
+	for i := 0; i < 15; i++ {
+		firstHalf += precipitation[i]
+	}
+
+	for i := 15; i < 30; i++ {
+		secondHalf += precipitation[i]
+	}
+
+	fmt.Println("а) Сравнение первой и второй половины июня:")
+	fmt.Printf("  Первая половина (1-15 июня): %d мм\n", firstHalf)
+	fmt.Printf("  Вторая половина (16-30 июня): %d мм\n", secondHalf)
+
+	if firstHalf > secondHalf {
+		fmt.Println("  В первую половину выпало больше осадков")
+	} else if secondHalf > firstHalf {
+		fmt.Println("  Во вторую половину выпало больше осадков")
+	} else {
+		fmt.Println("  В обе половины выпало одинаковое количество осадков")
+	}
+
+	decade1 := 0
+	decade2 := 0
+	decade3 := 0
+
+	for i := 0; i < 10; i++ {
+		decade1 += precipitation[i]
+	}
+
+	for i := 10; i < 20; i++ {
+		decade2 += precipitation[i]
+	}
+
+	for i := 20; i < 30; i++ {
+		decade3 += precipitation[i]
+	}
+
+	fmt.Println("\nб) Сравнение декад:")
+	fmt.Printf("  Первая декада (1-10 июня): %d мм\n", decade1)
+	fmt.Printf("  Вторая декада (11-20 июня): %d мм\n", decade2)
+	fmt.Printf("  Третья декада (21-30 июня): %d мм\n", decade3)
+
+	maxDecade := decade1
+	decadeName := "первая"
+
+	if decade2 > maxDecade {
+		maxDecade = decade2
+		decadeName = "вторая"
+	}
+	if decade3 > maxDecade {
+		maxDecade = decade3
+		decadeName = "третья"
+	}
+
+	fmt.Printf("  Больше всего осадков выпало в %s декаде: %d мм\n", decadeName, maxDecade)
+}
+
+func ch11ex58() {
+	fmt.Println("11.58. Фигурное катание")
+
+	localRand := rand.New(rand.NewSource(104))
+	scores := make([]int, 18)
+
+	for i := 0; i < 18; i++ {
+		scores[i] = 50 + localRand.Intn(11)
+	}
+
+	obligatorySum := 0
+	for i := 0; i < 6; i++ {
+		obligatorySum += scores[i]
+	}
+
+	freeSum := 0
+	for i := 6; i < 18; i++ {
+		freeSum += scores[i]
+	}
+
+	fmt.Printf("Обязательная программа (первые 6 оценок): %d баллов\n", obligatorySum)
+	fmt.Printf("Произвольная программа (остальные 12 оценок): %d баллов\n", freeSum)
+
+	if obligatorySum > freeSum {
+		fmt.Println("Лучший результат показан в обязательной программе")
+	} else if freeSum > obligatorySum {
+		fmt.Println("Лучший результат показан в произвольной программе")
+	} else {
+		fmt.Println("Результаты в обеих программах одинаковы")
+	}
+}
+
+func ch11ex59() {
+	fmt.Println("11.59. Сумма элементов с условиями")
+
+	arr := []int{15, 25, 8, 30, 12, 40, 5, 18, 22, 10}
+
+	printArray(arr, "Массив")
+
+	sumLess20 := 0
+	for _, v := range arr {
+		if v <= 20 {
+			sumLess20 += v
+		}
+	}
+	fmt.Printf("а) Сумма элементов не превышающих 20: %d\n", sumLess20)
+
+	var a int
+	fmt.Print("б) Введите число a: ")
+	fmt.Scan(&a)
+
+	sumGreaterA := 0
+	for _, v := range arr {
+		if v > a {
+			sumGreaterA += v
+		}
+	}
+	fmt.Printf("   Сумма элементов больших %d: %d\n", a, sumGreaterA)
+}
+
+func ch11ex60() {
+	fmt.Println("11.60. Сумма элементов с разными условиями")
+
+	arr := []int{3, 8, 15, 21, 12, 9, 6, 24, 18, 27}
+
+	printArray(arr, "Массив")
+
+	sumOdd := 0
+	for _, v := range arr {
+		if v%2 != 0 {
+			sumOdd += v
+		}
+	}
+	fmt.Printf("а) Сумма нечетных элементов: %d\n", sumOdd)
+
+	var k int
+	fmt.Print("б) Введите число k: ")
+	fmt.Scan(&k)
+
+	sumMultipleK := 0
+	for _, v := range arr {
+		if v%k == 0 {
+			sumMultipleK += v
+		}
+	}
+	fmt.Printf("   Сумма элементов кратных %d: %d\n", k, sumMultipleK)
+
+	var a, b int
+	fmt.Print("в) Введите число a: ")
+	fmt.Scan(&a)
+	fmt.Print("   Введите число b: ")
+	fmt.Scan(&b)
+
+	sumMultipleAB := 0
+	for _, v := range arr {
+		if v%a == 0 || v%b == 0 {
+			sumMultipleAB += v
+		}
+	}
+	fmt.Printf("   Сумма элементов кратных %d или %d: %d\n", a, b, sumMultipleAB)
+}
+
+func ch11ex61() {
+	fmt.Println("11.61. Сумма элементов с четными позициями (2, 4, 6, ...)")
+
+	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
+
+	printArray(arr, "Массив")
+
+	sum := 0
+
+	for i := 1; i < len(arr); i += 2 {
+		sum += arr[i]
+	}
+
+	fmt.Printf("Сумма второго, четвертого, шестого и т.д. элементов: %d\n", sum)
+}
+
+func ch11ex62() {
+	fmt.Println("11.62. Осадки по четным числам февраля")
+
+	localRand := rand.New(rand.NewSource(105))
+	precipitation := make([]int, 28)
+
+	for i := 0; i < 28; i++ {
+		precipitation[i] = localRand.Intn(16)
+	}
+
+	totalEvenDays := 0
+
+	for i := 1; i < 28; i += 2 {
+		totalEvenDays += precipitation[i]
+	}
+
+	fmt.Printf("Общее число осадков, выпавших по четным числам февраля: %d мм\n", totalEvenDays)
+}
+
+func ch11ex63() {
+	fmt.Println("11.63. Осадки по месяцам года")
+
+	localRand := rand.New(rand.NewSource(106))
+	precipitation := make([]int, 12)
+	months := []string{"январь", "февраль", "март", "апрель", "май", "июнь",
+		"июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"}
+
+	for i := 0; i < 12; i++ {
+		precipitation[i] = 20 + localRand.Intn(81)
+	}
+
+	total := precipitation[2] + precipitation[5] + precipitation[8] + precipitation[11]
+
+	fmt.Println("Осадки по месяцам:")
+	for i := 0; i < 12; i++ {
+		fmt.Printf("  %s: %d мм\n", months[i], precipitation[i])
+	}
+
+	fmt.Printf("\nОбщее число осадков в марте, июне, сентябре и декабре: %d мм\n", total)
+}
+
+func ch11ex64() {
+	fmt.Println("11.64. Частное от деления сумм")
+
+	arr := []int{-5, 12, -8, 3, -17, 9, 21, -4, 15, -6}
+
+	printArray(arr, "Массив")
+
+	sumPositive := 0
+	sumNegative := 0
+
+	for _, v := range arr {
+		if v > 0 {
+			sumPositive += v
+		} else if v < 0 {
+			sumNegative += v
+		}
+	}
+
+	fmt.Printf("Сумма положительных элементов: %d\n", sumPositive)
+	fmt.Printf("Сумма отрицательных элементов: %d\n", sumNegative)
+
+	if sumNegative != 0 {
+
+		ratio := float64(sumPositive) / float64(abs(sumNegative))
+		fmt.Printf("Частное от деления: %.2f\n", ratio)
+	} else {
+		fmt.Println("Деление на ноль невозможно (сумма отрицательных элементов равна 0)")
+	}
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
+func ch11ex65() {
+	fmt.Println("11.65. Проверка сумм с условиями")
+
+	arr := []int{25, 15, 30, 45, 10, 60, 5, 35, 20, 55}
+
+	printArray(arr, "Массив")
+
+	sumGreater20 := 0
+	for _, v := range arr {
+		if v > 20 {
+			sumGreater20 += v
+		}
+	}
+
+	fmt.Printf("а) Сумма элементов больше 20: %d\n", sumGreater20)
+	if sumGreater20 > 100 {
+		fmt.Println("   Сумма превышает 100 (верно)")
+	} else {
+		fmt.Println("   Сумма не превышает 100 (неверно)")
+	}
+
+	sumLess50 := 0
+	for _, v := range arr {
+		if v < 50 {
+			sumLess50 += v
+		}
+	}
+
+	fmt.Printf("б) Сумма элементов меньше 50: %d\n", sumLess50)
+	if sumLess50%2 == 0 {
+		fmt.Println("   Сумма - четное число (верно)")
+	} else {
+		fmt.Println("   Сумма - нечетное число (неверно)")
+	}
+}
+
+func ch11ex66() {
+	fmt.Println("11.66. Осадки по четным и нечетным дням февраля")
+
+	localRand := rand.New(rand.NewSource(107))
+	precipitation := make([]int, 28)
+
+	for i := 0; i < 28; i++ {
+		precipitation[i] = localRand.Intn(21)
+	}
+
+	sumEven := 0
+	sumOdd := 0
+
+	for i := 0; i < 28; i++ {
+
+		if (i+1)%2 == 0 {
+			sumEven += precipitation[i]
+		} else {
+			sumOdd += precipitation[i]
+		}
+	}
+
+	fmt.Printf("Осадки по нечетным дням: %d мм\n", sumOdd)
+	fmt.Printf("Осадки по четным дням: %d мм\n", sumEven)
+
+	if sumEven > sumOdd {
+		fmt.Println("По четным числам выпало больше осадков (верно)")
+	} else {
+		fmt.Println("По четным числам не выпало больше осадков (неверно)")
+	}
+}
+
+func ch11ex67() {
+	fmt.Println("11.67. Жители на разных сторонах улицы")
+
+	localRand := rand.New(rand.NewSource(108))
+	houses := make([]int, 20)
+
+	for i := 0; i < 20; i++ {
+		houses[i] = 10 + localRand.Intn(41)
+	}
+
+	sumOddHouses := 0
+	sumEvenHouses := 0
+
+	for i := 0; i < 20; i++ {
+
+		if (i+1)%2 == 0 {
+			sumEvenHouses += houses[i]
+		} else {
+			sumOddHouses += houses[i]
+		}
+	}
+
+	fmt.Printf("Жителей в домах с нечетными номерами: %d\n", sumOddHouses)
+	fmt.Printf("Жителей в домах с четными номерами: %d\n", sumEvenHouses)
+
+	if sumOddHouses > sumEvenHouses {
+		fmt.Println("На стороне с нечетными номерами проживает больше жителей")
+	} else if sumEvenHouses > sumOddHouses {
+		fmt.Println("На стороне с четными номерами проживает больше жителей")
+	} else {
+		fmt.Println("На обеих сторонах проживает одинаковое количество жителей")
+	}
+}
+
+func ch11ex68() {
+	fmt.Println("11.68. Количество неотрицательных элементов")
+
+	arr := []int{-3, 5, -2, 0, 8, -1, 4, -7, 6, 0}
+
+	printArray(arr, "Массив")
+
+	countNonNegative := 0
+	for _, v := range arr {
+		if v >= 0 {
+			countNonNegative++
+		}
+	}
+
+	fmt.Printf("Количество неотрицательных элементов: %d\n", countNonNegative)
+}
+
+func ch11ex69() {
+	fmt.Println("11.69. Количество элементов с условиями")
+
+	arr := []int{5, 12, 5, 8, 12, 3, 5, 9, 12, 7}
+
+	printArray(arr, "Массив")
+
+	lastElement := arr[len(arr)-1]
+	countDiffFromLast := 0
+	for _, v := range arr {
+		if v != lastElement {
+			countDiffFromLast++
+		}
+	}
+
+	fmt.Printf("а) Элементов отличных от последнего (%d): %d\n", lastElement, countDiffFromLast)
+
+	var a int
+	fmt.Print("б) Введите число a: ")
+	fmt.Scan(&a)
+
+	countMultipleA := 0
+	for _, v := range arr {
+		if v%a == 0 {
+			countMultipleA++
+		}
+	}
+
+	fmt.Printf("   Элементов кратных %d: %d\n", a, countMultipleA)
+}
+
+func ch11ex70() {
+	fmt.Println("11.70. Дни без осадков в феврале")
+
+	localRand := rand.New(rand.NewSource(109))
+	precipitation := make([]int, 28)
+
+	for i := 0; i < 28; i++ {
+
+		if localRand.Intn(100) < 30 {
+			precipitation[i] = 0
+		} else {
+			precipitation[i] = 1 + localRand.Intn(15)
+		}
+	}
+
+	countNoPrecipitation := 0
+	for i := 0; i < 28; i++ {
+		if precipitation[i] == 0 {
+			countNoPrecipitation++
+		}
+	}
+
+	fmt.Printf("Количество дней без осадков в феврале: %d\n", countNoPrecipitation)
+}
+
+func ch11ex71() {
+	fmt.Println("11.71. Неуспевающие по химии")
+
+	localRand := rand.New(rand.NewSource(110))
+	grades := make([]int, 25)
+
+	for i := 0; i < 25; i++ {
+		grades[i] = 2 + localRand.Intn(4)
+	}
+
+	countFailing := 0
+	for _, grade := range grades {
+		if grade == 2 {
+			countFailing++
+		}
+	}
+
+	fmt.Printf("Количество неуспевающих по химии: %d из 25 учеников\n", countFailing)
+}
+
+func ch11ex72() {
+	fmt.Println("11.72. Продажи товаров в марте")
+
+	localRand := rand.New(rand.NewSource(111))
+	sales := make([]int, 31)
+
+	for i := 0; i < 31; i++ {
+		sales[i] = 10000 + localRand.Intn(40001)
+	}
+
+	var z int
+	fmt.Print("Введите значение z: ")
+	fmt.Scan(&z)
+
+	countAboveZ := 0
+	for i := 0; i < 31; i++ {
+		if sales[i] > z {
+			countAboveZ++
+		}
+	}
+
+	fmt.Printf("Количество дней с продажами выше %d: %d\n", z, countAboveZ)
+}
+
+func ch11ex73() {
+	fmt.Println("11.73. Рост учеников")
+
+	localRand := rand.New(rand.NewSource(112))
+	heights := make([]int, 22)
+
+	for i := 0; i < 22; i++ {
+		heights[i] = 150 + localRand.Intn(41)
+	}
+
+	var r int
+	fmt.Print("Введите значение r (рост в см): ")
+	fmt.Scan(&r)
+
+	countBelowR := 0
+	for _, height := range heights {
+		if height <= r {
+			countBelowR++
+		}
+	}
+
+	fmt.Printf("Количество учеников с ростом не превышающим %d см: %d из 22\n", r, countBelowR)
+}
+
+func ch11ex74() {
+	fmt.Println("11.74. Элементы в промежутке")
+
+	arr := []int{15, 8, 25, 3, 12, 30, 5, 18, 22, 9}
+
+	printArray(arr, "Массив")
+
+	var a, b int
+	fmt.Print("Введите a: ")
+	fmt.Scan(&a)
+	fmt.Print("Введите b (должно быть > a): ")
+	fmt.Scan(&b)
+
+	if b <= a {
+		fmt.Println("Ошибка: b должно быть больше a")
+		return
+	}
+
+	countInRange := 0
+	for _, v := range arr {
+		if v >= a && v <= b {
+			countInRange++
+		}
+	}
+
+	fmt.Printf("Количество элементов в промежутке [%d, %d]: %d\n", a, b, countInRange)
+}
+
+func ch11ex75() {
+	fmt.Println("11.75. Результаты футбольных игр")
+
+	localRand := rand.New(rand.NewSource(113))
+	results := make([]int, 20)
+
+	for i := 0; i < 20; i++ {
+
+		r := localRand.Intn(100)
+		if r < 40 {
+			results[i] = 3
+		} else if r < 70 {
+			results[i] = 1
+		} else {
+			results[i] = 0
+		}
+	}
+
+	wins := 0
+	draws := 0
+
+	for _, result := range results {
+		if result == 3 {
+			wins++
+		} else if result == 1 {
+			draws++
+		}
+	}
+
+	fmt.Printf("Количество выигрышей: %d\n", wins)
+	fmt.Printf("Количество ничьих: %d\n", draws)
+	fmt.Printf("Общее количество выигрышей и ничьих: %d\n", wins+draws)
+}
+
+func ch11ex76() {
+	fmt.Println("11.76. Оценки ученика")
+
+	localRand := rand.New(rand.NewSource(114))
+	grades := make([]int, 10)
+
+	for i := 0; i < 10; i++ {
+		grades[i] = 2 + localRand.Intn(4)
+	}
+
+	countFours := 0
+	countFives := 0
+
+	for _, grade := range grades {
+		if grade == 4 {
+			countFours++
+		} else if grade == 5 {
+			countFives++
+		}
+	}
+
+	printArray(grades, "Оценки")
+	fmt.Printf("Количество четверок: %d\n", countFours)
+	fmt.Printf("Количество пятерок: %d\n", countFives)
+	fmt.Printf("Общее количество четверок и пятерок: %d\n", countFours+countFives)
 }
