@@ -20,7 +20,8 @@ func Run11() {
 		ch11ex57, ch11ex58, ch11ex59, ch11ex60, ch11ex61, ch11ex62, ch11ex63, ch11ex64,
 		ch11ex65, ch11ex66, ch11ex67, ch11ex68, ch11ex69, ch11ex70, ch11ex71, ch11ex72,
 		ch11ex73, ch11ex74, ch11ex75, ch11ex76, ch11ex77, ch11ex78, ch11ex79, ch11ex80,
-		ch11ex81, ch11ex82, ch11ex83,
+		ch11ex81, ch11ex82, ch11ex83, ch11ex84, ch11ex85, ch11ex86, ch11ex87, ch11ex88,
+		ch11ex89, ch11ex90, ch11ex91,
 	}
 
 	for {
@@ -1994,4 +1995,150 @@ func ch11ex83() {
 		}
 	}
 	fmt.Printf("Элементов больше соседей: %d\n", count)
+}
+
+func ch11ex84() {
+	fmt.Printf("Ex84. Проверить условия для массива вещественных чисел.\n")
+	arr := []float64{10.5, -3.2, 45.0, 67.8, 12.1, 99.9, 30.2, 50.55, 25.0, 60.0}
+	posCount, leCount := 0, 0
+	for _, v := range arr {
+		if v > 0 {
+			posCount++
+		}
+		if v <= 50.55 {
+			leCount++
+		}
+	}
+	a := posCount <= 5
+	b := leCount%4 == 0
+	fmt.Printf("а) Положительных не более 5: %s\n", map[bool]string{true: "да", false: "нет"}[a])
+	fmt.Printf("б) Элементов <=50.55 кратно 4: %s\n", map[bool]string{true: "да", false: "нет"}[b])
+}
+
+func ch11ex85() {
+	fmt.Printf("Ex85. Определить, можно ли сформировать баскетбольную команду.\n")
+	heights := []int{165, 180, 172, 168, 185, 175, 190, 162, 178, 169, 174, 182, 167, 171, 176}
+	tallCount := 0
+	for _, h := range heights {
+		if h > 170 {
+			tallCount++
+		}
+	}
+	canForm := tallCount >= 5
+	fmt.Printf("Рост >170 см: %d чел. Можно сформировать команду: %s\n",
+		tallCount, map[bool]string{true: "да", false: "нет"}[canForm])
+}
+
+func ch11ex86() {
+	fmt.Printf("Ex86. Проверить, было ли 10 дней без осадков в марте.\n")
+	precipitation := []int{0, 5, 0, 0, 3, 0, 0, 8, 0, 0, 2, 0, 0, 4, 0, 0, 1, 0, 0, 6, 0, 0, 7, 0, 0, 9, 0, 0, 0, 0, 0}
+	dryDays := 0
+	for _, p := range precipitation {
+		if p == 0 {
+			dryDays++
+		}
+	}
+	has10DryDays := dryDays >= 10
+	fmt.Printf("Дней без осадков: %d. Верно ли, что >=10 дней: %s\n",
+		dryDays, map[bool]string{true: "да", false: "нет"}[has10DryDays])
+}
+
+func ch11ex87() {
+	fmt.Printf("Ex87. Найти среднее арифметическое элементов массива, больших числа 10.\n")
+	arr := []int{5, 15, 8, 20, 3, 12, 25, 9, 18}
+	sum, count := 0, 0
+	for _, v := range arr {
+		if v > 10 {
+			sum += v
+			count++
+		}
+	}
+	avg := 0.0
+	if count > 0 {
+		avg = float64(sum) / float64(count)
+	}
+	fmt.Printf("Среднее элементов >10: %.2f\n", avg)
+}
+
+func ch11ex88() {
+	fmt.Printf("Ex88. Найти среднее арифметическое элементов массива, меньших числа m.\n")
+	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90}
+	m := 45
+	sum, count := 0, 0
+	for _, v := range arr {
+		if v < m {
+			sum += v
+			count++
+		}
+	}
+	avg := 0.0
+	if count > 0 {
+		avg = float64(sum) / float64(count)
+	}
+	fmt.Printf("Среднее элементов <%d: %.2f\n", m, avg)
+}
+
+func ch11ex89() {
+	fmt.Printf("Ex89. Определить среднее количество осадков в дождливые дни.\n")
+	august := []float64{0.0, 5.2, 0.0, 3.8, 2.1, 0.0, 7.5, 0.0, 4.3, 6.2, 0.0, 1.5, 0.0, 9.1, 0.0}
+	sum, rainyDays := 0.0, 0
+	for _, p := range august {
+		if p > 0 {
+			sum += p
+			rainyDays++
+		}
+	}
+	avg := 0.0
+	if rainyDays > 0 {
+		avg = sum / float64(rainyDays)
+	}
+	fmt.Printf("Среднее в дождливые дни: %.2f мм\n", avg)
+}
+
+func ch11ex90() {
+	fmt.Printf("Ex90. Найти средние арифметические положительных и отрицательных элементов.\n")
+	arr := []int{-5, 10, -3, 8, -2, 15, -7, 20}
+	posSum, posCount := 0, 0
+	negSum, negCount := 0, 0
+	for _, v := range arr {
+		if v > 0 {
+			posSum += v
+			posCount++
+		} else if v < 0 {
+			negSum += v
+			negCount++
+		}
+	}
+	posAvg, negAvg := 0.0, 0.0
+	if posCount > 0 {
+		posAvg = float64(posSum) / float64(posCount)
+	}
+	if negCount > 0 {
+		negAvg = float64(negSum) / float64(negCount)
+	}
+	fmt.Printf("Среднее положительных: %.2f, среднее отрицательных: %.2f\n", posAvg, negAvg)
+}
+
+func ch11ex91() {
+	fmt.Printf("Ex91. Определить среднюю массу полных людей и остальных.\n")
+	weights := []int{65, 110, 85, 120, 70, 105, 90, 115, 80, 102, 75, 108, 95, 130, 78}
+	fatSum, fatCount := 0, 0
+	otherSum, otherCount := 0, 0
+	for _, w := range weights {
+		if w > 100 {
+			fatSum += w
+			fatCount++
+		} else {
+			otherSum += w
+			otherCount++
+		}
+	}
+	fatAvg, otherAvg := 0.0, 0.0
+	if fatCount > 0 {
+		fatAvg = float64(fatSum) / float64(fatCount)
+	}
+	if otherCount > 0 {
+		otherAvg = float64(otherSum) / float64(otherCount)
+	}
+	fmt.Printf("Средняя масса полных: %.2f кг, остальных: %.2f кг\n", fatAvg, otherAvg)
 }
