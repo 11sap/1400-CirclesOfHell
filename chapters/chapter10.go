@@ -230,7 +230,7 @@ func ch10ex07() {
 }
 
 func ch10ex08() {
-	fmt.Println("10.8. Бросание монеты:")
+	fmt.Println("Ex8. Бросание монеты:")
 	coin := rand.Intn(2)
 	if coin == 0 {
 		fmt.Println("Выпала решка (0)")
@@ -240,7 +240,7 @@ func ch10ex08() {
 }
 
 func ch10ex09() {
-	fmt.Println("10.9. Относительная частота выпадения монеты:")
+	fmt.Println("Ex9. Относительная частота выпадения монеты:")
 
 	fmt.Println("При 100 бросках:")
 	zeros := 0
@@ -270,7 +270,7 @@ func ch10ex09() {
 }
 
 func ch10ex10() {
-	fmt.Println("10.10. Игра 'Угадай четность'")
+	fmt.Println("Ex10. Игра 'Угадай четность'")
 
 	fmt.Println("Выберите вариант игры:")
 	fmt.Println("1 - Один раунд")
@@ -387,13 +387,13 @@ func ch10ex10() {
 }
 
 func ch10ex11() {
-	fmt.Println("10.11. Бросание игрального кубика:")
+	fmt.Println("Ex11. Бросание игрального кубика:")
 	dice := rand.Intn(6) + 1
 	fmt.Printf("Выпало: %d\n", dice)
 }
 
 func ch10ex12() {
-	fmt.Println("10.12. Два игрока бросают кубик:")
+	fmt.Println("Ex12. Два игрока бросают кубик:")
 
 	player1 := rand.Intn(6) + 1
 	player2 := rand.Intn(6) + 1
@@ -411,7 +411,7 @@ func ch10ex12() {
 }
 
 func ch10ex13() {
-	fmt.Println("10.13. Игра в кубик")
+	fmt.Println("Ex13. Игра в кубик")
 
 	fmt.Println("Выберите вариант игры:")
 	fmt.Println("1 - Каждый бросает кубик два раза")
@@ -494,7 +494,7 @@ func ch10ex13() {
 }
 
 func ch10ex14() {
-	fmt.Println("10.14. Три игрока бросают кубики:")
+	fmt.Println("Ex14. Три игрока бросают кубики:")
 
 	var k int
 	fmt.Print("Сколько кубиков бросает каждый игрок? ")
@@ -540,7 +540,7 @@ func ch10ex14() {
 }
 
 func ch10ex15() {
-	fmt.Println("10.15. Частота выпадения чисел на кубике:")
+	fmt.Println("Ex15. Частота выпадения чисел на кубике:")
 
 	fmt.Println("100 бросков:")
 	counts := make([]int, 7)
@@ -566,7 +566,7 @@ func ch10ex15() {
 }
 
 func ch10ex16() {
-	fmt.Println("10.16. Выбор кости домино:")
+	fmt.Println("Ex16. Выбор кости домино:")
 
 	side1 := rand.Intn(7)
 	side2 := rand.Intn(7)
@@ -575,7 +575,7 @@ func ch10ex16() {
 }
 
 func ch10ex17() {
-	fmt.Println("10.17. Выбор двух костей домино:")
+	fmt.Println("Ex17. Выбор двух костей домино:")
 
 	side1a := rand.Intn(7)
 	side1b := rand.Intn(7)
@@ -601,7 +601,7 @@ func ch10ex17() {
 }
 
 func ch10ex18() {
-	fmt.Println("10.18. Проверка таблицы умножения")
+	fmt.Println("Ex18. Проверка таблицы умножения")
 
 	fmt.Println("а) Один вопрос:")
 	a := rand.Intn(9) + 1
@@ -670,7 +670,7 @@ func ch10ex18c() {
 }
 
 func ch10ex19() {
-	fmt.Println("10.19. Выбор карты одной масти:")
+	fmt.Println("Ex19. Выбор карты одной масти:")
 
 	ranks := []string{"6", "7", "8", "9", "10", "валет", "дама", "король", "туз"}
 	rank := ranks[rand.Intn(len(ranks))]
@@ -679,7 +679,7 @@ func ch10ex19() {
 }
 
 func ch10ex20() {
-	fmt.Println("10.20. Выбор карты из полной колоды:")
+	fmt.Println("Ex20. Выбор карты из полной колоды:")
 
 	suits := []string{"пик", "треф", "бубен", "червей"}
 	ranks := []string{"шестерка", "семерка", "восьмерка", "девятка",
@@ -700,7 +700,7 @@ func ch10ex20() {
 }
 
 func ch10ex21() {
-	fmt.Println("10.21. Сравнение двух карт:")
+	fmt.Println("Ex21. Сравнение двух карт:")
 
 	suits := []string{"пик", "треф", "бубен", "червей"}
 	ranks := []string{"шестерка", "семерка", "восьмерка", "девятка",
@@ -770,7 +770,7 @@ func ch10ex21() {
 }
 
 func ch10ex22() {
-	fmt.Println("10.22. Неоднократный выбор карт:")
+	fmt.Println("Ex22. Неоднократный выбор карт:")
 
 	suits := []string{"пик", "треф", "бубен", "червей"}
 	ranks := []string{"шестерка", "семерка", "восьмерка", "девятка",
@@ -822,7 +822,7 @@ func ch10ex22() {
 }
 
 func ch10ex23() {
-	fmt.Println("10.23. Козырная масть:")
+	fmt.Println("Ex23. Козырная масть:")
 
 	suits := []string{"пик", "треф", "бубен", "червей"}
 	ranks := []string{"шестерка", "семерка", "восьмерка", "девятка",
@@ -851,7 +851,7 @@ func ch10ex23() {
 }
 
 func ch10ex24() {
-	fmt.Println("10.24. Слон на шахматной доске")
+	fmt.Println("Ex24. Слон на шахматной доске")
 
 	a := rand.Intn(8) + 1
 	b := rand.Intn(8) + 1
@@ -869,7 +869,7 @@ func ch10ex24() {
 }
 
 func ch10ex25() {
-	fmt.Println("10.25. Пешка и конь на шахматной доске")
+	fmt.Println("Ex25. Пешка и конь на шахматной доске")
 
 	a := rand.Intn(8) + 1
 	b := rand.Intn(8) + 1
@@ -925,7 +925,7 @@ func ch10ex25() {
 }
 
 func ch10ex26() {
-	fmt.Println("10.26. Взаимодействие шахматных фигур")
+	fmt.Println("Ex26. Взаимодействие шахматных фигур")
 
 	a := rand.Intn(8) + 1
 	b := rand.Intn(8) + 1
@@ -1027,7 +1027,7 @@ func ch10ex26() {
 }
 
 func ch10ex27() {
-	fmt.Println("10.27. Вычисление площади методом Монте-Карло")
+	fmt.Println("Ex27. Вычисление площади методом Монте-Карло")
 
 	fmt.Println("\nа) Половина синусоиды (0 до π):")
 
@@ -1069,7 +1069,7 @@ func ch10ex27() {
 }
 
 func ch10ex28() {
-	fmt.Println("10.28. Вычисление числа π методом Монте-Карло")
+	fmt.Println("Ex28. Вычисление числа π методом Монте-Карло")
 
 	targetPrecision := 0.0001
 	points := 0

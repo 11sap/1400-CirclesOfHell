@@ -85,7 +85,7 @@ func ch9ex01() {
 }
 
 func ch9ex02() {
-	fmt.Println("9.2. Таблица сложения")
+	fmt.Println("Ex2. Таблица сложения")
 
 	fmt.Println("\nа)")
 	for j := 1; j <= 9; j++ {
@@ -109,7 +109,7 @@ func ch9ex02() {
 }
 
 func ch9ex03() {
-	fmt.Println("9.3. Таблица умножения")
+	fmt.Println("Ex3. Таблица умножения")
 
 	fmt.Println("\nа)")
 	for i := 1; i <= 9; i++ {
@@ -133,7 +133,7 @@ func ch9ex03() {
 }
 
 func ch9ex04() {
-	fmt.Println("9.4. Оценки 12 учеников по 3 предметам")
+	fmt.Println("Ex4. Оценки 12 учеников по 3 предметам")
 
 	fmt.Println("Вариант 1 - ввод по строкам:")
 	var marks1 [12][3]int
@@ -163,7 +163,7 @@ func ch9ex04() {
 }
 
 func ch9ex05() {
-	fmt.Println("9.5. Зарплата работников за квартал")
+	fmt.Println("Ex5. Зарплата работников за квартал")
 
 	var salary [12][3]float64
 	totalQuarter := 0.0
@@ -195,7 +195,7 @@ func ch9ex05() {
 }
 
 func ch9ex06() {
-	fmt.Println("9.6. Результаты спортсменов")
+	fmt.Println("Ex6. Результаты спортсменов")
 
 	var results [15][3]float64
 
@@ -238,7 +238,7 @@ func ch9ex06() {
 }
 
 func ch9ex07() {
-	fmt.Println("9.7. Оценки учеников")
+	fmt.Println("Ex7. Оценки учеников")
 
 	var marks [15][3]int
 
@@ -284,7 +284,7 @@ func ch9ex07() {
 }
 
 func ch9ex08() {
-	fmt.Println("9.8. Оценки студентов в сессию")
+	fmt.Println("Ex8. Оценки студентов в сессию")
 
 	var marks [14][3]int
 
@@ -339,7 +339,7 @@ func ch9ex08() {
 }
 
 func ch9ex09() {
-	fmt.Println("9.9. Баллы спортсменов по пятиборью")
+	fmt.Println("Ex9. Баллы спортсменов по пятиборью")
 
 	var scores [8][5]int
 
@@ -379,7 +379,7 @@ func ch9ex09() {
 }
 
 func ch9ex10() {
-	fmt.Println("9.10. Зарплата работников за квартал")
+	fmt.Println("Ex10. Зарплата работников за квартал")
 
 	var salary [12][3]float64
 
@@ -437,7 +437,7 @@ func ch9ex10() {
 }
 
 func ch9ex11() {
-	fmt.Println("9.11. Зарплата работников за квартал (доп.)")
+	fmt.Println("Ex11. Зарплата работников за квартал (доп.)")
 
 	var salary [12][3]float64
 
@@ -481,7 +481,7 @@ func ch9ex11() {
 }
 
 func ch9ex12() {
-	fmt.Println("9.12. Количество учеников в классах")
+	fmt.Println("Ex12. Количество учеников в классах")
 
 	var students [11][4]int
 
@@ -541,7 +541,7 @@ func ch9ex12() {
 }
 
 func ch9ex13() {
-	fmt.Println("9.13. Самый малочисленный класс")
+	fmt.Println("Ex13. Самый малочисленный класс")
 
 	var students [11][4]int
 
@@ -589,7 +589,7 @@ func ch9ex13() {
 }
 
 func ch9ex14() {
-	fmt.Println("9.14. Доход магазинов")
+	fmt.Println("Ex14. Доход магазинов")
 
 	var income [3][10]float64
 
@@ -655,7 +655,7 @@ func ch9ex14() {
 }
 
 func ch9ex15() {
-	fmt.Println("9.15. Доход магазинов (доп.)")
+	fmt.Println("Ex15. Доход магазинов (доп.)")
 
 	var income [3][10]float64
 
@@ -699,7 +699,7 @@ func ch9ex15() {
 }
 
 func ch9ex16() {
-	fmt.Println("9.16. Количество студентов в группах")
+	fmt.Println("Ex16. Количество студентов в группах")
 
 	var students [5][6]int
 
@@ -762,7 +762,7 @@ func ch9ex16() {
 }
 
 func ch9ex17() {
-	fmt.Println("9.17. Продажи товаров")
+	fmt.Println("Ex17. Продажи товаров")
 
 	var prices [5]float64
 	var quantities [5][6]int
@@ -840,7 +840,7 @@ func ch9ex17() {
 }
 
 func ch9ex18() {
-	fmt.Println("9.18. Лучшая группа по среднему баллу")
+	fmt.Println("Ex18. Лучшая группа по среднему баллу")
 
 	var groups [3][20][3]float64
 
@@ -890,7 +890,7 @@ func ch9ex18() {
 }
 
 func ch9ex19() {
-	fmt.Println("9.19. Количество делителей чисел 120-140")
+	fmt.Println("Ex19. Количество делителей чисел 120-140")
 
 	fmt.Println("Число | Кол-во делителей")
 	fmt.Println("-----------------------")
@@ -909,7 +909,7 @@ func ch9ex19() {
 }
 
 func ch9ex20() {
-	fmt.Println("9.20. График количества делителей")
+	fmt.Println("Ex20. График количества делителей")
 
 	var n int
 	fmt.Print("Введите n: ")
@@ -937,7 +937,7 @@ func ch9ex20() {
 }
 
 func ch9ex21() {
-	fmt.Println("9.21. Числа от 1 до 500 с 5 делителями:")
+	fmt.Println("Ex21. Числа от 1 до 500 с 5 делителями:")
 
 	count := 0
 	for num := 1; num <= 500; num++ {
@@ -956,7 +956,7 @@ func ch9ex21() {
 }
 
 func ch9ex22() {
-	fmt.Println("9.22. Числа от 200 до 500 с 6 делителями:")
+	fmt.Println("Ex22. Числа от 200 до 500 с 6 делителями:")
 
 	count := 0
 	for num := 200; num <= 500; num++ {
@@ -975,7 +975,7 @@ func ch9ex22() {
 }
 
 func ch9ex23() {
-	fmt.Println("9.23. Числа с заданным количеством делителей")
+	fmt.Println("Ex23. Числа с заданным количеством делителей")
 
 	var a, b, k int
 	fmt.Print("Введите a, b и k: ")
@@ -1004,7 +1004,7 @@ func ch9ex23() {
 }
 
 func ch9ex24() {
-	fmt.Println("9.24. Число с максимальным количеством делителей")
+	fmt.Println("Ex24. Число с максимальным количеством делителей")
 
 	var a, b int
 	fmt.Print("Введите a и b: ")
@@ -1052,7 +1052,7 @@ func ch9ex24() {
 }
 
 func ch9ex25() {
-	fmt.Println("9.25. Трехзначные простые числа:")
+	fmt.Println("Ex25. Трехзначные простые числа:")
 
 	count := 0
 	for num := 100; num <= 999; num++ {
@@ -1076,7 +1076,7 @@ func ch9ex25() {
 }
 
 func ch9ex26() {
-	fmt.Println("9.26. Первые 100 простых чисел:")
+	fmt.Println("Ex26. Первые 100 простых чисел:")
 
 	count := 0
 	num := 2
@@ -1102,7 +1102,7 @@ func ch9ex26() {
 }
 
 func ch9ex27() {
-	fmt.Println("9.27. Сумма делителей чисел от 50 до 70:")
+	fmt.Println("Ex27. Сумма делителей чисел от 50 до 70:")
 
 	fmt.Println("Число | Сумма делителей")
 	fmt.Println("----------------------")
@@ -1118,7 +1118,7 @@ func ch9ex27() {
 }
 
 func ch9ex28() {
-	fmt.Println("9.28. Числа от 100 до 300 с суммой делителей = 50:")
+	fmt.Println("Ex28. Числа от 100 до 300 с суммой делителей = 50:")
 
 	found := false
 	for num := 100; num <= 300; num++ {
@@ -1141,7 +1141,7 @@ func ch9ex28() {
 }
 
 func ch9ex29() {
-	fmt.Println("9.29. Числа от 300 до 600 с суммой делителей кратной 10:")
+	fmt.Println("Ex29. Числа от 300 до 600 с суммой делителей кратной 10:")
 
 	count := 0
 	for num := 300; num <= 600; num++ {
@@ -1163,7 +1163,7 @@ func ch9ex29() {
 }
 
 func ch9ex30() {
-	fmt.Println("9.30. Трехзначное совершенное число:")
+	fmt.Println("Ex30. Трехзначное совершенное число:")
 
 	for num := 100; num <= 999; num++ {
 		sum := 0
@@ -1188,7 +1188,7 @@ func ch9ex30() {
 }
 
 func ch9ex31() {
-	fmt.Println("9.31. Совершенные числа меньше 100000:")
+	fmt.Println("Ex31. Совершенные числа меньше 100000:")
 
 	num := 1
 	count := 0
@@ -1220,7 +1220,7 @@ func ch9ex31() {
 }
 
 func ch9ex32() {
-	fmt.Println("9.32. Число с максимальной суммой делителей")
+	fmt.Println("Ex32. Число с максимальной суммой делителей")
 
 	var a, b int
 	fmt.Print("Введите a и b: ")
@@ -1248,7 +1248,7 @@ func ch9ex32() {
 }
 
 func ch9ex33() {
-	fmt.Println("9.33. Дружественные числа меньше 50000:")
+	fmt.Println("Ex33. Дружественные числа меньше 50000:")
 
 	divisorSums := make([]int, 50001)
 
@@ -1279,7 +1279,7 @@ func ch9ex33() {
 }
 
 func ch9ex34() {
-	fmt.Println("9.34. Способы выплаты суммы")
+	fmt.Println("Ex34. Способы выплаты суммы")
 
 	var n int
 	fmt.Print("Введите сумму n (n < 100): ")
@@ -1320,7 +1320,7 @@ func ch9ex34() {
 }
 
 func ch9ex35() {
-	fmt.Println("9.35. Минимальное количество купюр для выплаты")
+	fmt.Println("Ex35. Минимальное количество купюр для выплаты")
 
 	var n int
 	fmt.Print("Введите n: ")
@@ -1346,7 +1346,7 @@ func ch9ex35() {
 }
 
 func ch9ex36() {
-	fmt.Println("9.36. Прямоугольники с заданной площадью")
+	fmt.Println("Ex36. Прямоугольники с заданной площадью")
 
 	var s int
 	fmt.Print("Введите площадь s: ")
@@ -1376,7 +1376,7 @@ func ch9ex36() {
 }
 
 func ch9ex37() {
-	fmt.Println("9.37. Параллелепипеды с заданным объемом")
+	fmt.Println("Ex37. Параллелепипеды с заданным объемом")
 
 	var v int
 	fmt.Print("Введите объем v: ")
@@ -1418,7 +1418,7 @@ func ch9ex37() {
 }
 
 func ch9ex38() {
-	fmt.Println("9.38. Решения уравнения x² + y² = k² (1-30):")
+	fmt.Println("Ex38. Решения уравнения x² + y² = k² (1-30):")
 
 	solutions := make(map[string]bool)
 	count := 0
@@ -1442,7 +1442,7 @@ func ch9ex38() {
 }
 
 func ch9ex39() {
-	fmt.Println("9.39. Сумма степеней 1ⁿ + 2ⁿ + ... + mⁿ")
+	fmt.Println("Ex39. Сумма степеней 1ⁿ + 2ⁿ + ... + mⁿ")
 
 	var m, n int
 	fmt.Print("Введите m и n: ")
@@ -1462,7 +1462,7 @@ func ch9ex39() {
 }
 
 func ch9ex40() {
-	fmt.Println("9.40. Сумма 1¹ + 2² + ... + nⁿ")
+	fmt.Println("Ex40. Сумма 1¹ + 2² + ... + nⁿ")
 
 	var n int
 	fmt.Print("Введите n: ")
@@ -1482,7 +1482,7 @@ func ch9ex40() {
 }
 
 func ch9ex41() {
-	fmt.Println("9.41. Трехзначные числа с заданной суммой цифр")
+	fmt.Println("Ex41. Трехзначные числа с заданной суммой цифр")
 
 	var n int
 	fmt.Print("Введите n (1-27): ")
@@ -1522,7 +1522,7 @@ func ch9ex41() {
 }
 
 func ch9ex42() {
-	fmt.Println("9.42. Трехзначные числа без повторяющихся цифр:")
+	fmt.Println("Ex42. Трехзначные числа без повторяющихся цифр:")
 
 	count := 0
 
@@ -1543,7 +1543,7 @@ func ch9ex42() {
 }
 
 func ch9ex43() {
-	fmt.Println("9.43. НОД нескольких чисел (алгоритм Евклида)")
+	fmt.Println("Ex43. НОД нескольких чисел (алгоритм Евклида)")
 
 	var n int
 	fmt.Print("Сколько чисел? ")
@@ -1576,7 +1576,7 @@ func ch9ex43() {
 }
 
 func ch9ex44() {
-	fmt.Println("9.44. Способы составления веса из гирь")
+	fmt.Println("Ex44. Способы составления веса из гирь")
 
 	weights := []int{100, 200, 500, 500, 1000, 1200, 1400, 1500, 2000, 3000}
 	n := len(weights)
@@ -1608,7 +1608,7 @@ func ch9ex44() {
 }
 
 func ch9ex45() {
-	fmt.Println("9.45. Числа с квадратом суммы цифр = m")
+	fmt.Println("Ex45. Числа с квадратом суммы цифр = m")
 
 	var m, n int
 	fmt.Print("Введите m и n: ")
@@ -1643,7 +1643,7 @@ func ch9ex45() {
 }
 
 func ch9ex46() {
-	fmt.Println("9.46. Цифровой корень числа")
+	fmt.Println("Ex46. Цифровой корень числа")
 
 	var num int
 	fmt.Print("Введите натуральное число: ")
@@ -1665,7 +1665,7 @@ func ch9ex46() {
 }
 
 func ch9ex47() {
-	fmt.Println("9.47. Покупка скота (100 рублей, 100 голов)")
+	fmt.Println("Ex47. Покупка скота (100 рублей, 100 голов)")
 	fmt.Println("Бык - 10 руб, Корова - 5 руб, Теленок - 0.5 руб")
 	fmt.Println("Варианты покупки 100 голов на 100 рублей:")
 
@@ -1693,7 +1693,7 @@ func ch9ex47() {
 }
 
 func ch9ex48() {
-	fmt.Println("9.48. Разложение на простые множители")
+	fmt.Println("Ex48. Разложение на простые множители")
 
 	var n int
 	fmt.Print("Введите натуральное число: ")
@@ -1765,7 +1765,7 @@ func ch9ex48() {
 }
 
 func ch9ex49() {
-	fmt.Println("9.49. Все простые делители числа")
+	fmt.Println("Ex49. Все простые делители числа")
 
 	var n int
 	fmt.Print("Введите натуральное число: ")
@@ -1799,7 +1799,7 @@ func ch9ex49() {
 }
 
 func ch9ex50() {
-	fmt.Println("9.50. Числа, взаимно простые с n")
+	fmt.Println("Ex50. Числа, взаимно простые с n")
 
 	var n int
 	fmt.Print("Введите натуральное число n: ")
@@ -1833,7 +1833,7 @@ func ch9ex50() {
 }
 
 func ch9ex51() {
-	fmt.Println("9.51. Числа, взаимно простые с p, меньшие n")
+	fmt.Println("Ex51. Числа, взаимно простые с p, меньшие n")
 
 	var n, p int
 	fmt.Print("Введите n и p: ")
@@ -1867,7 +1867,7 @@ func ch9ex51() {
 }
 
 func ch9ex52() {
-	fmt.Println("9.52. Делители q, взаимно простые с p")
+	fmt.Println("Ex52. Делители q, взаимно простые с p")
 
 	var p, q int
 	fmt.Print("Введите p и q: ")
@@ -1901,7 +1901,7 @@ func ch9ex52() {
 }
 
 func ch9ex53() {
-	fmt.Println("9.53. Число, представимое двумя способами как сумма кубов")
+	fmt.Println("Ex53. Число, представимое двумя способами как сумма кубов")
 
 	limit := 10000
 	sums := make(map[int][]string)
@@ -1937,7 +1937,7 @@ func ch9ex53() {
 }
 
 func ch9ex54() {
-	fmt.Println("9.54. Простые несократимые дроби 0 < дробь < 1, знаменатель ≤ 7")
+	fmt.Println("Ex54. Простые несократимые дроби 0 < дробь < 1, знаменатель ≤ 7")
 
 	gcd := func(a, b int) int {
 		for b != 0 {

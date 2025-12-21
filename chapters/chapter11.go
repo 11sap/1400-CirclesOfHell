@@ -19,7 +19,8 @@ func Run11() {
 		ch11ex49, ch11ex50, ch11ex51, ch11ex52, ch11ex53, ch11ex54, ch11ex55, ch11ex56,
 		ch11ex57, ch11ex58, ch11ex59, ch11ex60, ch11ex61, ch11ex62, ch11ex63, ch11ex64,
 		ch11ex65, ch11ex66, ch11ex67, ch11ex68, ch11ex69, ch11ex70, ch11ex71, ch11ex72,
-		ch11ex73, ch11ex74, ch11ex75, ch11ex76,
+		ch11ex73, ch11ex74, ch11ex75, ch11ex76, ch11ex77, ch11ex78, ch11ex79, ch11ex80,
+		ch11ex81, ch11ex82, ch11ex83,
 	}
 
 	for {
@@ -61,7 +62,7 @@ func printFloatArray(arr []float64, name string) {
 }
 
 func ch11ex01() {
-	fmt.Println("11.1. Заполнение массива из 8 элементов")
+	fmt.Println("Ex1. Заполнение массива из 8 элементов")
 
 	arr := [8]int{37, 0, 50, 46, 34, 46, 0, 13}
 
@@ -76,7 +77,7 @@ func ch11ex01() {
 }
 
 func ch11ex02() {
-	fmt.Println("11.2. Массив чисел от 1 до 10")
+	fmt.Println("Ex2. Массив чисел от 1 до 10")
 
 	var arr [10]int
 	for i := 0; i < 10; i++ {
@@ -87,7 +88,7 @@ func ch11ex02() {
 }
 
 func ch11ex03() {
-	fmt.Println("11.3. Массив чисел от 10 до 1")
+	fmt.Println("Ex3. Массив чисел от 10 до 1")
 
 	var arr [10]int
 	for i := 0; i < 10; i++ {
@@ -98,7 +99,7 @@ func ch11ex03() {
 }
 
 func ch11ex04() {
-	fmt.Println("11.4. Первые 10 четных чисел")
+	fmt.Println("Ex4. Первые 10 четных чисел")
 
 	var arr [10]int
 	for i := 0; i < 10; i++ {
@@ -109,7 +110,7 @@ func ch11ex04() {
 }
 
 func ch11ex05() {
-	fmt.Println("11.5. Первые 10 нечетных чисел")
+	fmt.Println("Ex5. Первые 10 нечетных чисел")
 
 	var arr [10]int
 	for i := 0; i < 10; i++ {
@@ -120,7 +121,7 @@ func ch11ex05() {
 }
 
 func ch11ex06() {
-	fmt.Println("11.6. Первые 10 чисел, делящихся на 3")
+	fmt.Println("Ex6. Первые 10 чисел, делящихся на 3")
 
 	var arr [10]int
 	count := 0
@@ -138,7 +139,7 @@ func ch11ex06() {
 }
 
 func ch11ex07() {
-	fmt.Println("11.7. Первые 10 степеней числа 2")
+	fmt.Println("Ex7. Первые 10 степеней числа 2")
 
 	var arr [10]int
 	for i := 0; i < 10; i++ {
@@ -149,7 +150,7 @@ func ch11ex07() {
 }
 
 func ch11ex08() {
-	fmt.Println("11.8. Первые 15 чисел Фибоначчи")
+	fmt.Println("Ex8. Первые 15 чисел Фибоначчи")
 
 	var arr [15]int
 	arr[0] = 1
@@ -163,7 +164,7 @@ func ch11ex08() {
 }
 
 func ch11ex09() {
-	fmt.Println("11.9. 10 членов арифметической прогрессии")
+	fmt.Println("Ex9. 10 членов арифметической прогрессии")
 
 	var arr [10]int
 	a := 3
@@ -177,7 +178,7 @@ func ch11ex09() {
 }
 
 func ch11ex10() {
-	fmt.Println("11.10. 10 членов геометрической прогрессии")
+	fmt.Println("Ex10. 10 членов геометрической прогрессии")
 
 	var arr [10]int
 	a := 3
@@ -192,7 +193,7 @@ func ch11ex10() {
 }
 
 func ch11ex11() {
-	fmt.Println("11.11. Первые 10 точных квадратов")
+	fmt.Println("Ex11. Первые 10 точных квадратов")
 
 	var arr [10]int
 	for i := 0; i < 10; i++ {
@@ -203,7 +204,7 @@ func ch11ex11() {
 }
 
 func ch11ex12() {
-	fmt.Println("11.12. Первые 10 точных кубов")
+	fmt.Println("Ex12. Первые 10 точных кубов")
 
 	var arr [10]int
 	for i := 0; i < 10; i++ {
@@ -214,7 +215,7 @@ func ch11ex12() {
 }
 
 func ch11ex13() {
-	fmt.Println("11.13. Степени числа 2")
+	fmt.Println("Ex13. Степени числа 2")
 
 	n := 10
 	arr := make([]int, n)
@@ -227,7 +228,7 @@ func ch11ex13() {
 }
 
 func ch11ex14() {
-	fmt.Println("11.14. Цифры числа в обратном порядке")
+	fmt.Println("Ex14. Цифры числа в обратном порядке")
 
 	n := 123456
 	var arr [6]int
@@ -253,7 +254,7 @@ func ch11ex14() {
 }
 
 func ch11ex15() {
-	fmt.Println("11.15. Убывающая и возрастающая последовательности")
+	fmt.Println("Ex15. Убывающая и возрастающая последовательности")
 
 	arr1 := make([]int, 8)
 	for i := 0; i < 8; i++ {
@@ -269,7 +270,7 @@ func ch11ex15() {
 }
 
 func ch11ex16() {
-	fmt.Println("11.16. Арифметическая и геометрическая прогрессии")
+	fmt.Println("Ex16. Арифметическая и геометрическая прогрессии")
 
 	a1 := 2.0
 	d := 3.0
@@ -292,7 +293,7 @@ func ch11ex16() {
 }
 
 func ch11ex17() {
-	fmt.Println("11.17. Первые 10 чисел Фибоначчи")
+	fmt.Println("Ex17. Первые 10 чисел Фибоначчи")
 
 	arr := make([]int, 10)
 	arr[0] = 1
@@ -308,7 +309,7 @@ func ch11ex17() {
 }
 
 func ch11ex18() {
-	fmt.Println("11.18. Числа, делящиеся на 13 и 17")
+	fmt.Println("Ex18. Числа, делящиеся на 13 и 17")
 
 	arr1 := make([]int, 20)
 	count := 0
@@ -347,7 +348,7 @@ func ch11ex18() {
 }
 
 func ch11ex19() {
-	fmt.Println("11.19. Первые 10 простых чисел, начиная с 100")
+	fmt.Println("Ex19. Первые 10 простых чисел, начиная с 100")
 
 	arr := make([]int, 10)
 	count := 0
@@ -372,7 +373,7 @@ func ch11ex19() {
 }
 
 func ch11ex20() {
-	fmt.Println("11.20. Проверка таблицы умножения")
+	fmt.Println("Ex20. Проверка таблицы умножения")
 
 	questions := make([][2]int, 20)
 	answers := make([]int, 20)
@@ -400,7 +401,7 @@ func ch11ex20() {
 }
 
 func ch11ex21() {
-	fmt.Println("11.21. Массив из 20 неповторяющихся элементов")
+	fmt.Println("Ex21. Массив из 20 неповторяющихся элементов")
 
 	arr := make([]int, 20)
 	used := make(map[int]bool)
@@ -420,7 +421,7 @@ func ch11ex21() {
 }
 
 func ch11ex22() {
-	fmt.Println("11.22. Вывод элементов массива")
+	fmt.Println("Ex22. Вывод элементов массива")
 
 	arr := []int{-5, 10, 0, 150, -3, 75, 99, 200, -1, 50}
 	printArray(arr, "Исходный массив")
@@ -443,7 +444,7 @@ func ch11ex22() {
 }
 
 func ch11ex23() {
-	fmt.Println("11.23. Четные элементы и элементы, оканчивающиеся нулем")
+	fmt.Println("Ex23. Четные элементы и элементы, оканчивающиеся нулем")
 
 	arr := []int{10, 25, 30, 47, 50, 63, 70, 88, 90, 105}
 	printArray(arr, "Исходный массив")
@@ -466,7 +467,7 @@ func ch11ex23() {
 }
 
 func ch11ex24() {
-	fmt.Println("11.24. Двузначные и трехзначные элементы")
+	fmt.Println("Ex24. Двузначные и трехзначные элементы")
 
 	arr := []int{5, 23, 456, 78, 9, 123, 45, 678, 90, 1000}
 	printArray(arr, "Исходный массив")
@@ -489,7 +490,7 @@ func ch11ex24() {
 }
 
 func ch11ex25() {
-	fmt.Println("11.25. Элементы с четными и нечетными индексами")
+	fmt.Println("Ex25. Элементы с четными и нечетными индексами")
 
 	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
 	printArray(arr, "Исходный массив")
@@ -508,7 +509,7 @@ func ch11ex25() {
 }
 
 func ch11ex26() {
-	fmt.Println("11.26. Сначала неотрицательные, затем отрицательные элементы")
+	fmt.Println("Ex26. Сначала неотрицательные, затем отрицательные элементы")
 
 	arr := []int{-5, 10, -3, 0, 7, -1, 15, -8, 2, -4}
 	printArray(arr, "Исходный массив")
@@ -531,7 +532,7 @@ func ch11ex26() {
 }
 
 func ch11ex27() {
-	fmt.Println("11.27. Сначала четные, затем нечетные элементы")
+	fmt.Println("Ex27. Сначала четные, затем нечетные элементы")
 
 	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	printArray(arr, "Исходный массив")
@@ -554,7 +555,7 @@ func ch11ex27() {
 }
 
 func ch11ex28() {
-	fmt.Println("11.28. Индексы элементов, оканчивающихся цифрой 0")
+	fmt.Println("Ex28. Индексы элементов, оканчивающихся цифрой 0")
 
 	arr := []int{10, 25, 30, 47, 50, 63, 70, 88, 90, 105}
 	printArray(arr, "Исходный массив")
@@ -569,7 +570,7 @@ func ch11ex28() {
 }
 
 func ch11ex29() {
-	fmt.Println("11.29. Дни января без осадков")
+	fmt.Println("Ex29. Дни января без осадков")
 
 	precipitation := []int{5, 0, 3, 0, 0, 7, 0, 2, 0, 4,
 		0, 6, 0, 0, 8, 0, 1, 0, 3, 0,
@@ -585,7 +586,7 @@ func ch11ex29() {
 }
 
 func ch11ex30() {
-	fmt.Println("11.30. Команды с менее чем 3 победами")
+	fmt.Println("Ex30. Команды с менее чем 3 победами")
 
 	wins := []int{5, 2, 7, 1, 3, 0, 4, 2, 6, 1,
 		8, 3, 2, 0, 5, 1, 4, 2, 3, 0}
@@ -600,7 +601,7 @@ func ch11ex30() {
 }
 
 func ch11ex31() {
-	fmt.Println("11.31. Элементы с четных и нечетных позиций")
+	fmt.Println("Ex31. Элементы с четных и нечетных позиций")
 
 	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
 	printArray(arr, "Исходный массив")
@@ -619,7 +620,7 @@ func ch11ex31() {
 }
 
 func ch11ex32() {
-	fmt.Println("11.32. Преобразование массива действительных чисел")
+	fmt.Println("Ex32. Преобразование массива действительных чисел")
 
 	arr := []float64{-3.5, 2.1, -1.8, 4.2, -5.0, 0.0, 3.7, -2.3}
 	printFloatArray(arr, "Исходный массив")
@@ -644,7 +645,7 @@ func ch11ex32() {
 }
 
 func ch11ex33() {
-	fmt.Println("11.33. Преобразование массива действительных чисел")
+	fmt.Println("Ex33. Преобразование массива действительных чисел")
 
 	arr := []float64{12.5, 8.2, 15.0, 3.7, 20.1, 9.6, 25.0, 4.9}
 	printFloatArray(arr, "Исходный массив")
@@ -667,7 +668,7 @@ func ch11ex33() {
 }
 
 func ch11ex34() {
-	fmt.Println("11.34. Преобразование массива действительных чисел")
+	fmt.Println("Ex34. Преобразование массива действительных чисел")
 
 	arr := []float64{2.5, -3.1, 4.2, -1.8, 5.0, -2.3, 3.7, -4.9}
 	printFloatArray(arr, "Исходный массив")
@@ -699,7 +700,7 @@ func ch11ex34() {
 }
 
 func ch11ex35() {
-	fmt.Println("11.35. Преобразование массива действительных чисел")
+	fmt.Println("Ex35. Преобразование массива действительных чисел")
 
 	arr := []float64{-2.5, 3.1, -4.2, 1.8, -5.0, 2.3, -3.7, 4.9}
 	printFloatArray(arr, "Исходный массив")
@@ -731,7 +732,7 @@ func ch11ex35() {
 }
 
 func ch11ex36() {
-	fmt.Println("11.36. Преобразование массива действительных чисел")
+	fmt.Println("Ex36. Преобразование массива действительных чисел")
 
 	arr := []float64{2.5, 0.0, -3.1, 4.2, 0.0, -1.8, 5.0, -2.3}
 	printFloatArray(arr, "Исходный массив")
@@ -768,7 +769,7 @@ func ch11ex36() {
 }
 
 func ch11ex37() {
-	fmt.Println("11.37. Преобразование массива действительных чисел")
+	fmt.Println("Ex37. Преобразование массива действительных чисел")
 
 	arr := []float64{-2.5, 0.0, 3.1, -4.2, 0.0, 1.8, -5.0, 2.3}
 	printFloatArray(arr, "Исходный массив")
@@ -806,7 +807,7 @@ func ch11ex37() {
 }
 
 func ch11ex38() {
-	fmt.Println("11.38. Преобразование массива целых чисел")
+	fmt.Println("Ex38. Преобразование массива целых чисел")
 
 	arr := []int{14, 25, 34, 47, 50, 63, 74, 88, 94, 105}
 	printArray(arr, "Исходный массив")
@@ -847,7 +848,7 @@ func ch11ex38() {
 }
 
 func ch11ex39() {
-	fmt.Println("11.39. Преобразование массива целых чисел")
+	fmt.Println("Ex39. Преобразование массива целых чисел")
 
 	arr := []int{10, 25, 30, 47, 50, 63, 70, 88, 90, 105}
 	printArray(arr, "Исходный массив")
@@ -888,7 +889,7 @@ func ch11ex39() {
 }
 
 func ch11ex40() {
-	fmt.Println("11.40. Расчеты с элементами массива")
+	fmt.Println("Ex40. Расчеты с элементами массива")
 
 	arr := []float64{4.0, 9.0, 16.0, 25.0, 36.0, 49.0, 64.0, 81.0}
 	printFloatArray(arr, "Исходный массив")
@@ -906,7 +907,7 @@ func ch11ex40() {
 }
 
 func ch11ex41() {
-	fmt.Println("11.41. Проверка элементов массива")
+	fmt.Println("Ex41. Проверка элементов массива")
 
 	arr := []int{16, 25, -36, 49, 64, 81, 100, 121, -8, 50}
 	printArray(arr, "Исходный массив")
@@ -944,7 +945,7 @@ func ch11ex41() {
 }
 
 func ch11ex42() {
-	fmt.Println("11.42. Операции с элементами массива")
+	fmt.Println("Ex42. Операции с элементами массива")
 
 	arr := []int{2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
 	printArray(arr, "Исходный массив")
@@ -1011,7 +1012,7 @@ func ch11ex42() {
 }
 
 func ch11ex43() {
-	fmt.Println("11.43. Знакопеременная сумма")
+	fmt.Println("Ex43. Знакопеременная сумма")
 
 	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	printArray(arr, "Исходный массив")
@@ -1028,7 +1029,7 @@ func ch11ex43() {
 }
 
 func ch11ex44() {
-	fmt.Println("11.44. Осадки за январь")
+	fmt.Println("Ex44. Осадки за январь")
 
 	precipitation := []int{5, 3, 0, 7, 2, 4, 6, 1, 8, 3,
 		0, 5, 2, 0, 9, 4, 1, 6, 3, 7,
@@ -1043,7 +1044,7 @@ func ch11ex44() {
 }
 
 func ch11ex45() {
-	fmt.Println("11.45. Стоимость предметов")
+	fmt.Println("Ex45. Стоимость предметов")
 
 	prices := []int{150, 230, 450, 120, 680, 320,
 		540, 210, 380, 290, 510, 170}
@@ -1057,7 +1058,7 @@ func ch11ex45() {
 }
 
 func ch11ex46() {
-	fmt.Println("11.46. Сопротивление цепи (последовательное соединение)")
+	fmt.Println("Ex46. Сопротивление цепи (последовательное соединение)")
 
 	resistances := []float64{10, 15, 20, 25, 30, 35, 40, 45, 50, 55,
 		60, 65, 70, 75, 80, 85, 90, 95, 100, 105}
@@ -1071,7 +1072,7 @@ func ch11ex46() {
 }
 
 func ch11ex47() {
-	fmt.Println("11.47. Сопротивление цепи (параллельное соединение)")
+	fmt.Println("Ex47. Сопротивление цепи (параллельное соединение)")
 
 	resistances := []float64{10, 15, 20, 25, 30, 35, 40, 45, 50, 55,
 		60, 65, 70, 75, 80, 85, 90, 95, 100, 105}
@@ -1092,7 +1093,7 @@ func ch11ex47() {
 }
 
 func ch11ex48() {
-	fmt.Println("11.48. Осадки по декадам июня")
+	fmt.Println("Ex48. Осадки по декадам июня")
 
 	precipitation := []int{5, 3, 0, 7, 2, 4, 6, 1, 8, 3,
 		0, 5, 2, 0, 9, 4, 1, 6, 3, 7,
@@ -1120,7 +1121,7 @@ func ch11ex48() {
 }
 
 func ch11ex49() {
-	fmt.Println("11.49. Среднедневные осадки в феврале")
+	fmt.Println("Ex49. Среднедневные осадки в феврале")
 
 	precipitation := []int{5, 3, 0, 7, 2, 4, 6, 1, 8, 3,
 		0, 5, 2, 0, 9, 4, 1, 6, 3, 7,
@@ -1136,7 +1137,7 @@ func ch11ex49() {
 }
 
 func ch11ex50() {
-	fmt.Println("11.50. Средние осадки по декадам сентября")
+	fmt.Println("Ex50. Средние осадки по декадам сентября")
 
 	precipitation := []int{5, 3, 0, 7, 2, 4, 6, 1, 8, 3,
 		0, 5, 2, 0, 9, 4, 1, 6, 3, 7,
@@ -1166,7 +1167,7 @@ func ch11ex50() {
 }
 
 func ch11ex51() {
-	fmt.Println("11.51. Проверка суммы массива")
+	fmt.Println("Ex51. Проверка суммы массива")
 
 	arr := []int{3, -5, 2, -1, 4, -2, 6, -3, 5, -4}
 	printArray(arr, "Исходный массив")
@@ -1182,7 +1183,7 @@ func ch11ex51() {
 }
 
 func ch11ex52() {
-	fmt.Println("11.52. Проверка свойств массива")
+	fmt.Println("Ex52. Проверка свойств массива")
 
 	arr := []int{5, 12, 8, 3, 17, 9, 21, 4, 15, 6}
 
@@ -1214,7 +1215,7 @@ func ch11ex52() {
 }
 
 func ch11ex53() {
-	fmt.Println("11.53. Количество учеников в школе")
+	fmt.Println("Ex53. Количество учеников в школе")
 
 	localRand := rand.New(rand.NewSource(99))
 	classes := make([]int, 42)
@@ -1235,7 +1236,7 @@ func ch11ex53() {
 }
 
 func ch11ex54() {
-	fmt.Println("11.54. Количество книг в библиотеке")
+	fmt.Println("Ex54. Количество книг в библиотеке")
 
 	localRand := rand.New(rand.NewSource(100))
 	sections := make([]int, 35)
@@ -1256,7 +1257,7 @@ func ch11ex54() {
 }
 
 func ch11ex55() {
-	fmt.Println("11.55. Проверка грузоподъемности автомобиля")
+	fmt.Println("Ex55. Проверка грузоподъемности автомобиля")
 
 	localRand := rand.New(rand.NewSource(101))
 	weights := make([]int, 50)
@@ -1280,7 +1281,7 @@ func ch11ex55() {
 }
 
 func ch11ex56() {
-	fmt.Println("11.56. Спортсмен-десятиборец")
+	fmt.Println("Ex56. Спортсмен-десятиборец")
 
 	localRand := rand.New(rand.NewSource(102))
 	scores := make([]int, 10)
@@ -1305,7 +1306,7 @@ func ch11ex56() {
 }
 
 func ch11ex57() {
-	fmt.Println("11.57. Осадки за июнь")
+	fmt.Println("Ex57. Осадки за июнь")
 
 	localRand := rand.New(rand.NewSource(103))
 	precipitation := make([]int, 30)
@@ -1374,7 +1375,7 @@ func ch11ex57() {
 }
 
 func ch11ex58() {
-	fmt.Println("11.58. Фигурное катание")
+	fmt.Println("Ex58. Фигурное катание")
 
 	localRand := rand.New(rand.NewSource(104))
 	scores := make([]int, 18)
@@ -1406,7 +1407,7 @@ func ch11ex58() {
 }
 
 func ch11ex59() {
-	fmt.Println("11.59. Сумма элементов с условиями")
+	fmt.Println("Ex59. Сумма элементов с условиями")
 
 	arr := []int{15, 25, 8, 30, 12, 40, 5, 18, 22, 10}
 
@@ -1434,7 +1435,7 @@ func ch11ex59() {
 }
 
 func ch11ex60() {
-	fmt.Println("11.60. Сумма элементов с разными условиями")
+	fmt.Println("Ex60. Сумма элементов с разными условиями")
 
 	arr := []int{3, 8, 15, 21, 12, 9, 6, 24, 18, 27}
 
@@ -1476,7 +1477,7 @@ func ch11ex60() {
 }
 
 func ch11ex61() {
-	fmt.Println("11.61. Сумма элементов с четными позициями (2, 4, 6, ...)")
+	fmt.Println("Ex61. Сумма элементов с четными позициями (2, 4, 6, ...)")
 
 	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
 
@@ -1492,7 +1493,7 @@ func ch11ex61() {
 }
 
 func ch11ex62() {
-	fmt.Println("11.62. Осадки по четным числам февраля")
+	fmt.Println("Ex62. Осадки по четным числам февраля")
 
 	localRand := rand.New(rand.NewSource(105))
 	precipitation := make([]int, 28)
@@ -1511,7 +1512,7 @@ func ch11ex62() {
 }
 
 func ch11ex63() {
-	fmt.Println("11.63. Осадки по месяцам года")
+	fmt.Println("Ex63. Осадки по месяцам года")
 
 	localRand := rand.New(rand.NewSource(106))
 	precipitation := make([]int, 12)
@@ -1533,7 +1534,7 @@ func ch11ex63() {
 }
 
 func ch11ex64() {
-	fmt.Println("11.64. Частное от деления сумм")
+	fmt.Println("Ex64. Частное от деления сумм")
 
 	arr := []int{-5, 12, -8, 3, -17, 9, 21, -4, 15, -6}
 
@@ -1570,7 +1571,7 @@ func abs(x int) int {
 }
 
 func ch11ex65() {
-	fmt.Println("11.65. Проверка сумм с условиями")
+	fmt.Println("Ex65. Проверка сумм с условиями")
 
 	arr := []int{25, 15, 30, 45, 10, 60, 5, 35, 20, 55}
 
@@ -1606,7 +1607,7 @@ func ch11ex65() {
 }
 
 func ch11ex66() {
-	fmt.Println("11.66. Осадки по четным и нечетным дням февраля")
+	fmt.Println("Ex66. Осадки по четным и нечетным дням февраля")
 
 	localRand := rand.New(rand.NewSource(107))
 	precipitation := make([]int, 28)
@@ -1638,7 +1639,7 @@ func ch11ex66() {
 }
 
 func ch11ex67() {
-	fmt.Println("11.67. Жители на разных сторонах улицы")
+	fmt.Println("Ex67. Жители на разных сторонах улицы")
 
 	localRand := rand.New(rand.NewSource(108))
 	houses := make([]int, 20)
@@ -1672,7 +1673,7 @@ func ch11ex67() {
 }
 
 func ch11ex68() {
-	fmt.Println("11.68. Количество неотрицательных элементов")
+	fmt.Println("Ex68. Количество неотрицательных элементов")
 
 	arr := []int{-3, 5, -2, 0, 8, -1, 4, -7, 6, 0}
 
@@ -1689,7 +1690,7 @@ func ch11ex68() {
 }
 
 func ch11ex69() {
-	fmt.Println("11.69. Количество элементов с условиями")
+	fmt.Println("Ex69. Количество элементов с условиями")
 
 	arr := []int{5, 12, 5, 8, 12, 3, 5, 9, 12, 7}
 
@@ -1720,7 +1721,7 @@ func ch11ex69() {
 }
 
 func ch11ex70() {
-	fmt.Println("11.70. Дни без осадков в феврале")
+	fmt.Println("Ex70. Дни без осадков в феврале")
 
 	localRand := rand.New(rand.NewSource(109))
 	precipitation := make([]int, 28)
@@ -1745,7 +1746,7 @@ func ch11ex70() {
 }
 
 func ch11ex71() {
-	fmt.Println("11.71. Неуспевающие по химии")
+	fmt.Println("Ex71. Неуспевающие по химии")
 
 	localRand := rand.New(rand.NewSource(110))
 	grades := make([]int, 25)
@@ -1765,7 +1766,7 @@ func ch11ex71() {
 }
 
 func ch11ex72() {
-	fmt.Println("11.72. Продажи товаров в марте")
+	fmt.Println("Ex72. Продажи товаров в марте")
 
 	localRand := rand.New(rand.NewSource(111))
 	sales := make([]int, 31)
@@ -1789,7 +1790,7 @@ func ch11ex72() {
 }
 
 func ch11ex73() {
-	fmt.Println("11.73. Рост учеников")
+	fmt.Println("Ex73. Рост учеников")
 
 	localRand := rand.New(rand.NewSource(112))
 	heights := make([]int, 22)
@@ -1813,7 +1814,7 @@ func ch11ex73() {
 }
 
 func ch11ex74() {
-	fmt.Println("11.74. Элементы в промежутке")
+	fmt.Println("Ex74. Элементы в промежутке")
 
 	arr := []int{15, 8, 25, 3, 12, 30, 5, 18, 22, 9}
 
@@ -1841,7 +1842,7 @@ func ch11ex74() {
 }
 
 func ch11ex75() {
-	fmt.Println("11.75. Результаты футбольных игр")
+	fmt.Println("Ex75. Результаты футбольных игр")
 
 	localRand := rand.New(rand.NewSource(113))
 	results := make([]int, 20)
@@ -1875,7 +1876,7 @@ func ch11ex75() {
 }
 
 func ch11ex76() {
-	fmt.Println("11.76. Оценки ученика")
+	fmt.Println("Ex76. Оценки ученика")
 
 	localRand := rand.New(rand.NewSource(114))
 	grades := make([]int, 10)
@@ -1899,4 +1900,98 @@ func ch11ex76() {
 	fmt.Printf("Количество четверок: %d\n", countFours)
 	fmt.Printf("Количество пятерок: %d\n", countFives)
 	fmt.Printf("Общее количество четверок и пятерок: %d\n", countFours+countFives)
+}
+
+func ch11ex77() {
+	fmt.Printf("Ex77. Определить количество положительных и отрицательных элементов массива.\n")
+	arr := []int{-2, 5, -8, 10, 3, -1, 0, 7}
+	pos, neg := 0, 0
+	for _, v := range arr {
+		if v > 0 {
+			pos++
+		} else if v < 0 {
+			neg++
+		}
+	}
+	fmt.Printf("Положительных: %d, Отрицательных: %d\n", pos, neg)
+}
+
+func ch11ex78() {
+	fmt.Printf("Ex78. Дан массив целых чисел. Определить количество четных элементов и элементов, оканчивающихся на цифру 5.\n")
+	arr := []int{12, 5, 8, 15, 24, 35, 42, 55}
+	even, endsWith5 := 0, 0
+	for _, v := range arr {
+		if v%2 == 0 {
+			even++
+		}
+		if v%10 == 5 {
+			endsWith5++
+		}
+	}
+	fmt.Printf("Четных: %d, Оканчивающихся на 5: %d\n", even, endsWith5)
+}
+
+func ch11ex79() {
+	fmt.Printf("Ex79. Определить количество выигрышей, ничьих и проигрышей футбольной команды.\n")
+	results := []int{3, 1, 3, 2, 1, 3, 2, 1, 3, 3, 2, 1, 3, 1, 2, 3, 1, 2, 3, 1}
+	wins, draws, losses := 0, 0, 0
+	for _, r := range results {
+		switch r {
+		case 3:
+			wins++
+		case 1:
+			draws++
+		case 2:
+			losses++
+		}
+	}
+	fmt.Printf("Выигрышей: %d, Ничьих: %d, Проигрышей: %d\n", wins, draws, losses)
+}
+
+func ch11ex80() {
+	fmt.Printf("Ex80. Определить количество пятерок, четверок, троек и двоек.\n")
+	grades := []int{5, 4, 3, 5, 2, 4, 5, 3, 4, 5, 2, 3, 4, 5, 5, 4, 3, 2, 4, 5, 3, 4}
+	count := map[int]int{5: 0, 4: 0, 3: 0, 2: 0}
+	for _, g := range grades {
+		if g >= 2 && g <= 5 {
+			count[g]++
+		}
+	}
+	fmt.Printf("Пятерок: %d, Четверок: %d, Троек: %d, Двоек: %d\n", count[5], count[4], count[3], count[2])
+}
+
+func ch11ex81() {
+	fmt.Printf("Ex81. Найти число пар соседних элементов массива, являющихся четными числами.\n")
+	arr := []int{2, 4, 6, 8, 10, 12, 14}
+	pairs := 0
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i]%2 == 0 && arr[i+1]%2 == 0 {
+			pairs++
+		}
+	}
+	fmt.Printf("Пар четных соседей: %d\n", pairs)
+}
+
+func ch11ex82() {
+	fmt.Printf("Ex82. Найти число пар соседних элементов массива, оканчивающихся нулем.\n")
+	arr := []int{10, 20, 30, 40, 50, 60, 70}
+	pairs := 0
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i]%10 == 0 && arr[i+1]%10 == 0 {
+			pairs++
+		}
+	}
+	fmt.Printf("Пар соседей, оканчивающихся нулем: %d\n", pairs)
+}
+
+func ch11ex83() {
+	fmt.Printf("Ex83. Найти число элементов массива, которые больше своих «соседей».\n")
+	arr := []int{1, 3, 2, 4, 1, 5, 3}
+	count := 0
+	for i := 1; i < len(arr)-1; i++ {
+		if arr[i] > arr[i-1] && arr[i] > arr[i+1] {
+			count++
+		}
+	}
+	fmt.Printf("Элементов больше соседей: %d\n", count)
 }
