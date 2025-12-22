@@ -21,7 +21,8 @@ func Run11() {
 		ch11ex65, ch11ex66, ch11ex67, ch11ex68, ch11ex69, ch11ex70, ch11ex71, ch11ex72,
 		ch11ex73, ch11ex74, ch11ex75, ch11ex76, ch11ex77, ch11ex78, ch11ex79, ch11ex80,
 		ch11ex81, ch11ex82, ch11ex83, ch11ex84, ch11ex85, ch11ex86, ch11ex87, ch11ex88,
-		ch11ex89, ch11ex90, ch11ex91,
+		ch11ex89, ch11ex90, ch11ex91, ch11ex92, ch11ex92, ch11ex93, ch11ex94, ch11ex95,
+		ch11ex96, ch11ex97, ch11ex98,
 	}
 
 	for {
@@ -2141,4 +2142,144 @@ func ch11ex91() {
 		otherAvg = float64(otherSum) / float64(otherCount)
 	}
 	fmt.Printf("Средняя масса полных: %.2f кг, остальных: %.2f кг\n", fatAvg, otherAvg)
+}
+
+func ch11ex92() {
+	fmt.Printf("Ex92. Определить средний рост мальчиков и девочек.\n")
+	heights := []int{150, -165, 155, -170, 160, -175, 158, -180, 162, -168, 152, -172}
+	boysSum, boysCount := 0, 0
+	girlsSum, girlsCount := 0, 0
+	for _, h := range heights {
+		if h < 0 {
+			boysSum += -h
+			boysCount++
+		} else {
+			girlsSum += h
+			girlsCount++
+		}
+	}
+	boysAvg, girlsAvg := 0.0, 0.0
+	if boysCount > 0 {
+		boysAvg = float64(boysSum) / float64(boysCount)
+	}
+	if girlsCount > 0 {
+		girlsAvg = float64(girlsSum) / float64(girlsCount)
+	}
+	fmt.Printf("Средний рост мальчиков: %.1f см, девочек: %.1f см\n", boysAvg, girlsAvg)
+}
+
+func ch11ex93() {
+	fmt.Printf("Ex93. Проверить, превышает ли средняя стоимость автомобилей среднюю стоимость мотоциклов более чем в 3 раза.\n")
+	cars := []float64{15000, 20000, 18000, 25000, 22000}
+	bikes := []float64{5000, 6000, 4000, 5500, 4500, 3500}
+	carsSum, bikesSum := 0.0, 0.0
+	for _, v := range cars {
+		carsSum += v
+	}
+	for _, v := range bikes {
+		bikesSum += v
+	}
+	carsAvg := carsSum / float64(len(cars))
+	bikesAvg := bikesSum / float64(len(bikes))
+	condition := bikesAvg > 0 && carsAvg/bikesAvg > 3
+	fmt.Printf("Средняя авто: %.2f$, мото: %.2f$. Превышает более чем в 3 раза: %s\n",
+		carsAvg, bikesAvg, map[bool]string{true: "да", false: "нет"}[condition])
+}
+
+func ch11ex94() {
+	fmt.Printf("Ex94. Проверить, превышает ли средний рост мальчиков средний рост девочек более чем на 10 см.\n")
+	heights := []int{-175, 160, -180, 155, -170, 165, -185, 158, -172, 162}
+	boysSum, boysCount := 0, 0
+	girlsSum, girlsCount := 0, 0
+	for _, h := range heights {
+		if h < 0 {
+			boysSum += -h
+			boysCount++
+		} else {
+			girlsSum += h
+			girlsCount++
+		}
+	}
+	boysAvg := float64(boysSum) / float64(boysCount)
+	girlsAvg := float64(girlsSum) / float64(girlsCount)
+	condition := boysAvg-girlsAvg > 10
+	fmt.Printf("Средний рост мальчиков: %.1f см, девочек: %.1f см. Разница >10 см: %s\n",
+		boysAvg, girlsAvg, map[bool]string{true: "да", false: "нет"}[condition])
+}
+
+func ch11ex95() {
+	fmt.Printf("Ex95. Определить количество элементов, больших суммы всех элементов массива, и их номера.\n")
+	arr := []int{1, 2, 3, 10, 4, 5}
+	sum := 0
+	for _, v := range arr {
+		sum += v
+	}
+	var indices []int
+	for i, v := range arr {
+		if v > sum {
+			indices = append(indices, i)
+		}
+	}
+	fmt.Printf("Элементов больше суммы (%d): %d. Индексы: %v\n", sum, len(indices), indices)
+}
+
+func ch11ex96() {
+	fmt.Printf("Ex96. Найти элементы, большие среднего арифметического min и max.\n")
+	arr := []int{10, 5, 8, 15, 3, 12, 7}
+	if len(arr) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+	minVal, maxVal := arr[0], arr[0]
+	for _, v := range arr {
+		if v < minVal {
+			minVal = v
+		}
+		if v > maxVal {
+			maxVal = v
+		}
+	}
+	avgMinMax := float64(minVal+maxVal) / 2
+	var indices []int
+	for i, v := range arr {
+		if float64(v) > avgMinMax {
+			indices = append(indices, i)
+		}
+	}
+	fmt.Printf("Среднее min(%d) и max(%d): %.1f. Элементов больше: %d. Индексы: %v\n",
+		minVal, maxVal, avgMinMax, len(indices), indices)
+}
+
+func ch11ex97() {
+	fmt.Printf("Ex97. Определить количество учеников с ростом больше среднего.\n")
+	heights := []int{165, 170, 175, 160, 180, 172, 168, 178, 182, 167}
+	sum := 0
+	for _, h := range heights {
+		sum += h
+	}
+	avg := float64(sum) / float64(len(heights))
+	count := 0
+	for _, h := range heights {
+		if float64(h) > avg {
+			count++
+		}
+	}
+	fmt.Printf("Средний рост: %.1f см. Выше среднего: %d учеников\n", avg, count)
+}
+
+func ch11ex98() {
+	fmt.Printf("Ex98. Определить, сколько видов товара имеют стоимость меньше средней.\n")
+	prices := []float64{100, 200, 150, 300, 250, 180, 220, 170, 280, 120}
+	sum := 0.0
+	for _, p := range prices {
+		sum += p
+	}
+	avg := sum / float64(len(prices))
+	count := 0
+	for _, p := range prices {
+		if p < avg {
+			count++
+		}
+	}
+	fmt.Printf("Средняя цена: %.2f. Товаров дешевле средней: %d\n", avg, count)
 }
