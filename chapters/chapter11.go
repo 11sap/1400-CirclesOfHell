@@ -22,7 +22,7 @@ func Run11() {
 		ch11ex73, ch11ex74, ch11ex75, ch11ex76, ch11ex77, ch11ex78, ch11ex79, ch11ex80,
 		ch11ex81, ch11ex82, ch11ex83, ch11ex84, ch11ex85, ch11ex86, ch11ex87, ch11ex88,
 		ch11ex89, ch11ex90, ch11ex91, ch11ex92, ch11ex92, ch11ex93, ch11ex94, ch11ex95,
-		ch11ex96, ch11ex97, ch11ex98,
+		ch11ex96, ch11ex97, ch11ex98, ch11ex99, ch11ex100, ch11ex101, ch11ex102,
 	}
 
 	for {
@@ -2282,4 +2282,74 @@ func ch11ex98() {
 		}
 	}
 	fmt.Printf("Средняя цена: %.2f. Товаров дешевле средней: %d\n", avg, count)
+}
+
+func ch11ex99() {
+	fmt.Printf("Ex99. Определить дни с осадками выше среднего.\n")
+	precipitation := []int{5, 0, 8, 3, 10, 2, 7, 4, 9, 1, 6}
+	sum := 0
+	for _, p := range precipitation {
+		sum += p
+	}
+	avg := float64(sum) / float64(len(precipitation))
+	days := []int{}
+	for i, p := range precipitation {
+		if float64(p) > avg {
+			days = append(days, i+1)
+		}
+	}
+	fmt.Printf("Среднее за день: %.1f мм. Дней выше среднего: %d. Даты: %v\n", avg, len(days), days)
+}
+
+func ch11ex100() {
+	fmt.Printf("Ex100. Определить учеников с оценкой ниже средней и их индексы.\n")
+	grades := []int{5, 4, 3, 5, 2, 4, 3, 5, 4, 3, 2, 4, 5, 3, 4}
+	sum := 0
+	for _, g := range grades {
+		sum += g
+	}
+	avg := float64(sum) / float64(len(grades))
+	indices := []int{}
+	for i, g := range grades {
+		if float64(g) < avg {
+			indices = append(indices, i)
+		}
+	}
+	fmt.Printf("Средняя оценка: %.2f. Ниже средней: %d учеников. Индексы: %v\n", avg, len(indices), indices)
+}
+
+func ch11ex101() {
+	fmt.Printf("Ex101. Вычислить среднее количество осадков и отклонение от среднего для каждого года.\n")
+	precipitation := []float64{600, 550, 700, 650, 580, 720, 680, 630, 590, 710, 670, 640, 690, 610, 660}
+	sum := 0.0
+	for _, p := range precipitation {
+		sum += p
+	}
+	avg := sum / float64(len(precipitation))
+	fmt.Printf("Среднее за 15 лет: %.1f мм\n", avg)
+	fmt.Println("Отклонения от среднего:")
+	for i, p := range precipitation {
+		deviation := p - avg
+		fmt.Printf("  Год %d: %.1f мм\n", i+1, deviation)
+	}
+}
+
+func ch11ex102() {
+	fmt.Printf("Ex102. Найти элемент, наиболее близкий к среднему значению.\n")
+	arr := []float64{10.5, 12.1, 8.9, 15.2, 11.8, 9.5, 14.3}
+	sum := 0.0
+	for _, v := range arr {
+		sum += v
+	}
+	avg := sum / float64(len(arr))
+	closest := arr[0]
+	minDiff := math.Abs(arr[0] - avg)
+	for _, v := range arr[1:] {
+		diff := math.Abs(v - avg)
+		if diff < minDiff {
+			minDiff = diff
+			closest = v
+		}
+	}
+	fmt.Printf("Среднее: %.2f. Наиболее близкий элемент: %.2f\n", avg, closest)
 }
