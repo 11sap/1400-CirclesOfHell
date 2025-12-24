@@ -6,8 +6,6 @@ import (
 	"math/rand"
 )
 
-var localRand = rand.New(rand.NewSource(99))
-
 func Run11() {
 	tasks := []func(){
 		ch11ex01, ch11ex02, ch11ex03, ch11ex04, ch11ex05, ch11ex06, ch11ex07, ch11ex08,
@@ -22,7 +20,9 @@ func Run11() {
 		ch11ex73, ch11ex74, ch11ex75, ch11ex76, ch11ex77, ch11ex78, ch11ex79, ch11ex80,
 		ch11ex81, ch11ex82, ch11ex83, ch11ex84, ch11ex85, ch11ex86, ch11ex87, ch11ex88,
 		ch11ex89, ch11ex90, ch11ex91, ch11ex92, ch11ex92, ch11ex93, ch11ex94, ch11ex95,
-		ch11ex96, ch11ex97, ch11ex98, ch11ex99, ch11ex100, ch11ex101, ch11ex102,
+		ch11ex96, ch11ex97, ch11ex98, ch11ex99, ch11ex100, ch11ex101, ch11ex102, ch11ex103,
+		ch11ex104, ch11ex105, ch11ex106, ch11ex107, ch11ex108, ch11ex109, ch11ex110, ch11ex111,
+		ch11ex112, ch11ex113, ch11ex114, ch11ex115,
 	}
 
 	for {
@@ -2352,4 +2352,212 @@ func ch11ex102() {
 		}
 	}
 	fmt.Printf("Среднее: %.2f. Наиболее близкий элемент: %.2f\n", avg, closest)
+}
+
+func ch11ex103() {
+	fmt.Printf("Ex103. Найти пять соседних элементов с максимальной суммой.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+	n := 5
+	maxSum := 0
+	startIndex := 0
+	for i := 0; i <= len(arr)-n; i++ {
+		sum := 0
+		for j := 0; j < n; j++ {
+			sum += arr[i+j]
+		}
+		if sum > maxSum {
+			maxSum = sum
+			startIndex = i
+		}
+	}
+	fmt.Printf("Максимальная сумма %d элементов: %d (индексы %d-%d)\n",
+		n, maxSum, startIndex, startIndex+n-1)
+}
+
+func ch11ex104() {
+	fmt.Printf("Ex104. Определить самые теплые 7 дней подряд.\n")
+	temps := []float64{20.5, 22.1, 21.8, 23.5, 24.2, 22.9, 23.8, 24.5, 25.1, 24.8, 23.9, 22.5}
+	n := 7
+	maxSum := 0.0
+	startIndex := 0
+	for i := 0; i <= len(temps)-n; i++ {
+		sum := 0.0
+		for j := 0; j < n; j++ {
+			sum += temps[i+j]
+		}
+		if sum > maxSum {
+			maxSum = sum
+			startIndex = i
+		}
+	}
+	fmt.Printf("Самые теплые %d дней: с %d по %d число (средняя: %.1f°C)\n",
+		n, startIndex+1, startIndex+n, maxSum/float64(n))
+}
+
+func ch11ex105() {
+	fmt.Printf("Ex105. Определить, имеются ли в массиве одинаковые элементы.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5, 11}
+	seen := make(map[int]bool)
+	hasDuplicates := false
+	for _, v := range arr {
+		if seen[v] {
+			hasDuplicates = true
+			break
+		}
+		seen[v] = true
+	}
+	fmt.Printf("Есть одинаковые элементы: %s\n",
+		map[bool]string{true: "да", false: "нет"}[hasDuplicates])
+}
+
+func ch11ex106() {
+	fmt.Printf("Ex106. Определить, имеются ли в массиве только два одинаковых элемента.\n")
+	arr := []int{1, 2, 3, 4, 5, 3, 6, 7}
+	count := make(map[int]int)
+	for _, v := range arr {
+		count[v]++
+	}
+	duplicates := 0
+	for _, c := range count {
+		if c == 2 {
+			duplicates++
+		}
+	}
+	hasExactlyTwo := duplicates == 1
+	fmt.Printf("Только два одинаковых элемента: %s\n",
+		map[bool]string{true: "да", false: "нет"}[hasExactlyTwo])
+}
+
+func ch11ex107() {
+	fmt.Printf("Ex107. Найти два одинаковых элемента в массиве.\n")
+	arr := []int{10, 20, 30, 40, 50, 30, 60, 70}
+	seen := make(map[int]bool)
+	duplicate := 0
+	for _, v := range arr {
+		if seen[v] {
+			duplicate = v
+			break
+		}
+		seen[v] = true
+	}
+	fmt.Printf("Одинаковый элемент: %d\n", duplicate)
+}
+
+func ch11ex108() {
+	fmt.Printf("Ex108. Определить, сколько раз элементы меняют знак.\n")
+	arr := []int{10, -4, 12, 56, -4, -89}
+	signChanges := 0
+	for i := 1; i < len(arr); i++ {
+		if (arr[i-1] > 0 && arr[i] < 0) || (arr[i-1] < 0 && arr[i] > 0) {
+			signChanges++
+		}
+	}
+	fmt.Printf("Смена знака происходит %d раз\n", signChanges)
+}
+
+func ch11ex109() {
+	fmt.Printf("Ex109. Найти количество одинаковых элементов подряд и различных чисел.\n")
+	arr := []int{1, 1, 2, 2, 2, 3, 4, 4, 4, 4, 5, 6, 6}
+	identicalPairs := 0
+	for i := 1; i < len(arr); i++ {
+		if arr[i] == arr[i-1] {
+			identicalPairs++
+		}
+	}
+	unique := make(map[int]bool)
+	for _, v := range arr {
+		unique[v] = true
+	}
+	fmt.Printf("Одинаковых пар подряд: %d, различных чисел: %d\n", identicalPairs, len(unique))
+}
+
+func ch11ex110() {
+	fmt.Printf("Ex110. Найти количество различных чисел в неубывающей последовательности.\n")
+	arr := []int{1, 1, 2, 2, 3, 3, 3, 4, 5, 5, 6, 6, 6, 6, 7}
+	distinctCount := 1
+	for i := 1; i < len(arr); i++ {
+		if arr[i] != arr[i-1] {
+			distinctCount++
+		}
+	}
+	fmt.Printf("Различных чисел: %d\n", distinctCount)
+}
+
+func ch11ex111() {
+	fmt.Printf("Ex111. Найти наибольшую длину отрезка из нечетных чисел.\n")
+	arr := []int{1, 3, 5, 2, 7, 9, 11, 4, 13, 15, 17, 6, 19}
+	maxLen := 0
+	currentLen := 0
+	for _, v := range arr {
+		if v%2 != 0 {
+			currentLen++
+			if currentLen > maxLen {
+				maxLen = currentLen
+			}
+		} else {
+			currentLen = 0
+		}
+	}
+	fmt.Printf("Наибольшая длина отрезка из нечетных чисел: %d\n", maxLen)
+}
+
+func ch11ex112() {
+	fmt.Printf("Ex112. Определить min, max, их индексы и сравнение.\n")
+	arr := []int{12, 45, 3, 67, 23, 89, 34, 2, 56, 78}
+	if len(arr) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+	minVal, maxVal := arr[0], arr[0]
+	minIdx, maxIdx := 0, 0
+	for i, v := range arr {
+		if v < minVal {
+			minVal = v
+			minIdx = i
+		}
+		if v > maxVal {
+			maxVal = v
+			maxIdx = i
+		}
+	}
+	fmt.Printf("Минимальный: arr[%d]=%d\n", minIdx, minVal)
+	fmt.Printf("Максимальный: arr[%d]=%d\n", maxIdx, maxVal)
+	fmt.Printf("Максимальный больше минимального: %s\n",
+		map[bool]string{true: "да", false: "нет"}[maxVal > minVal])
+}
+
+func ch11ex113() {
+	fmt.Printf("Ex113. Определить количество страниц в самой толстой книге.\n")
+	pages := []int{300, 450, 200, 600, 350, 500, 250, 400}
+	maxPages := 0
+	for _, p := range pages {
+		if p > maxPages {
+			maxPages = p
+		}
+	}
+	fmt.Printf("Самая толстая книга: %d страниц\n", maxPages)
+}
+
+func ch11ex114() {
+	fmt.Printf("Ex114. Определить стоимость самого дорогого автомобиля.\n")
+	prices := []float64{15000, 25000, 18000, 30000, 22000, 35000, 28000}
+	maxPrice := 0.0
+	for _, p := range prices {
+		if p > maxPrice {
+			maxPrice = p
+		}
+	}
+	fmt.Printf("Самый дорогой автомобиль: %.2f $\n", maxPrice)
+}
+
+func ch11ex115() {
+	fmt.Printf("Ex115. Определить стоимость самых дешевых конфет.\n")
+	candyPrices := []float64{5.50, 4.20, 6.80, 3.90, 5.00, 7.20, 4.50}
+	minPrice := candyPrices[0]
+	for _, p := range candyPrices[1:] {
+		if p < minPrice {
+			minPrice = p
+		}
+	}
+	fmt.Printf("Самые дешевые конфеты: %.2f $/кг\n", minPrice)
 }
