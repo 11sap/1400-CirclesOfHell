@@ -22,7 +22,8 @@ func Run11() {
 		ch11ex89, ch11ex90, ch11ex91, ch11ex92, ch11ex92, ch11ex93, ch11ex94, ch11ex95,
 		ch11ex96, ch11ex97, ch11ex98, ch11ex99, ch11ex100, ch11ex101, ch11ex102, ch11ex103,
 		ch11ex104, ch11ex105, ch11ex106, ch11ex107, ch11ex108, ch11ex109, ch11ex110, ch11ex111,
-		ch11ex112, ch11ex113, ch11ex114, ch11ex115,
+		ch11ex112, ch11ex113, ch11ex114, ch11ex115, ch11ex116, ch11ex117, ch11ex118, ch11ex119,
+		ch11ex120, ch11ex121, ch11ex122, ch11ex123,
 	}
 
 	for {
@@ -2560,4 +2561,175 @@ func ch11ex115() {
 		}
 	}
 	fmt.Printf("Самые дешевые конфеты: %.2f $/кг\n", minPrice)
+}
+
+func ch11ex116() {
+	fmt.Printf("Ex116. Определить результат спортсмена-победителя лыжной гонки.\n")
+	results := []float64{58.3, 59.1, 57.8, 60.2, 58.9, 57.5, 59.8, 58.0}
+	bestTime := results[0]
+	for _, t := range results[1:] {
+		if t < bestTime {
+			bestTime = t
+		}
+	}
+	fmt.Printf("Результат победителя: %.1f мин\n", bestTime)
+}
+
+func ch11ex117() {
+	fmt.Printf("Ex117. Определить разницу между ростом самого высокого и самого низкого.\n")
+	heights := []int{165, 180, 172, 155, 185, 168, 178, 160}
+	min, max := heights[0], heights[0]
+	for _, h := range heights[1:] {
+		if h < min {
+			min = h
+		}
+		if h > max {
+			max = h
+		}
+	}
+	diff := max - min
+	fmt.Printf("Рост самого высокого: %d см, самого низкого: %d см, разница: %d см\n", max, min, diff)
+}
+
+func ch11ex118() {
+	fmt.Printf("Ex118. Определить разницу в возрасте самого старого и самого молодого.\n")
+	birthYears := []int{1990, 1985, 2000, 1995, 1988, 1992, 1980, 1998}
+	currentYear := 2024
+	minAge, maxAge := currentYear-birthYears[0], currentYear-birthYears[0]
+	for _, year := range birthYears[1:] {
+		age := currentYear - year
+		if age < minAge {
+			minAge = age
+		}
+		if age > maxAge {
+			maxAge = age
+		}
+	}
+	ageDiff := maxAge - minAge
+	fmt.Printf("Самому молодому: %d лет, самому старому: %d лет, разница: %d лет\n", minAge, maxAge, ageDiff)
+}
+
+func ch11ex119() {
+	fmt.Printf("Ex119. Рассчитать зачетную оценку фигуриста.\n")
+	scores := []float64{5.8, 5.9, 5.7, 6.0, 5.6, 5.8, 5.9, 5.7}
+	if len(scores) < 3 {
+		fmt.Println("Недостаточно оценок")
+		return
+	}
+	minScore, maxScore := scores[0], scores[0]
+	minIdx, maxIdx := 0, 0
+	for i, s := range scores {
+		if s < minScore {
+			minScore = s
+			minIdx = i
+		}
+		if s > maxScore {
+			maxScore = s
+			maxIdx = i
+		}
+	}
+	sum := 0.0
+	count := 0
+	for i, s := range scores {
+		if i != minIdx && i != maxIdx {
+			sum += s
+			count++
+		}
+	}
+	finalScore := sum / float64(count)
+	fmt.Printf("Зачетная оценка: %.2f\n", finalScore)
+}
+
+func ch11ex120() {
+	fmt.Printf("Ex120. Определить порядковый номер самого быстрого автомобиля.\n")
+	speeds := []int{180, 200, 190, 200, 210, 190, 200, 195}
+	maxSpeed := speeds[0]
+	for _, s := range speeds {
+		if s > maxSpeed {
+			maxSpeed = s
+		}
+	}
+	firstIdx, lastIdx := -1, -1
+	for i, s := range speeds {
+		if s == maxSpeed {
+			if firstIdx == -1 {
+				firstIdx = i
+			}
+			lastIdx = i
+		}
+	}
+	fmt.Printf("Максимальная скорость: %d км/ч\n", maxSpeed)
+	fmt.Printf("Первый с такой скоростью: индекс %d\n", firstIdx)
+	fmt.Printf("Последний с такой скоростью: индекс %d\n", lastIdx)
+}
+
+func ch11ex121() {
+	fmt.Printf("Ex121. Определить дату самого дождливого дня.\n")
+	precipitation := []int{5, 8, 3, 12, 7, 12, 4, 9, 6, 10}
+	maxPrecip := precipitation[0]
+	for _, p := range precipitation {
+		if p > maxPrecip {
+			maxPrecip = p
+		}
+	}
+	firstDay, lastDay := -1, -1
+	for i, p := range precipitation {
+		if p == maxPrecip {
+			if firstDay == -1 {
+				firstDay = i + 1
+			}
+			lastDay = i + 1
+		}
+	}
+	fmt.Printf("Максимальные осадки: %d мм\n", maxPrecip)
+	fmt.Printf("Первый самый дождливый день: %d июля\n", firstDay)
+	fmt.Printf("Последний самый дождливый день: %d июля\n", lastDay)
+}
+
+func ch11ex122() {
+	fmt.Printf("Ex122. Определить номер самого дешевого вида конфет.\n")
+	prices := []float64{5.50, 4.20, 3.90, 4.50, 3.90, 6.00, 4.80}
+	minPrice := prices[0]
+	for _, p := range prices {
+		if p < minPrice {
+			minPrice = p
+		}
+	}
+	firstIdx, lastIdx := -1, -1
+	for i, p := range prices {
+		if p == minPrice {
+			if firstIdx == -1 {
+				firstIdx = i
+			}
+			lastIdx = i
+		}
+	}
+	fmt.Printf("Минимальная цена: %.2f $/кг\n", minPrice)
+	fmt.Printf("Первый самый дешевый: индекс %d\n", firstIdx)
+	fmt.Printf("Последний самый дешевый: индекс %d\n", lastIdx)
+}
+
+func ch11ex123() {
+	fmt.Printf("Ex123. Определить номер самого старшего человека.\n")
+	birthYears := []int{1990, 1985, 1980, 1995, 1980, 1992, 1980, 1998}
+	currentYear := 2024
+	maxAge := 0
+	for _, year := range birthYears {
+		age := currentYear - year
+		if age > maxAge {
+			maxAge = age
+		}
+	}
+	firstIdx, lastIdx := -1, -1
+	for i, year := range birthYears {
+		if currentYear-year == maxAge {
+			if firstIdx == -1 {
+				firstIdx = i
+			}
+			lastIdx = i
+		}
+	}
+	fmt.Printf("Максимальный возраст: %d лет\n", maxAge)
+	fmt.Printf("Первый самый старший: индекс %d\n", firstIdx)
+	fmt.Printf("Последний самый старший: индекс %d\n", lastIdx)
 }
