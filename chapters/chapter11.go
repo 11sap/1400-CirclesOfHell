@@ -23,7 +23,8 @@ func Run11() {
 		ch11ex96, ch11ex97, ch11ex98, ch11ex99, ch11ex100, ch11ex101, ch11ex102, ch11ex103,
 		ch11ex104, ch11ex105, ch11ex106, ch11ex107, ch11ex108, ch11ex109, ch11ex110, ch11ex111,
 		ch11ex112, ch11ex113, ch11ex114, ch11ex115, ch11ex116, ch11ex117, ch11ex118, ch11ex119,
-		ch11ex120, ch11ex121, ch11ex122, ch11ex123,
+		ch11ex120, ch11ex121, ch11ex122, ch11ex123, ch11ex124, ch11ex125, ch11ex126, ch11ex127,
+		ch11ex128, ch11ex129, ch11ex130, ch11ex131, ch11ex132, ch11ex133,
 	}
 
 	for {
@@ -2732,4 +2733,203 @@ func ch11ex123() {
 	fmt.Printf("Максимальный возраст: %d лет\n", maxAge)
 	fmt.Printf("Первый самый старший: индекс %d\n", firstIdx)
 	fmt.Printf("Последний самый старший: индекс %d\n", lastIdx)
+}
+
+func ch11ex124() {
+	fmt.Printf("Ex124. Определить количество максимальных и минимальных элементов.\n")
+	arr := []int{5, 8, 3, 8, 2, 8, 3, 2, 8, 1}
+	if len(arr) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+	minVal, maxVal := arr[0], arr[0]
+	minCount, maxCount := 0, 0
+	for _, v := range arr {
+		if v < minVal {
+			minVal = v
+			minCount = 1
+		} else if v == minVal {
+			minCount++
+		}
+		if v > maxVal {
+			maxVal = v
+			maxCount = 1
+		} else if v == maxVal {
+			maxCount++
+		}
+	}
+	fmt.Printf("Минимальных элементов: %d (значение %d)\n", minCount, minVal)
+	fmt.Printf("Максимальных элементов: %d (значение %d)\n", maxCount, maxVal)
+}
+
+func ch11ex125() {
+	fmt.Printf("Ex125. Определить количество самых высоких людей.\n")
+	heights := []int{180, 175, 185, 182, 185, 178, 185, 180}
+	maxHeight := heights[0]
+	maxCount := 0
+	for _, h := range heights {
+		if h > maxHeight {
+			maxHeight = h
+			maxCount = 1
+		} else if h == maxHeight {
+			maxCount++
+		}
+	}
+	fmt.Printf("Самый высокий рост: %d см. Таких людей: %d\n", maxHeight, maxCount)
+}
+
+func ch11ex126() {
+	fmt.Printf("Ex126. Определить количество дней с осадками более 5 мм.\n")
+	precipitation := []int{3, 8, 0, 12, 4, 6, 2, 9, 7, 10}
+	threshold := 5
+	count := 0
+	for _, p := range precipitation {
+		if p > threshold {
+			count++
+		}
+	}
+	fmt.Printf("Дней с осадками > %d мм: %d\n", threshold, count)
+}
+
+func ch11ex127() {
+	fmt.Printf("Ex127. Определить количество товаров с ценой выше 100.\n")
+	prices := []float64{50, 120, 80, 150, 90, 200, 110, 70}
+	threshold := 100.0
+	count := 0
+	for _, p := range prices {
+		if p > threshold {
+			count++
+		}
+	}
+	fmt.Printf("Товаров дороже %.2f: %d\n", threshold, count)
+}
+
+func ch11ex128() {
+	fmt.Printf("Ex128. Определить количество дней с температурой выше 20°C.\n")
+	temperatures := []float64{18.5, 22.1, 19.8, 25.3, 20.5, 23.7, 19.2, 21.8}
+	threshold := 20.0
+	count := 0
+	for _, t := range temperatures {
+		if t > threshold {
+			count++
+		}
+	}
+	fmt.Printf("Дней теплее %.1f°C: %d\n", threshold, count)
+}
+
+func ch11ex129() {
+	fmt.Printf("Ex129. Вывести номера всех минимальных и максимальных элементов.\n")
+	arr := []int{5, 8, 3, 8, 2, 8, 3, 2, 8, 1}
+	if len(arr) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+	minVal, maxVal := arr[0], arr[0]
+	for _, v := range arr {
+		if v < minVal {
+			minVal = v
+		}
+		if v > maxVal {
+			maxVal = v
+		}
+	}
+	minIndices := []int{}
+	maxIndices := []int{}
+	for i, v := range arr {
+		if v == minVal {
+			minIndices = append(minIndices, i)
+		}
+		if v == maxVal {
+			maxIndices = append(maxIndices, i)
+		}
+	}
+	fmt.Printf("Индексы минимальных элементов (%d): %v\n", minVal, minIndices)
+	fmt.Printf("Индексы максимальных элементов (%d): %v\n", maxVal, maxIndices)
+}
+
+func ch11ex130() {
+	fmt.Printf("Ex130. Проверить условия сравнения min и max.\n")
+	arr := []float64{10.5, 25.8, 15.3, 30.2, 12.7, 28.9}
+	if len(arr) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+	minVal, maxVal := arr[0], arr[0]
+	for _, v := range arr {
+		if v < minVal {
+			minVal = v
+		}
+		if v > maxVal {
+			maxVal = v
+		}
+	}
+	a := maxVal > minVal*1.2
+	b := minVal < maxVal/1.2
+	fmt.Printf("Максимальный (%.2f) > минимального (%.2f) в 1.2 раза: %s\n",
+		maxVal, minVal, map[bool]string{true: "да", false: "нет"}[a])
+	fmt.Printf("Минимальный (%.2f) < максимального (%.2f) в 1.2 раза: %s\n",
+		minVal, maxVal, map[bool]string{true: "да", false: "нет"}[b])
+}
+
+func ch11ex131() {
+	fmt.Printf("Ex131. Проверить, превышает ли масса самого тяжелого массу самого легкого более чем в 2 раза.\n")
+	weights := []float64{50, 110, 65, 120, 70, 105, 55, 130}
+	if len(weights) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+	minWeight, maxWeight := weights[0], weights[0]
+	for _, w := range weights {
+		if w < minWeight {
+			minWeight = w
+		}
+		if w > maxWeight {
+			maxWeight = w
+		}
+	}
+	condition := maxWeight > minWeight*2
+	fmt.Printf("Самый тяжелый: %.1f кг, самый легкий: %.1f кг. Превышение >2 раз: %s\n",
+		maxWeight, minWeight, map[bool]string{true: "да", false: "нет"}[condition])
+}
+
+func ch11ex132() {
+	fmt.Printf("Ex132. Определить скорость двух самых быстрых автомобилей.\n")
+	speeds := []int{180, 200, 190, 210, 195, 205, 185, 195}
+	if len(speeds) < 2 {
+		fmt.Println("Недостаточно данных")
+		return
+	}
+	first, second := 0, 0
+	for _, s := range speeds {
+		if s > first {
+			second = first
+			first = s
+		} else if s > second && s != first {
+			second = s
+		}
+	}
+	fmt.Printf("Две самые высокие скорости: %d км/ч и %d км/ч\n", first, second)
+}
+
+func ch11ex133() {
+	fmt.Printf("Ex133. Найти второй по минимальности элемент.\n")
+	arr := []int{5, 8, 3, 8, 2, 8, 3, 2, 8, 1}
+	if len(arr) < 2 {
+		fmt.Println("Недостаточно элементов")
+		return
+	}
+	firstMin, secondMin := arr[0], arr[1]
+	if firstMin > secondMin {
+		firstMin, secondMin = secondMin, firstMin
+	}
+	for i := 2; i < len(arr); i++ {
+		v := arr[i]
+		if v < firstMin {
+			secondMin = firstMin
+			firstMin = v
+		} else if v < secondMin && v != firstMin {
+			secondMin = v
+		}
+	}
+	fmt.Printf("Второй минимальный элемент: %d\n", secondMin)
 }
