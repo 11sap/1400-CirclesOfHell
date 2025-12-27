@@ -24,7 +24,8 @@ func Run11() {
 		ch11ex104, ch11ex105, ch11ex106, ch11ex107, ch11ex108, ch11ex109, ch11ex110, ch11ex111,
 		ch11ex112, ch11ex113, ch11ex114, ch11ex115, ch11ex116, ch11ex117, ch11ex118, ch11ex119,
 		ch11ex120, ch11ex121, ch11ex122, ch11ex123, ch11ex124, ch11ex125, ch11ex126, ch11ex127,
-		ch11ex128, ch11ex129, ch11ex130, ch11ex131, ch11ex132, ch11ex133,
+		ch11ex128, ch11ex129, ch11ex130, ch11ex131, ch11ex132, ch11ex133, ch11ex134, ch11ex135,
+		ch11ex136, ch11ex137, ch11ex138, ch11ex139, ch11ex14,
 	}
 
 	for {
@@ -2932,4 +2933,166 @@ func ch11ex133() {
 		}
 	}
 	fmt.Printf("Второй минимальный элемент: %d\n", secondMin)
+}
+func ch11ex134() {
+	fmt.Printf("Ex134. Найти второй по максимальности элемент.\n")
+	arr := []int{5, 8, 3, 8, 2, 8, 3, 2, 8, 1}
+	if len(arr) < 2 {
+		fmt.Println("Недостаточно элементов")
+		return
+	}
+	firstMax, secondMax := arr[0], arr[1]
+	if firstMax < secondMax {
+		firstMax, secondMax = secondMax, firstMax
+	}
+	for i := 2; i < len(arr); i++ {
+		v := arr[i]
+		if v > firstMax {
+			secondMax = firstMax
+			firstMax = v
+		} else if v > secondMax && v != firstMax {
+			secondMax = v
+		}
+	}
+	fmt.Printf("Второй максимальный элемент: %d\n", secondMax)
+}
+
+func ch11ex135() {
+	fmt.Printf("Ex135. Найти второй по минимальности элемент (упрощенный вариант).\n")
+	arr := []int{10, 5, 8, 3, 5, 2, 8, 1}
+	if len(arr) < 2 {
+		fmt.Println("Недостаточно элементов")
+		return
+	}
+	firstMin, secondMin := arr[0], arr[1]
+	if firstMin > secondMin {
+		firstMin, secondMin = secondMin, firstMin
+	}
+	for i := 2; i < len(arr); i++ {
+		if arr[i] < firstMin {
+			secondMin = firstMin
+			firstMin = arr[i]
+		} else if arr[i] < secondMin && arr[i] != firstMin {
+			secondMin = arr[i]
+		}
+	}
+	fmt.Printf("Второй минимальный элемент: %d\n", secondMin)
+}
+
+func ch11ex136() {
+	fmt.Printf("Ex136. Найти максимальный элемент без учета первого найденного максимального.\n")
+	arr := []int{10, 15, 8, 15, 12, 15, 9}
+	if len(arr) < 2 {
+		fmt.Println("Недостаточно элементов")
+		return
+	}
+	maxVal := arr[0]
+	for _, v := range arr {
+		if v > maxVal {
+			maxVal = v
+		}
+	}
+	secondMax := arr[0]
+	if secondMax == maxVal {
+		secondMax = arr[1]
+	}
+	for _, v := range arr {
+		if v > secondMax && v != maxVal {
+			secondMax = v
+		}
+	}
+	fmt.Printf("Максимальный элемент: %d\n", maxVal)
+	fmt.Printf("Максимальный элемент без учета первого максимального: %d\n", secondMax)
+}
+
+func ch11ex137() {
+	fmt.Printf("Ex137. Найти минимальный элемент без учета первого найденного минимального.\n")
+	arr := []int{5, 3, 8, 3, 2, 3, 7}
+	if len(arr) < 2 {
+		fmt.Println("Недостаточно элементов")
+		return
+	}
+	minVal := arr[0]
+	for _, v := range arr {
+		if v < minVal {
+			minVal = v
+		}
+	}
+	secondMin := arr[0]
+	if secondMin == minVal {
+		secondMin = arr[1]
+	}
+	for _, v := range arr {
+		if v < secondMin && v != minVal {
+			secondMin = v
+		}
+	}
+	fmt.Printf("Минимальный элемент: %d\n", minVal)
+	fmt.Printf("Минимальный элемент без учета первого минимального: %d\n", secondMin)
+}
+
+func ch11ex138() {
+	fmt.Printf("Ex138. Найти два самых дорогих автомобиля.\n")
+	prices := []float64{15000, 25000, 18000, 30000, 22000, 30000, 28000}
+	if len(prices) < 2 {
+		fmt.Println("Недостаточно данных")
+		return
+	}
+	first, second := prices[0], prices[1]
+	if first < second {
+		first, second = second, first
+	}
+	for _, p := range prices[2:] {
+		if p > first {
+			second = first
+			first = p
+		} else if p > second && p != first {
+			second = p
+		}
+	}
+	fmt.Printf("Два самых дорогих автомобиля: %.2f $ и %.2f $\n", first, second)
+}
+
+func ch11ex139() {
+	fmt.Printf("Ex139. Найти два самых дешевых вида товара.\n")
+	prices := []float64{5.50, 4.20, 3.90, 4.50, 3.90, 6.00, 4.80, 3.50}
+	if len(prices) < 2 {
+		fmt.Println("Недостаточно данных")
+		return
+	}
+	first, second := prices[0], prices[1]
+	if first > second {
+		first, second = second, first
+	}
+	for _, p := range prices[2:] {
+		if p < first {
+			second = first
+			first = p
+		} else if p < second && p != first {
+			second = p
+		}
+	}
+	fmt.Printf("Два самых дешевых товара: %.2f $ и %.2f $\n", first, second)
+}
+
+func ch11ex140() {
+	fmt.Printf("Ex140. Найти два дня с наибольшим количеством осадков.\n")
+	precipitation := []int{12, 8, 15, 20, 10, 18, 25, 16}
+	if len(precipitation) < 2 {
+		fmt.Println("Недостаточно данных")
+		return
+	}
+	first, second := precipitation[0], precipitation[1]
+	if first < second {
+		first, second = second, first
+	}
+	for _, p := range precipitation[2:] {
+		if p > first {
+			second = first
+			first = p
+		} else if p > second && p != first {
+			second = p
+		}
+	}
+	fmt.Printf("Два дня с наибольшими осадками: %d мм и %d мм\n", first, second)
 }
