@@ -25,7 +25,9 @@ func Run11() {
 		ch11ex112, ch11ex113, ch11ex114, ch11ex115, ch11ex116, ch11ex117, ch11ex118, ch11ex119,
 		ch11ex120, ch11ex121, ch11ex122, ch11ex123, ch11ex124, ch11ex125, ch11ex126, ch11ex127,
 		ch11ex128, ch11ex129, ch11ex130, ch11ex131, ch11ex132, ch11ex133, ch11ex134, ch11ex135,
-		ch11ex136, ch11ex137, ch11ex138, ch11ex139, ch11ex14,
+		ch11ex136, ch11ex137, ch11ex138, ch11ex139, ch11ex140, ch11ex141, ch11ex142, ch11ex143,
+		ch11ex144, ch11ex145, ch11ex146, ch11ex147, ch11ex148, ch11ex149, ch11ex150, ch11ex151,
+		ch11ex152, ch11ex153, ch11ex154, ch11ex155, ch11ex156, ch11ex157, ch11ex158, ch11ex159,
 	}
 
 	for {
@@ -3095,4 +3097,400 @@ func ch11ex140() {
 		}
 	}
 	fmt.Printf("Два дня с наибольшими осадками: %d мм и %d мм\n", first, second)
+}
+
+func ch11ex141() {
+	fmt.Printf("Ex141. Найти три максимальных элемента.\n")
+	arr := []int{10, 25, 15, 30, 20, 25, 35, 30}
+	if len(arr) < 3 {
+		fmt.Println("Недостаточно элементов")
+		return
+	}
+	first, second, third := arr[0], arr[1], arr[2]
+	if first < second {
+		first, second = second, first
+	}
+	if first < third {
+		first, third = third, first
+	}
+	if second < third {
+		second, third = third, second
+	}
+	for i := 3; i < len(arr); i++ {
+		v := arr[i]
+		if v > first {
+			third = second
+			second = first
+			first = v
+		} else if v > second {
+			third = second
+			second = v
+		} else if v > third {
+			third = v
+		}
+	}
+	fmt.Printf("Три максимальных элемента: %d, %d, %d\n", first, second, third)
+}
+
+func ch11ex142() {
+	fmt.Printf("Ex142. Найти три минимальных элемента.\n")
+	arr := []int{15, 8, 20, 5, 12, 8, 3, 10}
+	if len(arr) < 3 {
+		fmt.Println("Недостаточно элементов")
+		return
+	}
+	first, second, third := arr[0], arr[1], arr[2]
+	if first > second {
+		first, second = second, first
+	}
+	if first > third {
+		first, third = third, first
+	}
+	if second > third {
+		second, third = third, second
+	}
+	for i := 3; i < len(arr); i++ {
+		v := arr[i]
+		if v < first {
+			third = second
+			second = first
+			first = v
+		} else if v < second {
+			third = second
+			second = v
+		} else if v < third {
+			third = v
+		}
+	}
+	fmt.Printf("Три минимальных элемента: %d, %d, %d\n", first, second, third)
+}
+
+func ch11ex143() {
+	fmt.Printf("Ex143. Найти максимальный и минимальный элементы за один проход.\n")
+	arr := []int{12, 45, 3, 67, 23, 89, 34, 2, 56, 78}
+	if len(arr) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+	minVal, maxVal := arr[0], arr[0]
+	for i := 1; i < len(arr); i++ {
+		if arr[i] < minVal {
+			minVal = arr[i]
+		}
+		if arr[i] > maxVal {
+			maxVal = arr[i]
+		}
+	}
+	fmt.Printf("Минимальный: %d, Максимальный: %d\n", minVal, maxVal)
+}
+
+func ch11ex144() {
+	fmt.Printf("Ex144. Определить, является ли массив упорядоченным по возрастанию.\n")
+	arr := []int{1, 3, 5, 7, 9, 11, 13}
+	isSorted := true
+	for i := 1; i < len(arr); i++ {
+		if arr[i] < arr[i-1] {
+			isSorted = false
+			break
+		}
+	}
+	fmt.Printf("Массив упорядочен по возрастанию: %s\n",
+		map[bool]string{true: "да", false: "нет"}[isSorted])
+}
+
+func ch11ex145() {
+	fmt.Printf("Ex145. Определить, является ли массив упорядоченным по убыванию.\n")
+	arr := []int{15, 12, 10, 8, 6, 4, 2}
+	isSorted := true
+	for i := 1; i < len(arr); i++ {
+		if arr[i] > arr[i-1] {
+			isSorted = false
+			break
+		}
+	}
+	fmt.Printf("Массив упорядочен по убыванию: %s\n",
+		map[bool]string{true: "да", false: "нет"}[isSorted])
+}
+
+func ch11ex146() {
+	fmt.Printf("Ex146. Найти количество локальных максимумов.\n")
+	arr := []int{1, 3, 2, 5, 3, 7, 4, 6, 2}
+	count := 0
+	for i := 1; i < len(arr)-1; i++ {
+		if arr[i] > arr[i-1] && arr[i] > arr[i+1] {
+			count++
+		}
+	}
+	fmt.Printf("Количество локальных максимумов: %d\n", count)
+}
+
+func ch11ex147() {
+	fmt.Printf("Ex147. Найти количество локальных минимумов.\n")
+	arr := []int{5, 2, 4, 1, 6, 3, 7, 2, 8}
+	count := 0
+	for i := 1; i < len(arr)-1; i++ {
+		if arr[i] < arr[i-1] && arr[i] < arr[i+1] {
+			count++
+		}
+	}
+	fmt.Printf("Количество локальных минимумов: %d\n", count)
+}
+
+func ch11ex148() {
+	fmt.Printf("Ex148. Определить, есть ли в массиве элементы, равные среднему арифметическому.\n")
+	arr := []int{10, 20, 30, 40, 25}
+	sum := 0
+	for _, v := range arr {
+		sum += v
+	}
+	avg := float64(sum) / float64(len(arr))
+	hasEqual := false
+	for _, v := range arr {
+		if float64(v) == avg {
+			hasEqual = true
+			break
+		}
+	}
+	fmt.Printf("Среднее арифметическое: %.2f. Есть элементы равные среднему: %s\n",
+		avg, map[bool]string{true: "да", false: "нет"}[hasEqual])
+}
+
+func ch11ex149() {
+	fmt.Printf("Ex149. Найти наиболее часто встречающийся элемент.\n")
+	arr := []int{1, 2, 3, 2, 4, 2, 5, 3, 2, 1}
+	frequency := make(map[int]int)
+	for _, v := range arr {
+		frequency[v]++
+	}
+	maxFreq := 0
+	mostFrequent := arr[0]
+	for val, freq := range frequency {
+		if freq > maxFreq {
+			maxFreq = freq
+			mostFrequent = val
+		}
+	}
+	fmt.Printf("Наиболее часто встречающийся элемент: %d (встречается %d раз)\n",
+		mostFrequent, maxFreq)
+}
+
+func ch11ex150() {
+	fmt.Printf("Ex150. Определить, все ли элементы массива различны.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	seen := make(map[int]bool)
+	allUnique := true
+	for _, v := range arr {
+		if seen[v] {
+			allUnique = false
+			break
+		}
+		seen[v] = true
+	}
+	fmt.Printf("Все элементы массива различны: %s\n",
+		map[bool]string{true: "да", false: "нет"}[allUnique])
+}
+
+func ch11ex151() {
+	fmt.Printf("Ex151. Поменять местами элементы.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	fmt.Printf("Исходный массив: %v\n", arr)
+
+	if len(arr) >= 5 {
+		arr[1], arr[4] = arr[4], arr[1]
+	}
+	fmt.Printf("После обмена 2-го и 5-го: %v\n", arr)
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	m, n := 3, 7
+	if m < len(arr) && n < len(arr) {
+		arr[m-1], arr[n-1] = arr[n-1], arr[m-1]
+	}
+	fmt.Printf("После обмена %d-го и %d-го: %v\n", m, n, arr)
+}
+
+func ch11ex152() {
+	fmt.Printf("Ex152. Поменять местами половины массива.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	fmt.Printf("Исходный массив: %v\n", arr)
+
+	n := len(arr)
+	for i := 0; i < n/2; i++ {
+		arr[i], arr[n/2+i] = arr[n/2+i], arr[i]
+	}
+	fmt.Printf("После обмена половин: %v\n", arr)
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	for i := 0; i < n-1; i += 2 {
+		arr[i], arr[i+1] = arr[i+1], arr[i]
+	}
+	fmt.Printf("После обмена пар: %v\n", arr)
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	for i := 0; i < n/2; i++ {
+		arr[i], arr[n-1-i] = arr[n-1-i], arr[i]
+	}
+	fmt.Printf("После зеркального обмена: %v\n", arr)
+}
+
+func ch11ex153() {
+	fmt.Printf("Ex153. Переставить первые три и последние три элемента.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+	if len(arr) < 6 {
+		fmt.Println("Массив слишком короткий")
+		return
+	}
+	fmt.Printf("Исходный массив: %v\n", arr)
+
+	firstThree := make([]int, 3)
+	lastThree := make([]int, 3)
+	copy(firstThree, arr[:3])
+	copy(lastThree, arr[len(arr)-3:])
+
+	copy(arr[:3], lastThree)
+	copy(arr[len(arr)-3:], firstThree)
+
+	fmt.Printf("После перестановки: %v\n", arr)
+}
+
+func ch11ex154() {
+	fmt.Printf("Ex154. Переставить элементы в обратном порядке.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+	fmt.Printf("Исходный массив: %v\n", arr)
+
+	start, end := 2, 9
+	for i := 0; i < (end-start+1)/2; i++ {
+		arr[start+i], arr[end-i] = arr[end-i], arr[start+i]
+	}
+	fmt.Printf("После обращения с 3-го по 10-й: %v\n", arr)
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+
+	k, s := 4, 12
+	if k < s && s < len(arr) {
+		for i := 0; i < (s-k+1)/2; i++ {
+			arr[k+i], arr[s-i] = arr[s-i], arr[k+i]
+		}
+	}
+	fmt.Printf("После обращения с %d-го по %d-й: %v\n", k+1, s+1, arr)
+}
+
+func ch11ex155() {
+	fmt.Printf("Ex155. Поменять местами первый отрицательный и последний положительный элементы.\n")
+	arr := []int{5, -3, 8, -2, 10, 7, -1, 4, -5, 6}
+	fmt.Printf("Исходный массив: %v\n", arr)
+
+	firstNeg, lastPos := -1, -1
+
+	for i := 0; i < len(arr); i++ {
+		if arr[i] < 0 {
+			firstNeg = i
+			break
+		}
+	}
+
+	for i := len(arr) - 1; i >= 0; i-- {
+		if arr[i] > 0 {
+			lastPos = i
+			break
+		}
+	}
+
+	if firstNeg != -1 && lastPos != -1 {
+		arr[firstNeg], arr[lastPos] = arr[lastPos], arr[firstNeg]
+	}
+
+	fmt.Printf("После обмена: %v\n", arr)
+}
+
+func ch11ex156() {
+	fmt.Printf("Ex156. Удалить элемент из массива.\n")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	fmt.Printf("Исходный массив: %v\n", arr)
+
+	idx := 2
+	if idx < len(arr) {
+		arr = append(arr[:idx], arr[idx+1:]...)
+	}
+	fmt.Printf("После удаления 3-го элемента: %v\n", arr)
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	k := 5
+	if k-1 < len(arr) {
+		arr = append(arr[:k-1], arr[k:]...)
+	}
+	fmt.Printf("После удаления %d-го элемента: %v\n", k, arr)
+}
+
+func ch11ex157() {
+	fmt.Printf("Ex157. Удалить товар с заданной стоимостью.\n")
+	prices := []float64{10.5, 20.3, 15.7, 25.0, 18.9, 30.2, 22.5}
+	fmt.Printf("Исходные цены: %v\n", prices)
+
+	n := 3
+	if n < len(prices) {
+		prices = append(prices[:n], prices[n+1:]...)
+	}
+	fmt.Printf("После удаления %d-го товара: %v\n", n+1, prices)
+}
+
+func ch11ex158() {
+	fmt.Printf("Ex158. Удалить максимальный и минимальный элементы.\n")
+	arr := []int{10, 5, 20, 3, 15, 25, 8}
+	fmt.Printf("Исходный массив: %v\n", arr)
+
+	if len(arr) == 0 {
+		fmt.Println("Массив пуст")
+		return
+	}
+
+	maxIdx, minIdx := 0, 0
+	for i := 1; i < len(arr); i++ {
+		if arr[i] > arr[maxIdx] {
+			maxIdx = i
+		}
+		if arr[i] < arr[minIdx] {
+			minIdx = i
+		}
+	}
+
+	if maxIdx > minIdx {
+		arr = append(arr[:maxIdx], arr[maxIdx+1:]...)
+		if minIdx < len(arr) {
+			arr = append(arr[:minIdx], arr[minIdx+1:]...)
+		}
+	} else {
+		arr = append(arr[:minIdx], arr[minIdx+1:]...)
+		if maxIdx < len(arr) {
+			arr = append(arr[:maxIdx], arr[maxIdx+1:]...)
+		}
+	}
+
+	fmt.Printf("После удаления max и min: %v\n", arr)
+}
+
+func ch11ex159() {
+	fmt.Printf("Ex159. Удалить ученика по росту.\n")
+	heights := []int{180, 175, 172, 170, 168, 165, 162, 160}
+	fmt.Printf("Исходный массив ростов: %v\n", heights)
+
+	studentIdx := 3
+	if studentIdx < len(heights) {
+		heights = append(heights[:studentIdx], heights[studentIdx+1:]...)
+	}
+	fmt.Printf("После удаления %d-го ученика: %v\n", studentIdx+1, heights)
+
+	heights = []int{180, 175, 172, 170, 168, 165, 162, 160}
+
+	heightToRemove := 170
+	for i := 0; i < len(heights); i++ {
+		if heights[i] == heightToRemove {
+			heights = append(heights[:i], heights[i+1:]...)
+			break
+		}
+	}
+	fmt.Printf("После удаления ученика с ростом %d: %v\n", heightToRemove, heights)
 }
